@@ -1,0 +1,12 @@
+* {
+    font-family:'Times New Roman', Times, serif;
+}
+h1, h2 {
+    text-decoration: underline;
+}
+h1 {
+    text-align: center;
+}
+h2 {
+    line-height: 50px;
+}
