@@ -1,0 +1,73 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+header {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.user {
+    display: flex;
+    align-items: center;
+}
+section {
+    height: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+}
+section h2 {
+    margin: 12px 0;
+}
+section button {
+    padding: 5px;
+}
+main {
+    max-width: 1000px;
+    width: 100%;
+    margin: 20px auto;
+    display: flex;
+    gap: 16px;
+}
+.category {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    background-color: gainsboro;
+    padding: 8px 16px;
+}
+.category p, .category a {
+    margin: 8px 0;
+}
+.cate-item {
+    border-radius: 10px;
+    background-color: gray;
+    padding: 10px;
+    text-decoration: none;
+}
+.product {
+    display: flex;
+    flex-wrap: wrap;
+}
+.prod-image {
+    width: calc((100% - 32px) / 3);
+    height: 100px;
+    background-image: url("https://placehold.co/600x400");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.prod-info {
+    background-color: rgb(150, 150, 150);
+    padding: 16px;
+}

@@ -20,7 +20,8 @@
     }
     .main {
       margin: 20px auto;
-      width: 1000px;
+      max-width: 1000px;
+      width: 100%;
     }
     .category {
       float: left;
@@ -60,6 +61,8 @@
       margin: 8px 0;
     }
     .advertisement {
+      position: sticky;
+      top: 72px;
       float: right;
       width: 20%;
       background-color: gainsboro;
@@ -78,10 +81,12 @@
       padding: 10px;
     }
     footer {
-      clear: both;
       background-color: gainsboro;
       text-align: center;
       padding: 16px;
+    }
+    .clear {
+      clear: both;
     }
   </style>
 </head>
@@ -154,6 +159,7 @@
         </div>
       </div>
       <div class="advertisement">Quang cao</div>
+      <div class="clear"></div>
     </div>
   </section>
   <div class="button-up">Up</div>
