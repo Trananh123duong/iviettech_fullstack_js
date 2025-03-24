@@ -43,22 +43,18 @@ header > div {
     position: relative;
 }
 .menu_2 {
-    /* display: flex; */
     display: none;
     list-style-type: none;
     background-color: rgb(23, 196, 138);
-    /* flex-direction: column; */
     position: absolute;
 }
 .menu_2 li:hover .menu_3 {
     display: block;
 }
 .menu_3 {
-    /* display: flex; */
     display: none;
     list-style-type: none;
     background-color: rgb(5, 116, 79);
-    /* flex-direction: column; */
     position: absolute;
     left: 100%;
     top: 0;
@@ -149,4 +145,24 @@ footer {
     background-color: gainsboro;
     text-align: center;
     padding: 16px;
+}
+
+@media screen and (max-width: 768px) {
+    .prod-item {
+        width: calc((100% - 16px) / 2);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    main {
+        flex-direction: column;
+    }
+    .category {
+        width: 100%;
+        position: static;
+        top: auto;
+    }
+    .prod-item {
+        width: 100%;
+    }
 }
