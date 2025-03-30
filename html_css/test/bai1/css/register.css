@@ -1,0 +1,32 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url(../imgs/register-background.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+form {
+    max-width: 500px;
+    width: 100%;
+    margin: 100px auto;
+    background-color: white;
+    padding: 16px;
+}
+h1 {
+    text-align: center;
+}
+.info {
+    display: flex;
+    flex-direction: column;
+}
+.info div {
+    display: flex;
+    gap: 5px;
+}
