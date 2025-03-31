@@ -11,13 +11,18 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 form {
     max-width: 500px;
     width: 100%;
     margin: 100px auto;
     background-color: white;
-    padding: 16px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
 h1 {
     text-align: center;
@@ -29,4 +34,16 @@ h1 {
 .info div {
     display: flex;
     gap: 5px;
+}
+input {
+    height: 40px;
+}
+label {
+    font-size: 20px;
+    margin-top: 10px;
+}
+button {
+    background-color: aquamarine;
+    height: 56px;
+    font-size: 30px;
 }
