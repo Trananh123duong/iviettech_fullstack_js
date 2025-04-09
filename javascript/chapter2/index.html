@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      let quantityStudent = prompt("Nhap so luong hoc sinh:");
+      quantityStudent = parseInt(quantityStudent);
+      let total = 0;
+      for (let i = 1; i <= quantityStudent; i++) {
+        let point = prompt("Nhap diem:");
+        point = parseInt(point);
+        total += point;
+      }
+      console.log("Tong diem: " + total);
+      let averageScore = total / quantityStudent;
+      console.log("Diem trung binh: " + averageScore);
+    </script>
+  </head>
+  <body></body>
+</html>
