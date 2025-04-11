@@ -8,14 +8,35 @@
       let quantityStudent = prompt("Nhap so luong hoc sinh:");
       quantityStudent = parseInt(quantityStudent);
       let total = 0;
+
+      let countGioi = 0;
+      let countKha = 0;
+      let countTrungBinh = 0;
+      let countYeu = 0;
+
       for (let i = 1; i <= quantityStudent; i++) {
         let point = prompt("Nhap diem:");
         point = parseInt(point);
         total += point;
+
+        if (point >= 8) {
+          countGioi++;
+        } else if (point >= 6.5) {
+          countKha++;
+        } else if (point >= 5) {
+          countTrungBinh++;
+        } else {
+          countYeu++;
+        }
       }
       console.log("Tong diem: " + total);
       let averageScore = total / quantityStudent;
       console.log("Diem trung binh: " + averageScore);
+
+      console.log("Số học sinh Giỏi: " + countGioi);
+      console.log("Số học sinh Khá: " + countKha);
+      console.log("Số học sinh Trung bình: " + countTrungBinh);
+      console.log("Số học sinh Yếu: " + countYeu);
     </script>
   </head>
   <body></body>
