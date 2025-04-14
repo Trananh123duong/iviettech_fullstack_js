@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>123</h1>
+    <script>
+        function getDateTime () {
+            let timeNow = new Date();
+
+            let toDate = timeNow.getDate();
+            if (toDate < 10) {
+                toDate = "0" + toDate;
+            }
+
+            let toMonth = timeNow.getMonth() + 1;
+            if (toMonth < 10) {
+                toMonth = "0" + toMonth;
+            }
+
+            let toYear = timeNow.getFullYear();
+
+            return toDate + "/" + toMonth + "/" + toYear;
+        }
+
+        let text = document.getElementsByTagName("h1")[0];
+        text.textContent = getDateTime();
+    </script>
+</body>
+</html>
