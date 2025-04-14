@@ -9,6 +9,7 @@
     <h1 id="title"></h1>
     <input type="text" id="nameInput" />
     <button id="clickMeButton">click me</button>
+    <p id="textOutput"></p>
     <script>
       function $(id) {
         return document.getElementById(id);
@@ -33,6 +34,31 @@
 
       let text = document.getElementsByTagName("h1")[0];
       text.textContent = getDateTime();
+
+      $("clickMeButton").addEventListener("click", function () {
+        let textInput = $("nameInput").value;
+        let textOutput = $("textOutput");
+
+        if (!isNaN(textInput) && textInput.trim() !== "") {
+          textInput = parseFloat(textInput);
+        }
+
+        if (typeof textInput === "string") {
+          textOutput.textContent = "Hãy nhập số";
+        } else if (textInput < 0 || textInput > 10) {
+          textOutput.textContent = "Hãy nhập số từ 0 đến 10";
+        } else {
+          if (textInput >= 8) {
+            textOutput.textContent = "Xếp loại giỏi";
+          } else if (textInput >= 6.5) {
+            textOutput.textContent = "Xếp loại khá";
+          } else if (textInput >= 5) {
+            textOutput.textContent = "Xếp loại trung bình";
+          } else {
+            textOutput.textContent = "Xếp loại yếu";
+          }
+        }
+      });
     </script>
   </body>
 </html>
