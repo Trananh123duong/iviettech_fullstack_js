@@ -3,21 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>Chi tiết tiền điện</title>
 </head>
 <body>
   <div>
     <label for="electronic">Lượng điện tiêu thụ (kWh):</label>
     <input type="text" id="electronic" />
-    <p id="electronicError" style="color: red;"></p>
+    <p id="electronicError" style="color:red;"></p>
   </div>
   <div>
     <label for="tax">Thuế (%):</label>
     <input type="text" id="tax" />
-    <p id="taxError" style="color: red;"></p>
+    <p id="taxError" style="color:red;"></p>
   </div>
   <button id="clickMeButton">Tính</button>
-  <h1 id="resultTotalTax"></h1>
+  <h2>Kết quả:</h2>
+  <pre id="resultTotalTax"></pre>
 
   <script>
     function $(id) {
@@ -36,16 +37,16 @@
       taxError.textContent = "";
     }
 
-    function validateInput(eKwh, tPercent) {
+    function validateInput(kwh, tax) {
       clearErrors();
       let isValid = true;
 
-      if (isNaN(eKwh) || eKwh < 0) {
-        electronicError.textContent = "Lượng điện phải là số và lớn hơn hoặc bằng 0";
+      if (isNaN(kwh) || kwh < 0) {
+        electronicError.textContent = "Lượng điện phải là số >= 0";
         isValid = false;
       }
 
-      if (isNaN(tPercent) || tPercent < 0 || tPercent > 100) {
+      if (isNaN(tax) || tax < 0 || tax > 100) {
         taxError.textContent = "Thuế phải từ 0 đến 100";
         isValid = false;
       }
@@ -53,21 +54,49 @@
       return isValid;
     }
 
-    function totalTax(eKwh, tPercent) {
+    function totalTax(kwh, tax) {
       let total = 0;
+      let resultText = "";
+      let bac1 = 0, bac2 = 0, bac3 = 0, bac4 = 0;
 
-      if (eKwh > 200) {
-        total = 50 * 1800 + 50 * 2000 + 100 * 2200 + (eKwh - 200) * 2500;
-      } else if (eKwh > 100) {
-        total = 50 * 1800 + 50 * 2000 + (eKwh - 100) * 2200;
-      } else if (eKwh > 50) {
-        total = 50 * 1800 + (eKwh - 50) * 2000;
+      if (kwh > 200) {
+        bac1 = 50 * 1800;
+        bac2 = 50 * 2000;
+        bac3 = 100 * 2200;
+        bac4 = (kwh - 200) * 2500;
+        total = bac1 + bac2 + bac3 + bac4;
+
+        resultText += `Bậc 1 (0-50kWh): 50 x 1800 = ${bac1}\n`;
+        resultText += `Bậc 2 (51-100kWh): 50 x 2000 = ${bac2}\n`;
+        resultText += `Bậc 3 (101-200kWh): 100 x 2200 = ${bac3}\n`;
+        resultText += `Bậc 4 (201-${kwh}kWh): ${(kwh - 200)} x 2500 = ${bac4}\n`;
+      } else if (kwh > 100) {
+        bac1 = 50 * 1800;
+        bac2 = 50 * 2000;
+        bac3 = (kwh - 100) * 2200;
+        total = bac1 + bac2 + bac3;
+
+        resultText += `Bậc 1 (0-50kWh): 50 x 1800 = ${bac1}\n`;
+        resultText += `Bậc 2 (51-100kWh): 50 x 2000 = ${bac2}\n`;
+        resultText += `Bậc 3 (101-${kwh}kWh): ${(kwh - 100)} x 2200 = ${bac3}\n`;
+      } else if (kwh > 50) {
+        bac1 = 50 * 1800;
+        bac2 = (kwh - 50) * 2000;
+        total = bac1 + bac2;
+
+        resultText += `Bậc 1 (0-50kWh): 50 x 1800 = ${bac1}\n`;
+        resultText += `Bậc 2 (51-${kwh}kWh): ${(kwh - 50)} x 2000 = ${bac2}\n`;
       } else {
-        total = eKwh * 1800;
+        bac1 = kwh * 1800;
+        total = bac1;
+
+        resultText += `Bậc 1 (0-${kwh}kWh): ${kwh} x 1800 = ${bac1}\n`;
       }
 
-      total = total * (1 + tPercent / 100);
-      return total.toFixed(0);
+      let totalWithTax = total * (1 + tax / 100);
+      resultText += `\nTổng cộng (gồm thuế): ${totalWithTax.toFixed(0)} VNĐ`;
+
+      return resultText;
     }
 
     btnCalc.addEventListener("click", function () {
@@ -76,7 +105,7 @@
 
       if (validateInput(kwh, tax)) {
         const result = totalTax(kwh, tax);
-        resultTotalTax.textContent = `Tổng tiền điện (đã gồm thuế): ${result} VNĐ`;
+        resultTotalTax.textContent = result;
       } else {
         resultTotalTax.textContent = "";
       }
