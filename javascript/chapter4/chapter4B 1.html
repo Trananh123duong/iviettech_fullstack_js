@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .header {
+        height: 50px;
+        width: 100%;
+        background-color: gray;
+      }
+      .wrapper {
+        position: relative;
+        display: flex;
+      }
+      .sidebar-container {
+        position: absolute;
+        top: 0;
+        left: -200px;
+        width: 200px;
+        padding: 16px;
+        background-color: yellow;
+        min-height: calc(100vh - 50px);
+        transition: left 0.3s;
+      }
+      .sidebar-container.show-sidebar {
+        left: 0;
+      }
+      .main-container {
+        /* flex-grow: 1; */
+        margin-left: 0;
+        width: 100%;
+        padding: 16px;
+        min-height: calc(100vh - 50px);
+        transition: all 0.3s;
+      }
+      .main-container.show-sidebar {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+      }
+      .error {
+        color: red;
+      }
+      input {
+        display: block;
+        border: 1px solid black;
+        padding: 4px;
+        border-radius: 4px;
+        outline: none;
+      }
+      input.error {
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <button id="menu">Menu</button>
+    </header>
+    <div class="wrapper">
+      <div id="sidebar" class="sidebar-container">
+        Sidebar Sidebar Sidebar Sidebar Sidebar Sidebar Sidebar
+        <button id="close">Close</button>
+      </div>
+      <main id="main" class="main-container">
+        <form>
+          <div>
+            <label for="userName">UserName</label><br />
+            <input type="text" name="userName" id="userName" />
+            <span class="error"></span>
+          </div>
+          <div>
+            <label for="password">Password</label><br />
+            <input type="password" name="password" id="password" />
+            <span class="error"></span>
+          </div>
+          <div>
+            <label for="confirmPassword">Confirm Password</label><br />
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+            />
+            <span class="error"></span>
+          </div>
+          <button id="submitButton" type="button">Submit</button>
+        </form>
+      </main>
+    </div>
+    <script src="chapter4B.js"></script>
+  </body>
+</html>

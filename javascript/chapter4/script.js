@@ -3,7 +3,9 @@ function $(id) {
 }
 
 let buttonOpen = $("buttonOpen");
+console.log("🚀 ~ buttonOpen:", buttonOpen)
 let buttonClose = $("buttonClose");
+console.log("🚀 ~ buttonClose:", buttonClose)
 let menu = $("menu");
 
 function clickButton() {
