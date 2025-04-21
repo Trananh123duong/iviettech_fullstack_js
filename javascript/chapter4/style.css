@@ -8,9 +8,47 @@ header {
     height: 50px;
     background-color: orange;
 }
-header button {
+header button, menu button {
     border: 1px solid black;
     border-radius: 5px;
-    height: 20px;
+    height: 30px;
     width: 50px;
+    margin: 10px;
+}
+menu {
+    background-color: greenyellow;
+    width: 10%;
+    position: relative;
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+    transition: all 0.4s ease;
+}
+menu.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+menu button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+header button, menu button:hover {
+    cursor: pointer;
+}
+menu button:active {
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+}
+header button:active {
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+}
+ul {
+    padding: 20px;
+    list-style-type: none;
+}
+li {
+    padding: 10px;
 }
