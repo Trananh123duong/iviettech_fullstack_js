@@ -10,9 +10,10 @@ $("buttonRegister").onclick = function (event) {
     const userName = $("userName").value;
     const email = $("email").value;
     const phone = $("phone").value;
-    const sel = $("sel").value;
-    const province = $("province").value;
-    const remember = $("remember").checked;
+
+    const genderMale = document.querySelector('input[name="optradio"][value="male"]');
+    const genderFemale = document.querySelector('input[name="optradio"][value="female"]');
+    const genderChecked = document.querySelector('input[name="optradio"]:checked');
 
     let isValid = true;
 
@@ -53,6 +54,23 @@ $("buttonRegister").onclick = function (event) {
     } else {
         $("phone").nextElementSibling.textContent = "";
         $("phone").parentElement.classList.remove("has-error");
+    }
+
+    if (!genderChecked) {
+        isValid = false;
+        $("sel").nextElementSibling.textContent = "Vui lòng chọn giới tính";
+        $("sel").parentElement.classList.add("has-error");
+    } else {
+        $("sel").nextElementSibling.textContent = "";
+        $("sel").parentElement.classList.remove("has-error");
+    }
+
+    const checkbox = document.querySelector('input[name="remember"]');
+    if (!checkbox.checked) {
+        isValid = false;
+        checkbox.parentElement.nextElementSibling.textContent = "Bạn phải đồng ý với điều khoản";
+    } else {
+        checkbox.parentElement.nextElementSibling.textContent = "";
     }
 
     if (isValid) {

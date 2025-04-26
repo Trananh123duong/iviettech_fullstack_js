@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
     <style>
       .container {
         max-width: 500px;
@@ -20,55 +23,82 @@
         color: red;
       }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <form action="">
-          <div class="form-group">
-            <label for="userName">Họ và tên:<span>*</span></label>
-            <input type="text" class="form-control" placeholder="Nhập họ và tên" id="userName">
-            <span class="error"></span>
+      <form action="">
+        <div class="form-group">
+          <label for="userName">Họ và tên:<span>*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nhập họ và tên"
+            id="userName"
+          />
+          <span class="error"></span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:<span>*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            placeholder="Nhập email"
+            name="email"
+          />
+          <span class="error"></span>
+        </div>
+        <div class="form-group">
+          <label for="phone">Số điện thoại:<span>*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            id="phone"
+            placeholder="Nhập số điện thoại"
+            name="phone"
+          />
+          <span class="error"></span>
+        </div>
+        <div class="form-group">
+          <label for="sel">Giới tính:<span>*</span></label>
+          <div id="sel">
+            <label class="radio-inline">
+              <input type="radio" name="optradio" value="male" />Nam
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="optradio" value="female" />Nữ
+            </label>
           </div>
-          <div class="form-group">
-            <label for="email">Email:<span>*</span></label>
-            <input type="text" class="form-control" id="email" placeholder="Nhập email" name="email">
-            <span class="error"></span>
-          </div>
-          <div class="form-group">
-            <label for="phone">Số điện thoại:<span>*</span></label>
-            <input type="text" class="form-control" id="phone" placeholder="Nhập số điện thoại" name="phone">
-            <span class="error"></span>
-          </div>
-          <div class="form-group">
-            <label for="sel">Giới tính:<span>*</span></label>
-            <div id="sel">
-              <label class="radio-inline">
-                <input type="radio" name="optradio" checked>Nam
-              </label>
-              <label class="radio-inline">
-                <input type="radio" name="optradio">Nữ
-              </label>
-            </div>
-            <span class="error"></span>
-          </div>
-          <div class="form-group">
-            <label for="province">Tỉnh thành:<span>*</span></label>
-            <select class="form-control" id="province">
-              <option>Đà Nẵng</option>
-              <option>Quảng Ngãi</option>
-              <option>Quảng Nam</option>
-            </select>
-            <span class="error"></span>
-          </div>
-          <div class="checkbox">
-            <label><input type="checkbox" name="remember"> Tôi đồng ý<span>*</span></label>
-            <span class="error"></span>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block" id="buttonRegister">Đăng ký</button>
-        </form>
-      </div>
+          <span class="error"></span>
+        </div>
+        <div class="form-group">
+          <label for="province">Tỉnh thành:<span>*</span></label>
+          <select class="form-control" id="province">
+            <option>Đà Nẵng</option>
+            <option>Quảng Ngãi</option>
+            <option>Quảng Nam</option>
+          </select>
+          <span class="error"></span>
+        </div>
+        <div class="checkbox">
+          <label
+            ><input type="checkbox" name="remember" /> Tôi đồng ý<span
+              >*</span
+            ></label
+          >
+          <span class="error"></span>
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary btn-block"
+          id="buttonRegister"
+        >
+          Đăng ký
+        </button>
+      </form>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="index.js"></script>
-</body>
+  </body>
 </html>
