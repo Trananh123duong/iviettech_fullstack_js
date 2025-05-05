@@ -20,11 +20,11 @@
       function $(id) {
         return document.getElementById(id);
       }
-      const ketQua = $("ketQua").innerText;
-      const oldText = $("oldText").value.trim();
-      const newText = $("oldText").value.trim();
 
       $("replaceBtn").onclick = function () {
+        const ketQua = $("ketQua").innerText;
+        const oldText = $("oldText").value.trim();
+        const newText = $("newText").value.trim();
         console.log("🚀 ~ newText:", newText);
         console.log("🚀 ~ oldText:", oldText);
         let result = ketQua.replace(oldText, newText);
