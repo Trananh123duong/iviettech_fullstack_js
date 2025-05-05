@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="randomBtn">Random</button>
+    <p id="result"></p>
+
+    <input id="oldText" />
+    <input id="newText" />
+    <button id="replaceBtn">Thay thế</button>
+    <p id="ketQua">
+      Trên trời hàng vạn vì sao, Trong quán cà phê, chỉ có mình tao. Nhìn ly cà
+      phê, nhớ em ngẩn ngơ, Mà em thì bận... đăng story với thằng nào cơ...
+    </p>
+    <script>
+      function $(id) {
+        return document.getElementById(id);
+      }
+      const ketQua = $("ketQua").innerText;
+      const oldText = $("oldText").value.trim();
+      const newText = $("oldText").value.trim();
+
+      $("replaceBtn").onclick = function () {
+        console.log("🚀 ~ newText:", newText);
+        console.log("🚀 ~ oldText:", oldText);
+        let result = ketQua.replace(oldText, newText);
+        console.log("🚀 ~ result:", result);
+      };
+    </script>
+  </body>
+</html>
