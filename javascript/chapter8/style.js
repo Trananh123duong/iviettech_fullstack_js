@@ -2,16 +2,7 @@ function $(id) {
   return document.getElementById(id);
 }
 
-let data = [
-  {
-    name: "Dương",
-    email: "duong@gmail.com",
-  },
-  {
-    name: "Nhựt",
-    email: "nhut@gmail.com",
-  },
-];
+let data = localStorage.getItem('data') ? JSON.parse(localStorage.getItem('data')) : [];
 
 function listData() {
   const formData = $("listData");
@@ -42,6 +33,7 @@ listData();
 
 function deleteData(id) {
   data.splice(id, 1);
+  localStorage.setItem('data', JSON.stringify(data));
   listData();
 }
 
@@ -55,6 +47,8 @@ function createData(event) {
     name: name,
     email: email
   });
+
+  localStorage.setItem('data', JSON.stringify(data));
 
   listData();
 
@@ -78,6 +72,8 @@ function updateData(index, event) {
 
   data[index].name = newName;
   data[index].email = newEmail;
+
+  localStorage.setItem('data', JSON.stringify(data));
 
   listData();
 
