@@ -15,26 +15,28 @@ let data = [
 
 function listData() {
   const formData = $("listData");
-  let listData = "";
+  let listDataHtml = "";
   data.forEach(function (item, index) {
-    listData += `
+    listDataHtml += `
       <tr>
         <td>${index + 1}</td>
-        <td><input type="text" class="form-control" value="${item.name}" id="name-${index}"></td>
-        <td><input type="email" class="form-control" value="${item.email}" id="email-${index}"></td>
-        <th>
-          <button type="button" class="btn btn-outline-success" onclick="updateData(${index}, event)">
-            Update
-          </button>
-          <button type="button" class="btn btn-outline-danger" onclick="deleteData(${index})">
-            Delete
-          </button>
-        </th>
+        <td>
+          <span id="name-span-${index}" onclick="editField(${index}, 'name')">${item.name}</span>
+          <input type="text" class="form-control d-none" id="name-input-${index}" value="${item.name}">
+        </td>
+        <td>
+          <span id="email-span-${index}" onclick="editField(${index}, 'email')">${item.email}</span>
+          <input type="email" class="form-control d-none" id="email-input-${index}" value="${item.email}">
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-success" onclick="updateData(${index}, event)">Update</button>
+          <button type="button" class="btn btn-outline-danger" onclick="deleteData(${index})">Delete</button>
+        </td>
       </tr>
     `;
   });
 
-  formData.innerHTML = listData;
+  formData.innerHTML = listDataHtml;
 }
 listData();
 
@@ -60,14 +62,22 @@ function createData(event) {
   $("email").value = "";
 }
 
+function editField(index, field) {
+  $(`${field}-span-${index}`).classList.add('d-none');
+  $(`${field}-input-${index}`).classList.remove('d-none');
+}
+
 function updateData(index, event) {
   event.preventDefault();
 
-  const name = $(`name-${index}`).value.trim();
-  const email = $(`email-${index}`).value.trim();
+  const nameInput = $(`name-input-${index}`);
+  const emailInput = $(`email-input-${index}`);
 
-  data[index].name = name;
-  data[index].email = email;
+  const newName = nameInput.value.trim();
+  const newEmail = emailInput.value.trim();
+
+  data[index].name = newName;
+  data[index].email = newEmail;
 
   listData();
 
