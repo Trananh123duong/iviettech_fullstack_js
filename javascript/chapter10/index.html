@@ -7,32 +7,40 @@
   <body>
     <h2>Slide Show đơn giản</h2>
     <img id="slide" src="" alt="Slide Show" width="500" />
+    <button id="play">Play</button>
+    <button id="pause">Pause</button>
+    <button id="next">Next</button>
+    <button id="previous">Previous</button>
 
     <script>
-      // Danh sách ảnh (bình thường bạn sẽ đọc từ slide_show.txt, ở đây mình giả lập sẵn)
+      function $(id) {
+        return document.getElementById(id);
+      }
       const images = [
         "images/img1.jpeg",
         "images/img2.jpeg",
         "images/img3.jpeg",
       ];
 
-      // Biến theo dõi vị trí hiện tại
       let currentIndex = 0;
 
-      // Hàm chuyển sang ảnh tiếp theo
       function nextImage() {
-        // Tăng index (vòng về 0 nếu hết mảng)
         currentIndex = (currentIndex + 1) % images.length;
 
-        // Thay đổi src của thẻ img
         document.getElementById("slide").src = images[currentIndex];
       }
 
-      // Khởi tạo ảnh đầu tiên
       document.getElementById("slide").src = images[currentIndex];
 
-      // Tự động chuyển ảnh sau mỗi 3 giây
-      setInterval(nextImage, 3000);
+      let intervalId = setInterval(nextImage, 3000);
+
+      $("pause").onclick = function () {
+        clearInterval(intervalId);
+      };
+
+      $("play").onclick = function () {
+        intervalId = setInterval(nextImage, 3000);
+      };
     </script>
   </body>
 </html>
