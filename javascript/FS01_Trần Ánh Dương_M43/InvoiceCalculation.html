@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="InvoiceCalculation.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-4">
+      <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-6">
+          <div class="shadow p-4 bg-white border border-5">
+            <h1>Calculate monthly electricity bill for customers</h1>
+            <form action="/action_page.php">
+              <div class="mb-3 d-flex align-items-center">
+                <label for="startUp" class="me-2 mb-0" style="min-width: 90px"
+                  >Start-up period:</label
+                >
+                <div class="flex-grow-1">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="startUp"
+                    name="startUp"
+                  />
+                  <span class="error"></span>
+                </div>
+              </div>
+              <div class="mb-3 d-flex align-items-center">
+                <label for="endTerm" class="me-2 mb-0" style="min-width: 90px"
+                  >End-of-term digits:</label
+                >
+                <div class="flex-grow-1">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="endTerm"
+                    name="endTerm"
+                  />
+                  <span class="error"></span>
+                </div>
+              </div>
+              <div class="mb-3 d-flex align-items-center">
+                <label for="vat" class="me-2 mb-0" style="min-width: 90px"
+                  >The VAT tax:</label
+                >
+                <div class="flex-grow-1">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="vat"
+                    name="vat"
+                    placeholder="10"
+                  />
+                  <span class="error"></span>
+                </div>
+              </div>
+              <div class="mb-3 d-flex align-items-center">
+                <label
+                  for="numberLetters"
+                  class="me-2 mb-0"
+                  style="min-width: 90px"
+                  >The number of letters:</label
+                >
+                <div class="flex-grow-1">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="numberLetters"
+                    name="numberLetters"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="mb-3 d-flex align-items-center">
+                <label
+                  for="totalAmount"
+                  class="me-2 mb-0"
+                  style="min-width: 90px"
+                  >The total amount payable:</label
+                >
+                <div class="flex-grow-1">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="totalAmount"
+                    name="totalAmount"
+                    readonly
+                  />
+                </div>
+              </div>
+              <button
+                type="button"
+                class="btn btn-primary"
+                onclick="calculateBill()"
+              >
+                Calculate electricity bill
+              </button>
+              <button class="btn btn-primary" type="reset">Clear</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="InvoiceCalculation.js"></script>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Scores</title>
+  </head>
+  <body>
+    <ul id="listStudent"></ul>
+    <h2 id="totalStudentPointFive"></h2>
+    <h2>List học sinh sau khi add thêm</h2>
+    <ul id="listStudentAfterAdd"></ul>
+
+    <script>
+      function $(id) {
+        return document.getElementById(id);
+      }
+
+      let scores = [];
+
+      function input() {
+        let pointInput = prompt("Nhập số lượng học sinh:");
+        if (!pointInput || isNaN(pointInput) || pointInput <= 0) {
+          pointInput = 5;
+          alert("Không hợp lệ. Mặc định số học sinh là 5.");
+        }
+        pointInput = parseInt(pointInput);
+
+        for (let i = 0; i < pointInput; i++) {
+          let point = parseFloat(prompt(`Nhập điểm học sinh ${i + 1}:`));
+          scores.push(point);
+        }
+
+        let listHtml = scores
+          .map(
+            (score, index) =>
+              `<li>Học sinh ${index + 1} có điểm là ${score}</li>`
+          )
+          .join("");
+        $("listStudent").innerHTML = listHtml;
+      }
+
+      function countStudentsPointFive() {
+        let count = scores.filter((score) => score >= 5).length;
+        $(
+          "totalStudentPointFive"
+        ).innerText = `Có ${count} học sinh có điểm lớn hơn hoặc bằng 5`;
+      }
+
+      input();
+      countStudentsPointFive();
+
+      function addItemAndSortList() {
+        scores.push(8.5, 9.0, 7.0);
+        scores.sort(function (a, b) {
+          return b - a;
+        });
+        console.log("🚀 ~ addItemAndSortList ~ scores:", scores);
+        let listHtml = scores
+          .map(
+            (score, index) =>
+              `<li>Học sinh ${index + 1} có điểm là ${score}</li>`
+          )
+          .join("");
+        $("listStudentAfterAdd").innerHTML = listHtml;
+      }
+      addItemAndSortList();
+    </script>
+  </body>
+</html>
