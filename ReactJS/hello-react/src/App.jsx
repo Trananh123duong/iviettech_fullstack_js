@@ -1,25 +1,23 @@
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import HelloWorld from './HelloWorld'
-
+import Footer from './components/Footer/Footer'
+import Header from './components/Header/Header'
+import Sidebar from './components/Sidebar/Sidebar'
+import Main from './components/Main/Main'
+import userImg from '/user.png'
+import { useState } from 'react'
 
 function App() {
-  const name = "Dương"
-  const className = "FS01"
+  const [isShowSiderBar, setIsShowSiderBar] = useState(false)
+
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <Header userImg={userImg} userName='Tran Anh Duong'/>
+      <button type="button" className="menuButton btn btn-info"  onClick={() => setIsShowSiderBar(prev => !prev)}>Menu</button>
+      <div className='bodyPage'>
+        <Sidebar isShowSiderBar={isShowSiderBar}/>
+        <Main isShowSiderBar={isShowSiderBar}/>
       </div>
-      <h1>Vite + React</h1>
-      <h1>{name} - {className}</h1>
-      <HelloWorld />
+      <Footer/>
     </>
   )
 }

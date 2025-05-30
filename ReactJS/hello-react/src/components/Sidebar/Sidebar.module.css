@@ -1,0 +1,13 @@
+.sidebar_container {
+  position: absolute;
+  top: 60px;
+  left: -200px;
+  width: 200px;
+  padding: 16px;
+  background-color: yellow;
+  min-height: calc(100vh - 110px);
+  transition: left 0.3s;
+}
+.sidebar_container.show_sidebar {
+  left: 0;
+}

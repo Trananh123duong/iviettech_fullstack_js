@@ -1,0 +1,10 @@
+.main_container {
+  margin-left: 0;
+  width: 100%;
+  padding: 16px;
+  transition: all 0.3s;
+}
+.main_container.show_sidebar {
+  margin-left: 200px;
+  width: calc(100% - 200px);
+}

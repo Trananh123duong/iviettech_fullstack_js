@@ -1,4 +1,4 @@
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -39,4 +39,21 @@
 
 .read-the-docs {
   color: #888;
+} */
+
+
+.bodyPage {
+  width: 100%;
+  margin: 20px auto;
+  display: flex;
+  gap: 16px;
+  min-height: calc(100vh - 150px);
+  height: 100%;
+}
+
+.menuButton {
+  position: fixed;
+  top: 10px;
+  left: 385px;
+  z-index: 1000;
 }
