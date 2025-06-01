@@ -9,12 +9,15 @@ import { useState } from 'react'
 function App() {
   const [isShowSiderBar, setIsShowSiderBar] = useState(false)
 
+  function toggleIsShowSoderBar() {
+    setIsShowSiderBar(!isShowSiderBar)
+  }
+
   return (
     <>
-      <Header userImg={userImg} userName='Tran Anh Duong'/>
-      <button type="button" className="menuButton btn btn-info"  onClick={() => setIsShowSiderBar(prev => !prev)}>Menu</button>
+      <Header userImg={userImg} userName='Tran Anh Duong' toggleIsShowSoderBar={toggleIsShowSoderBar} />
       <div className='bodyPage'>
-        <Sidebar isShowSiderBar={isShowSiderBar}/>
+        <Sidebar isShowSiderBar={isShowSiderBar} toggleIsShowSoderBar={toggleIsShowSoderBar}/>
         <Main isShowSiderBar={isShowSiderBar}/>
       </div>
       <Footer/>

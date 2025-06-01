@@ -50,10 +50,3 @@
   min-height: calc(100vh - 150px);
   height: 100%;
 }
-
-.menuButton {
-  position: fixed;
-  top: 10px;
-  left: 385px;
-  z-index: 1000;
-}
