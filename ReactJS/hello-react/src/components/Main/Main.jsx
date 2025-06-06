@@ -3,41 +3,40 @@ import MainCss from './Main.module.css';
 
 const Main = ({isShowSiderBar}) => {
   const [tabIndex, setTabIndex] = useState(1);
+  const [tabList, setTabList] = useState([1, 2, 3, 4]);
+
+  const renderTabItem = () => {
+    return tabList.map((item, index) => {
+      return (
+        <button
+          key={index}
+          className={`${MainCss['tab-button']} ${tabIndex === item ? MainCss['active-tab'] : ""}`}
+          onClick={() => setTabIndex(item)}
+        >
+          Tab {item}
+        </button>
+      )
+    });
+  }
+  const renderTabContent = () => {
+    return <p>Content of tab {tabIndex}</p>
+  }
+  const handleAddTab = () => {
+    const newTabList = [...tabList, tabList.length + 1]
+    setTabList(newTabList)
+  }
+
   return (
     <div className={`${MainCss['tabs-container']} ${isShowSiderBar ? MainCss['show-sidebar'] : ''}`}>
       <div className="tab-buttons">
-        <button
-          className={`${MainCss['tab-button']} ${tabIndex === 1 ? MainCss['active-tab'] : ""}`}
-          onClick={() => setTabIndex(1)}
-        >
-          Tab 1
-        </button>
-        <button
-          className={`${MainCss['tab-button']} ${tabIndex === 2 ? MainCss['active-tab'] : ""}`}
-          onClick={() => setTabIndex(2)}
-        >
-          Tab 2
-        </button>
-        <button
-          className={`${MainCss['tab-button']} ${tabIndex === 3 ? MainCss['active-tab'] : ""}`}
-          onClick={() => setTabIndex(3)}
-        >
-          Tab 3
-        </button>
-        <button
-          className={`${MainCss['tab-button']} ${tabIndex === 4 ? MainCss['active-tab'] : ""}`}
-          onClick={() => setTabIndex(4)}
-        >
-          Tab 4
-        </button>
+        {renderTabItem()}
       </div>
 
       <div className={MainCss['tab-content']}>
-        {tabIndex === 1 && <p>Content of Tab 1</p>}
-        {tabIndex === 2 && <p>Content of Tab 2</p>}
-        {tabIndex === 3 && <p>Content of Tab 3</p>}
-        {tabIndex === 4 && <p>Content of Tab 4</p>}
+        {renderTabContent()}
       </div>
+
+      <button type="button" class="btn btn-secondary" onClick={() => handleAddTab() }>Add Tab</button>
     </div>
   )
 }

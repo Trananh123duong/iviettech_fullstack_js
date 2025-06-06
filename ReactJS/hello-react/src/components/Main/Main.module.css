@@ -42,8 +42,6 @@
 .tab-content {
   width: 300px;
   padding: 20px;
-  border: 1px solid black;
-  border-top: none;
   background-color: white;
   font-weight: bold;
 }
