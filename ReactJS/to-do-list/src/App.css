@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border: 1px solid #aaaaaa;
+}
+
+.form label,
+.card label {
+  display: inline-block;
+  margin: 8px 0 4px;
+  font-weight: bold;
+}
+
+.form input,
+.card input {
+  padding: 4px 6px;
+  width: 100%;
+}
+
+.button {
+  padding: 8px;
+  width: 70px;
+}
+
+.form .button {
+  margin-top: 16px;
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border: 1px solid #aaaaaa;
+  margin-top: 16px;
+}
+
+.action-buttons {
+  display: flex;
+  margin-top: 8px;
+  gap: 8px;
+}
