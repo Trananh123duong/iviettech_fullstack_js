@@ -26,6 +26,10 @@
   width: 100%;
 }
 
+.error-input {
+  border: 1px solid red;
+}
+
 .button {
   padding: 8px;
   width: 70px;
@@ -48,4 +52,20 @@
   display: flex;
   margin-top: 8px;
   gap: 8px;
+}
+
+.search {
+  padding-top: 16px;
+  width: 100%;
+}
+
+.search input {
+  padding: 4px 6px;
+  width: 80%;
+  margin-right: 10px;
+}
+
+.search button {
+  padding: 4px 6px;
+  width: calc(100% - 80% - 10px);
 }

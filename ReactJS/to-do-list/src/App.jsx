@@ -1,42 +1,95 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import './App.css';
+import Tab from './components/tab/tab';
+
 
 function App() {
-  const [listTab, setListTab] = useState([])
+  let listTabStorage = localStorage.getItem('listTabStorage') ? JSON.parse(localStorage.getItem('listTabStorage')) : [];
+
+  const [listTab, setListTab] = useState(listTabStorage)
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const [keyword, setKeyword] = useState('')
+  const [errorTitle, setErrorTitle] = useState('')
+  const [errorContent, setErrorContent] = useState('')
 
   const handlerAddTab = (e) => {
     e.preventDefault();
+
+    let hasError = false;
+    if (!title.trim()) {
+      setErrorTitle('Vui lòng nhập đầy đủ Title');
+      hasError = true;
+    } else {
+      setErrorTitle('');
+    }
+    if (!content.trim()) {
+      setErrorContent('Vui lòng nhập đầy đủ Content');
+      hasError = true;
+    } else {
+      setErrorContent('')
+    }
+    if (hasError) return;
+
     const newTab = {
+      id: uuidv4(),
       title: title,
       content: content
     };
-    setListTab([...listTab, newTab])
+
+    const newListTab = [...listTab, newTab];
+    localStorage.setItem('listTabStorage', JSON.stringify(newListTab));
+    setListTab(newListTab)
+
     setTitle('')
     setContent('')
   }
+  
+  const handleUpdateTab = (id, title, content) => {
+    const index = listTab.findIndex(item => item.id === id)
+    const newListTab = [...listTab];
+
+    newListTab.splice(index, 1, {
+      id: id,
+      title: title,
+      content: content
+    })
+
+    localStorage.setItem('listTabStorage', JSON.stringify(newListTab));
+    setListTab(newListTab);
+  }
 
   const renderListTab = () => {
-    return listTab.map((item, index) => {
+    const keywordLower = keyword.trim().toLowerCase();
+
+    const filteredList = listTab.filter((item) => {
+      const titleLower = item.title.toLowerCase();
+      const contentLower = item.content.toLowerCase();
+
       return (
-        <div className="card">
-          <h2>{item.title}</h2>
-          <p>{item.content}</p>
-          <div className="action-buttons">
-            <button className="button">Edit</button>
-            <button className="button" onClick={() => deleteTab(index)}>Delete</button>
-          </div>
-        </div>
-      )
-    })
+        titleLower.indexOf(keywordLower) !== -1 ||
+        contentLower.indexOf(keywordLower) !== -1
+      );
+    });
+
+    return filteredList.map((item) => (
+      <Tab
+        key={item.id}
+        id={item.id}
+        title={item.title}
+        content={item.content}
+        deleteTab={deleteTab}
+        handleUpdateTab={handleUpdateTab}
+      />
+    ));
   }
 
   const deleteTab = (id) => {
-    const newListTab = [...listTab];
-    newListTab.splice(id, 1)
+    const newListTab = listTab.filter(item => item.id !== id)
+    localStorage.setItem('listTabStorage', JSON.stringify(newListTab));
     setListTab(newListTab);
-  }  
+  }
 
   return (
     <div className="container">
@@ -44,39 +97,33 @@ function App() {
         <h1>To Do List App</h1>
         <div>
           <label htmlFor="title">Title</label>
-          <input id="title" value={title} onChange={(e) => setTitle(e.target.value)}/>
+          <input 
+            id="title" 
+            value={title} 
+            onChange={(e) => setTitle(e.target.value)}
+            className={errorTitle ? 'error-input' : ''}
+          />
+          {errorTitle && <p style={{ color: 'red' }}>{errorTitle}</p>}
         </div>
         <div>
           <label htmlFor="">Content</label>
-          <input id="content" value={content} onChange={(e) => setContent(e.target.value)}/>
+          <input 
+            id="content" 
+            value={content} 
+            onChange={(e) => 
+            setContent(e.target.value)}
+            className={errorContent ? 'error-input' : ''}
+          />
+          {errorContent && <p style={{ color: 'red' }}>{errorContent}</p>}
         </div>
         <button className="button">Add task</button>
       </form>
+      <div className="search">
+        <input id="keyword" onChange={(e) => setKeyword(e.target.value)}/>
+        <button htmlFor="keyword" onClick={() => renderListTab()}>Search</button>
+      </div>
       <div>
         {renderListTab()}
-        {/* <div className="card">
-          <h2>Task 1</h2>
-          <p>Content of task 1</p>
-          <div className="action-buttons">
-            <button className="button">Edit</button>
-            <button className="button">Delete</button>
-          </div>
-        </div>
-        <div className="card">
-          <div>
-            <label htmlFor="title">Title</label>
-            <input id="title" value="Task 2" />
-          </div>
-          <div>
-            <label htmlFor="">Content</label>
-            <input id="content" value="Content of task 2" />
-          </div>
-          <div className="action-buttons">
-            <button className="button">Save</button>
-            <button className="button">Cancel</button>
-            <button className="button">Delete</button>
-          </div>
-        </div> */}
       </div>
     </div>
   )
