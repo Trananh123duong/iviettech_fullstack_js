@@ -8,13 +8,13 @@ import userImg from '/user.png'
 const UserLayout = () => {
   const [isShowSiderBar, setIsShowSiderBar] = useState(false)
 
-  function toggleIsShowSoderBar() {
+  function toggleIsShowSiderBar() {
     setIsShowSiderBar(!isShowSiderBar)
   }
 
   return (
     <>
-      <Header userImg={userImg} userName='Tran Anh Duong' toggleIsShowSoderBar={toggleIsShowSoderBar} />
+      <Header userImg={userImg} userName='Tran Anh Duong' toggleIsShowSiderBar={toggleIsShowSiderBar} />
       <div className='bodyPage'>
         <Outlet />
       </div>
