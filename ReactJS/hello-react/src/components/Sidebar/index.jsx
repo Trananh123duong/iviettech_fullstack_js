@@ -1,9 +1,9 @@
 import React from 'react'
-import SiderBarCss from './Sidebar.module.css'
+import styles from './styles.module.css'
 
 const Sidebar = ({isShowSiderBar, toggleIsShowSoderBar}) => {
   return (
-    <div className={`${SiderBarCss.sidebar_container} ${isShowSiderBar ? SiderBarCss.show_sidebar : ''}`}>
+    <div className={`${styles.sidebar_container} ${isShowSiderBar ? styles.show_sidebar : ''}`}>
       <button type="button" className="menuButton btn btn-danger"  onClick={toggleIsShowSoderBar}>Close</button>
       
       <menu id="menu">

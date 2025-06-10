@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import MainCss from './Main.module.css';
+import styles from './styles.module.css';
 
 const Main = ({isShowSiderBar}) => {
   const [tabIndex, setTabIndex] = useState(1);
@@ -10,7 +10,7 @@ const Main = ({isShowSiderBar}) => {
       return (
         <button
           key={index}
-          className={`${MainCss['tab-button']} ${tabIndex === item ? MainCss['active-tab'] : ""}`}
+          className={`${styles['tab-button']} ${tabIndex === item ? styles['active-tab'] : ""}`}
           onClick={() => setTabIndex(item)}
         >
           Tab {item}
@@ -27,12 +27,12 @@ const Main = ({isShowSiderBar}) => {
   }
 
   return (
-    <div className={`${MainCss['tabs-container']} ${isShowSiderBar ? MainCss['show-sidebar'] : ''}`}>
+    <div className={`${styles['tabs-container']} ${isShowSiderBar ? styles['show-sidebar'] : ''}`}>
       <div className="tab-buttons">
         {renderTabItem()}
       </div>
 
-      <div className={MainCss['tab-content']}>
+      <div className={styles['tab-content']}>
         {renderTabContent()}
       </div>
 

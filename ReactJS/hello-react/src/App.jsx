@@ -1,27 +1,30 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
-import Footer from './components/Footer/Footer'
-import Header from './components/Header/Header'
-import Sidebar from './components/Sidebar/Sidebar'
-import Main from './components/Main/Main'
-import userImg from '/user.png'
-import { useState } from 'react'
+import AdminLayout from './layouts/adminLayout'
+import UserLayout from './layouts/userLayout'
+import Chart from './pages/admin/Chart'
+import Dashboard from './pages/admin/Dashboard'
+import About from './pages/user/About'
+import Detail from './pages/user/Detail'
+import Home from './pages/user/Home'
 
 function App() {
-  const [isShowSiderBar, setIsShowSiderBar] = useState(false)
-
-  function toggleIsShowSoderBar() {
-    setIsShowSiderBar(!isShowSiderBar)
-  }
 
   return (
-    <>
-      <Header userImg={userImg} userName='Tran Anh Duong' toggleIsShowSoderBar={toggleIsShowSoderBar} />
-      <div className='bodyPage'>
-        <Sidebar isShowSiderBar={isShowSiderBar} toggleIsShowSoderBar={toggleIsShowSoderBar}/>
-        <Main isShowSiderBar={isShowSiderBar}/>
-      </div>
-      <Footer/>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<UserLayout />}>
+          <Route index element={<Home />}/>
+          <Route path='about' element={<About />} />
+          <Route path='detail/:path' element={<Detail />} />
+        </Route>
+
+        <Route path='/admin' element={<AdminLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path='chart' element={<Chart />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
