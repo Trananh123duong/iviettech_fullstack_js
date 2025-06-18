@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, Outlet } from 'react-router-dom'
 import '../App.css'
+import userImg from '../assets/images/user.png'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
-import userImg from '/user.png'
+import { ROUTES } from '../constants/routes'
 
 const AdminLayout = () => {
   const [isShowSiderBar, setIsShowSiderBar] = useState(true)
@@ -20,6 +21,10 @@ const AdminLayout = () => {
         <Sidebar isShowSiderBar={isShowSiderBar} toggleIsShowSiderBar={toggleIsShowSiderBar}/>
         <div className='contentPage'>
           <Outlet />
+          <ul>
+            <li><Link to={ROUTES.ADMIN.DASHBOARD}>Dashboard</Link></li>
+            <li><Link to={ROUTES.ADMIN.CHART}>Chart</Link></li>
+          </ul>
         </div>
       </div>
       <Footer/>
