@@ -7,20 +7,21 @@ import Dashboard from './pages/admin/Dashboard'
 import About from './pages/user/About'
 import Detail from './pages/user/Detail'
 import Home from './pages/user/Home'
+import { ROUTES } from './constants/routes'
 
 function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<UserLayout />}>
-        <Route index element={<Home />}/>
-        <Route path='about' element={<About />} />
-        <Route path='detail/:path' element={<Detail />} />
+      <Route element={<UserLayout />}>
+        <Route path={ROUTES.USER.HOME} element={<Home />}/>
+        <Route path={ROUTES.USER.ABOUT} element={<About />} />
+        <Route path={ROUTES.USER.DETAIL} element={<Detail />} />
       </Route>
 
-      <Route path='/admin' element={<AdminLayout />}>
-        <Route index element={<Dashboard />} />
-        <Route path='chart' element={<Chart />} />
+      <Route element={<AdminLayout />}>
+        <Route path={ROUTES.ADMIN.DASHBOARD} element={<Dashboard />} />
+        <Route path={ROUTES.ADMIN.CHART} element={<Chart />} />
       </Route>
     </Routes>
   )
