@@ -1,17 +1,16 @@
-import React from 'react'
-import styles from './styles.module.css'
+import * as S from './styled'
 
 const Header = ({userImg, userName, toggleIsShowSiderBar}) => {
   return (
-    <header>
+    <S.HeaderContainer>
       <div>
         <button type="button" className="menuButton btn btn-info"  onClick={toggleIsShowSiderBar}>Menu</button>
-        <div className={styles.user}>
+        <S.UserConatiner>
           <img src={userImg} width="40px" height="40px" alt="" />
           <p>{userName}</p>
-        </div>
+        </S.UserConatiner>
       </div>
-    </header>
+    </S.HeaderContainer>
   )
 }
 

@@ -4,6 +4,7 @@ import '../App.css'
 import userImg from '../assets/images/user.png'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
+import Main from '../components/Main'
 import Sidebar from '../components/Sidebar'
 import { ROUTES } from '../constants/routes'
 
@@ -25,6 +26,7 @@ const AdminLayout = () => {
             <li><Link to={ROUTES.ADMIN.DASHBOARD}>Dashboard</Link></li>
             <li><Link to={ROUTES.ADMIN.CHART}>Chart</Link></li>
           </ul>
+          <Main />
         </div>
       </div>
       <Footer/>

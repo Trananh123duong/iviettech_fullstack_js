@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styles from './styles.module.css';
+import { useState } from 'react';
+import * as S from './styled';
 
 const Main = ({isShowSiderBar}) => {
   const [tabIndex, setTabIndex] = useState(1);
@@ -7,14 +7,15 @@ const Main = ({isShowSiderBar}) => {
 
   const renderTabItem = () => {
     return tabList.map((item, index) => {
+      const isActive = tabIndex === item
       return (
-        <button
+        <S.TabButton
           key={index}
-          className={`${styles['tab-button']} ${tabIndex === item ? styles['active-tab'] : ""}`}
+          isActive={isActive}
           onClick={() => setTabIndex(item)}
         >
           Tab {item}
-        </button>
+        </S.TabButton>
       )
     });
   }
@@ -27,17 +28,17 @@ const Main = ({isShowSiderBar}) => {
   }
 
   return (
-    <div className={`${styles['tabs-container']} ${isShowSiderBar ? styles['show-sidebar'] : ''}`}>
-      <div className="tab-buttons">
+    <S.TabsContainer isShowSiderBar={isShowSiderBar}>
+      <S.TabButtons>
         {renderTabItem()}
-      </div>
+      </S.TabButtons>
 
-      <div className={styles['tab-content']}>
+      <S.TabContent>
         {renderTabContent()}
-      </div>
+      </S.TabContent>
 
       <button type="button" class="btn btn-secondary" onClick={() => handleAddTab() }>Add Tab</button>
-    </div>
+    </S.TabsContainer>
   )
 }
 

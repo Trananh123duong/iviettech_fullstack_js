@@ -1,9 +1,8 @@
-import React from 'react'
-import styles from './styles.module.css'
+import * as S from './styled'
 
 const Sidebar = ({isShowSiderBar, toggleIsShowSiderBar}) => {
   return (
-    <div className={`${styles.sidebar_container} ${isShowSiderBar ? styles.show_sidebar : ''}`}>
+    <S.SidebarContainer isShowSiderBar={isShowSiderBar}>
       <button type="button" className="menuButton btn btn-danger"  onClick={toggleIsShowSiderBar}>Close</button>
       
       <menu id="menu">
@@ -13,7 +12,7 @@ const Sidebar = ({isShowSiderBar, toggleIsShowSiderBar}) => {
           <li>Theo doi</li>
         </ul>
       </menu>
-    </div>
+    </S.SidebarContainer>
   )
 }
 
