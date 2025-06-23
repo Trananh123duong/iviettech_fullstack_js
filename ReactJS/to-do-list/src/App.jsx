@@ -1,18 +1,25 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
-import Tab from './components/tab/tab';
+import Tab from './components/tab/Tab';
+import { addTab } from './redux/tab.slice';
 
 
 function App() {
-  let listTabStorage = localStorage.getItem('listTabStorage') ? JSON.parse(localStorage.getItem('listTabStorage')) : [];
+  // let listTabStorage = localStorage.getItem('listTabStorage') ? JSON.parse(localStorage.getItem('listTabStorage')) : [];
 
-  const [listTab, setListTab] = useState(listTabStorage)
+  // const [tabList, setListTab] = useState(listTabStorage)
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [keyword, setKeyword] = useState('')
   const [errorTitle, setErrorTitle] = useState('')
   const [errorContent, setErrorContent] = useState('')
+
+  const dispatch = useDispatch();
+
+  const { tabList } = useSelector((state) => state.tab)
+  console.log("🚀 ~ App ~ tabList:", tabList)
 
   const handlerAddTab = (e) => {
     e.preventDefault();
@@ -32,23 +39,30 @@ function App() {
     }
     if (hasError) return;
 
-    const newTab = {
-      id: uuidv4(),
-      title: title,
-      content: content
-    };
+    dispatch(
+      addTab({
+        title: title,
+        content: content
+      })
+    )
 
-    const newListTab = [...listTab, newTab];
-    localStorage.setItem('listTabStorage', JSON.stringify(newListTab));
-    setListTab(newListTab)
+    // const newTab = {
+    //   id: uuidv4(),
+    //   title: title,
+    //   content: content
+    // };
+
+    // const newListTab = [...tabList, newTab];
+    // localStorage.setItem('listTabStorage', JSON.stringify(newListTab));
+    // setListTab(newListTab)
 
     setTitle('')
     setContent('')
   }
   
   const handleUpdateTab = (id, title, content) => {
-    const index = listTab.findIndex(item => item.id === id)
-    const newListTab = [...listTab];
+    const index = tabList.findIndex(item => item.id === id)
+    const newListTab = [...tabList];
 
     newListTab.splice(index, 1, {
       id: id,
@@ -57,13 +71,13 @@ function App() {
     })
 
     localStorage.setItem('listTabStorage', JSON.stringify(newListTab));
-    setListTab(newListTab);
+    // setListTab(newListTab);
   }
 
   const renderListTab = () => {
     const keywordLower = keyword.trim().toLowerCase();
 
-    const filteredList = listTab.filter((item) => {
+    const filteredList = tabList.filter((item) => {
       const titleLower = item.title.toLowerCase();
       const contentLower = item.content.toLowerCase();
 
@@ -86,9 +100,9 @@ function App() {
   }
 
   const deleteTab = (id) => {
-    const newListTab = listTab.filter(item => item.id !== id)
+    const newListTab = tabList.filter(item => item.id !== id)
     localStorage.setItem('listTabStorage', JSON.stringify(newListTab));
-    setListTab(newListTab);
+    // setListTab(newListTab);
   }
 
   return (
