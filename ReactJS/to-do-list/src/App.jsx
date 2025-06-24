@@ -1,15 +1,11 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { v4 as uuidv4 } from 'uuid';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import Tab from './components/tab/Tab';
-import { addTab } from './redux/tab.slice';
+import { addTab, destroyTab } from './redux/tab.slice';
 
 
 function App() {
-  // let listTabStorage = localStorage.getItem('listTabStorage') ? JSON.parse(localStorage.getItem('listTabStorage')) : [];
-
-  // const [tabList, setListTab] = useState(listTabStorage)
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [keyword, setKeyword] = useState('')
@@ -19,7 +15,6 @@ function App() {
   const dispatch = useDispatch();
 
   const { tabList } = useSelector((state) => state.tab)
-  console.log("🚀 ~ App ~ tabList:", tabList)
 
   const handlerAddTab = (e) => {
     e.preventDefault();
@@ -29,7 +24,7 @@ function App() {
       setErrorTitle('Vui lòng nhập đầy đủ Title');
       hasError = true;
     } else {
-      setErrorTitle('');
+      setErrorTitle(''); 
     }
     if (!content.trim()) {
       setErrorContent('Vui lòng nhập đầy đủ Content');
@@ -46,33 +41,23 @@ function App() {
       })
     )
 
-    // const newTab = {
-    //   id: uuidv4(),
-    //   title: title,
-    //   content: content
-    // };
-
-    // const newListTab = [...tabList, newTab];
-    // localStorage.setItem('listTabStorage', JSON.stringify(newListTab));
-    // setListTab(newListTab)
-
     setTitle('')
     setContent('')
   }
   
-  const handleUpdateTab = (id, title, content) => {
-    const index = tabList.findIndex(item => item.id === id)
-    const newListTab = [...tabList];
+  // const handleUpdateTab = (id, title, content) => {
+  //   const index = tabList.findIndex(item => item.id === id)
+  //   const newListTab = [...tabList];
 
-    newListTab.splice(index, 1, {
-      id: id,
-      title: title,
-      content: content
-    })
+  //   newListTab.splice(index, 1, {
+  //     id: id,
+  //     title: title,
+  //     content: content
+  //   })
 
-    localStorage.setItem('listTabStorage', JSON.stringify(newListTab));
-    // setListTab(newListTab);
-  }
+  //   localStorage.setItem('listTabStorage', JSON.stringify(newListTab));
+  //   // setListTab(newListTab);
+  // }
 
   const renderListTab = () => {
     const keywordLower = keyword.trim().toLowerCase();
@@ -94,15 +79,12 @@ function App() {
         title={item.title}
         content={item.content}
         deleteTab={deleteTab}
-        handleUpdateTab={handleUpdateTab}
       />
     ));
   }
 
   const deleteTab = (id) => {
-    const newListTab = tabList.filter(item => item.id !== id)
-    localStorage.setItem('listTabStorage', JSON.stringify(newListTab));
-    // setListTab(newListTab);
+    dispatch(destroyTab(id))
   }
 
   return (

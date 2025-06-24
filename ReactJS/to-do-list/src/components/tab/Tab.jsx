@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateTab } from '../../redux/tab.slice';
 
-const Tab = ({ id, title, content, deleteTab, handleUpdateTab }) => {
+const Tab = ({ id, title, content, deleteTab }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [titleTab, setTitleTab] = useState(title)
   const [contentTab, setContentTab] = useState(content)
   const [errorTitle, setErrorTitle] = useState('')
   const [errorContent, setErrorContent] = useState('')
+
+  const dispatch = useDispatch();
 
   const handleSave = () => {
     let hasError = false;
@@ -25,8 +29,14 @@ const Tab = ({ id, title, content, deleteTab, handleUpdateTab }) => {
     }
   
     if (hasError) return;
-  
-    handleUpdateTab(id, titleTab, contentTab);
+
+    dispatch(
+      updateTab({
+        id: id,
+        title: titleTab,
+        content: contentTab
+      })
+    )
     setIsEdit(false);
   };
   
