@@ -24,7 +24,7 @@ function App() {
       setErrorTitle('Vui lòng nhập đầy đủ Title');
       hasError = true;
     } else {
-      setErrorTitle(''); 
+      setErrorTitle('');
     }
     if (!content.trim()) {
       setErrorContent('Vui lòng nhập đầy đủ Content');
@@ -93,9 +93,9 @@ function App() {
         <h1>To Do List App</h1>
         <div>
           <label htmlFor="title">Title</label>
-          <input 
-            id="title" 
-            value={title} 
+          <input
+            id="title"
+            value={title}
             onChange={(e) => setTitle(e.target.value)}
             className={errorTitle ? 'error-input' : ''}
           />
@@ -103,10 +103,10 @@ function App() {
         </div>
         <div>
           <label htmlFor="">Content</label>
-          <input 
-            id="content" 
-            value={content} 
-            onChange={(e) => 
+          <input
+            id="content"
+            value={content}
+            onChange={(e) =>
             setContent(e.target.value)}
             className={errorContent ? 'error-input' : ''}
           />
