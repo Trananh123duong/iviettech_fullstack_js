@@ -1,11 +1,10 @@
-import React from 'react'
-import * as S from './styles'
 import { Link } from 'react-router-dom';
-import { ROUTES } from '../../../constants/routes'
+import { ROUTES } from '../../../constants/routes';
+import * as S from './styles';
 
-const index = () => {
+const Sidebar = ({ isSidebarOpen }) => {
   return (
-    <S.SidebarContainer>
+    <S.SidebarContainer isSidebarOpen={isSidebarOpen}>
       <ul>
         <li><Link>Dashboard</Link></li>
         <li><Link to={ROUTES.ADMIN.PRODUCT.MANAGER}>Product</Link></li>
@@ -14,4 +13,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Sidebar

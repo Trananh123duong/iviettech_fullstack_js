@@ -1,8 +1,23 @@
-import React from 'react'
-import * as S from './styles'
-import { Button, Flex, Table } from 'antd';
+import { Button, Modal, Space, Table } from 'antd';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../../../constants/routes';
+import * as S from './styles';
 
-const index = () => {
+const Manager = () => {
+  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   const dataSource = [
     {
       key: '1',
@@ -39,26 +54,52 @@ const index = () => {
       title: 'Action',
       key: 'action',
       render: (_, record) => (
-        <Button type="link" onClick={() => alert(`Xoá ${record.name}`)}>
-          Delete
-        </Button>
+        <Space>
+          <Button
+            type="primary"
+            ghost
+            onClick={() => alert(`Edit ${record.name}`)}
+          >
+            Edit
+          </Button>
+          <Button
+            type="primary"
+            ghost
+            danger
+            onClick={showModal}
+          >
+            Delete
+          </Button>
+        </Space>
       ),
     },
   ];
+
   return (
     <S.ManagerContainer>
       <div>
         <b>Product List</b>
-        <Button type="primary" ghost>
+        <Button type="primary" ghost onClick={() => navigate(ROUTES.ADMIN.PRODUCT.CREATE)}>
           NEW
         </Button>
       </div>
       <Table
-        columns={columns}
         dataSource={dataSource}
+        columns={columns}
+        pagination={{ pageSize: 5 }}
+        style={{ marginTop: 20 }}
       />
+      <Modal
+        title="Basic Modal"
+        closable={{ 'aria-label': 'Custom Close Button' }}
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <p>Delete?</p>
+      </Modal>
     </S.ManagerContainer>
   )
 }
 
-export default index
+export default Manager
