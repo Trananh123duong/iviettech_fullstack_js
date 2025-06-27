@@ -3,6 +3,7 @@ import { ROUTES } from './constants/routes'
 import AdminLayout from './layouts/AdminLayout'
 import Create from './pages/admin/product/Create'
 import Manager from './pages/admin/product/Manager'
+import Update from './pages/admin/product/Update'
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
       <Route element={<AdminLayout />}>
         <Route path={ROUTES.ADMIN.PRODUCT.MANAGER} element={<Manager />} />
         <Route path={ROUTES.ADMIN.PRODUCT.CREATE} element={<Create />} />
+        <Route path={ROUTES.ADMIN.PRODUCT.UPDATE} element={<Update />} />
       </Route>
     </Routes>
   )

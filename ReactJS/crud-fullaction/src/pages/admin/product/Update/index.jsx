@@ -1,18 +1,32 @@
 import { Button, Form, Input, InputNumber } from 'antd';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ROUTES } from '../../../../constants/routes';
-import { addProduct } from '../../../../redux/product.slice';
+import { setDetailProduct, updateProduct } from '../../../../redux/product.slice';
 import * as S from './styles';
 
-const Create = () => {
+const Update = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  let { id } = useParams();
+
+  const { detailProduct } = useSelector(state => state.product)
 
   const [form] = Form.useForm();
 
-  const handleAddProduct = (values) => {
-    dispatch(addProduct(values))
+  useEffect(() => {
+    dispatch(setDetailProduct({ id }))
+  }, [id])
+
+  useEffect(() => {
+      if (detailProduct?.id) {
+        form.setFieldsValue(detailProduct);
+      }
+  }, [detailProduct]);
+
+  const handleUpdateProduct = (values) => {
+    dispatch(updateProduct({ ...values, id }))
     navigate(ROUTES.ADMIN.PRODUCT.MANAGER)
   }
 
@@ -29,13 +43,14 @@ const Create = () => {
 
   return (
     <>
-      <S.TitlePage>Create Product</S.TitlePage>
+      <S.TitlePage>Update Product</S.TitlePage>
 
       <Form
         {...formItemLayout}
         form={form}
+        initialValues={detailProduct}
         style={{ maxWidth: 600 }}
-        onFinish={(values) => handleAddProduct(values)}
+        onFinish={(values) => handleUpdateProduct(values)}
       >
         <Form.Item
           label="Name"
@@ -66,4 +81,4 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default Update;

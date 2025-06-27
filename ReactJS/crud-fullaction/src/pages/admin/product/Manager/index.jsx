@@ -1,37 +1,30 @@
 import { Button, Modal, Space, Table } from 'antd';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { generatePath, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../../../constants/routes';
+import { deleteProduct } from '../../../../redux/product.slice';
 import * as S from './styles';
 
 const Manager = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
 
-  const showModal = () => {
+  const showModal = (id) => {
+    setDeleteId(id)
     setIsModalOpen(true);
   };
   const handleOk = () => {
+    dispatch(deleteProduct({ id: deleteId }))
     setIsModalOpen(false);
   };
   const handleCancel = () => {
     setIsModalOpen(false);
   };
 
-  const dataSource = [
-    {
-      key: '1',
-      id: '001',
-      name: 'Sản phẩm A',
-      price: 100000,
-    },
-    {
-      key: '2',
-      id: '002',
-      name: 'Sản phẩm B',
-      price: 200000,
-    },
-  ];
+  const { listProduct } = useSelector((state) => state.product)
 
   const columns = [
     {
@@ -58,7 +51,7 @@ const Manager = () => {
           <Button
             type="primary"
             ghost
-            onClick={() => alert(`Edit ${record.name}`)}
+            onClick={() => navigate(generatePath(ROUTES.ADMIN.PRODUCT.UPDATE, { id: record.id }))}
           >
             Edit
           </Button>
@@ -66,7 +59,7 @@ const Manager = () => {
             type="primary"
             ghost
             danger
-            onClick={showModal}
+            onClick={() => showModal(record.id)}
           >
             Delete
           </Button>
@@ -84,7 +77,7 @@ const Manager = () => {
         </Button>
       </div>
       <Table
-        dataSource={dataSource}
+        dataSource={listProduct}
         columns={columns}
         pagination={{ pageSize: 5 }}
         style={{ marginTop: 20 }}
@@ -96,7 +89,7 @@ const Manager = () => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <p>Delete?</p>
+        <p>Delete product id: { deleteId }</p>
       </Modal>
     </S.ManagerContainer>
   )
