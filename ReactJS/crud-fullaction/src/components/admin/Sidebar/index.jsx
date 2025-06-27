@@ -6,7 +6,7 @@ const Sidebar = ({ isSidebarOpen }) => {
   return (
     <S.SidebarContainer isSidebarOpen={isSidebarOpen}>
       <ul>
-        <li><Link>Dashboard</Link></li>
+        <li><Link to={ROUTES.ADMIN.DASHBOARD}>Dashboard</Link></li>
         <li><Link to={ROUTES.ADMIN.PRODUCT.MANAGER}>Product</Link></li>
       </ul>
     </S.SidebarContainer>
