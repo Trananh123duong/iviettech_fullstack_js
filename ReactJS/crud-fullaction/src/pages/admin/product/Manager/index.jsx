@@ -76,7 +76,7 @@ const Manager = () => {
           NEW
         </Button>
       </div>
-      <Table
+      <S.CustomTable
         dataSource={listProduct}
         columns={columns}
         pagination={{ pageSize: 5 }}
