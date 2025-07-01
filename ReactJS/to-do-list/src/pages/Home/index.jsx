@@ -1,47 +1,36 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import * as yup from 'yup';
 import Tab from '../../components/Tab';
 import { addTab, destroyTab } from '../../redux/tab.slice';
 import * as S from './styled';
 
 const Home = () => {
-  const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
   const [keyword, setKeyword] = useState('')
-  const [errorTitle, setErrorTitle] = useState('')
-  const [errorContent, setErrorContent] = useState('')
+
+  const schema = yup.object({
+    title: yup.string().trim().required('Vui lòng nhập đầy đủ Title'),
+    content: yup.string().trim().required('Vui lòng nhập đầy đủ Content'),
+  })
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(schema)
+  })
 
   const dispatch = useDispatch();
 
   const { tabList } = useSelector((state) => state.tab)
 
-  const handlerAddTab = (e) => {
-    e.preventDefault();
-
-    let hasError = false;
-    if (!title.trim()) {
-      setErrorTitle('Vui lòng nhập đầy đủ Title');
-      hasError = true;
-    } else {
-      setErrorTitle('');
-    }
-    if (!content.trim()) {
-      setErrorContent('Vui lòng nhập đầy đủ Content');
-      hasError = true;
-    } else {
-      setErrorContent('')
-    }
-    if (hasError) return;
-
-    dispatch(
-      addTab({
-        title: title,
-        content: content
-      })
-    )
-
-    setTitle('')
-    setContent('')
+  const onSubmit = (data) => {
+    dispatch(addTab({ title: data.title, content: data.content }))
+    reset()
   }
 
   const renderListTab = () => {
@@ -74,30 +63,27 @@ const Home = () => {
 
   return (
     <S.Container>
-      <S.FormContainer className="form" onSubmit={(e) => handlerAddTab(e)}>
+      <S.FormContainer className="form" onSubmit={handleSubmit(onSubmit)}>
         <h1>To Do List App</h1>
         <div>
           <label htmlFor="title">Title</label>
-          <input
+          <S.Input
             id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            error={!!errorTitle}
+            {...register('title')}
+            error={!!errors.title}
           />
-          {errorTitle && <p style={{ color: 'red' }}>{errorTitle}</p>}
+          {errors.title && <p style={{ color: 'red' }}>{errors.title.message}</p>}
         </div>
         <div>
-          <label htmlFor="">Content</label>
-          <input
+          <label htmlFor="content">Content</label>
+          <S.Input
             id="content"
-            value={content}
-            onChange={(e) =>
-            setContent(e.target.value)}
-            error={!!errorContent}
+            {...register('content')}
+            error={!!errors.content}
           />
-          {errorContent && <p style={{ color: 'red' }}>{errorContent}</p>}
+          {errors.content && <p style={{ color: 'red' }}>{errors.content.message}</p>}
         </div>
-        <S.ButtonForm>Add task</S.ButtonForm>
+        <S.ButtonForm type="submit">Add task</S.ButtonForm>
       </S.FormContainer>
       <S.SearchContainer>
         <input id="keyword" onChange={(e) => setKeyword(e.target.value)}/>

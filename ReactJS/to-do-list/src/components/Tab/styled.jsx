@@ -12,11 +12,12 @@ export const CardContainer = styled.div`
     margin: 8px 0 4px;
     font-weight: bold;
   }
+`
 
-  input {
-    padding: 4px 6px;
-    width: 100%;
-  }
+export const Input = styled.input`
+  padding: 4px 6px;
+  width: 100%;
+  border: ${(props) => (props.error ? '1px solid red' : '1px solid #cccccc')};
 `
 
 export const ActionButton = styled.div`
