@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateTab } from '../../redux/tab.slice';
+import * as S from './styled';
 
 const Tab = ({ id, title, content, deleteTab }) => {
   const [isEdit, setIsEdit] = useState(false);
@@ -80,23 +81,23 @@ const Tab = ({ id, title, content, deleteTab }) => {
     if (isEdit) {
       return (
         <>
-          <button className="button" onClick={() => handleSave()}>Save</button>
-          <button className="button" onClick={() => setIsEdit(false)}>Cancel</button>
+          <S.Button onClick={() => handleSave()}>Save</S.Button>
+          <S.Button onClick={() => setIsEdit(false)}>Cancel</S.Button>
         </>
       )
     }
-    return <button className="button" onClick={() => setIsEdit(true)}>Edit</button>
+    return <S.Button onClick={() => setIsEdit(true)}>Edit</S.Button>
   }
 
   return (
     <div>
-      <div className="card">
+      <S.CardContainer>
         {renderTabData()}
-        <div className="action-buttons">
+        <S.ActionButton>
           {renderTabAction()}
-          <button className="button" onClick={() => deleteTab(id)}>Delete</button>
-        </div>
-      </div>
+          <S.Button onClick={() => deleteTab(id)}>Delete</S.Button>
+        </S.ActionButton>
+      </S.CardContainer>
     </div>
   )
 }
