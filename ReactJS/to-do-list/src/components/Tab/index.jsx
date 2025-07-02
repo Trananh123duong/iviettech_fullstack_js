@@ -2,6 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom'; // thêm import
 import * as yup from 'yup';
 import { updateTab } from '../../redux/tab.slice';
 import * as S from './styled';
@@ -9,6 +10,7 @@ import * as S from './styled';
 const Tab = ({ id, title, content, deleteTab }) => {
   const [isEdit, setIsEdit] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // khởi tạo navigate
 
   // Schema Yup
   const schema = yup.object({
@@ -16,7 +18,6 @@ const Tab = ({ id, title, content, deleteTab }) => {
     contentTab: yup.string().trim().required('Content không được để trống'),
   });
 
-  // React Hook Form
   const {
     register,
     handleSubmit,
@@ -88,7 +89,7 @@ const Tab = ({ id, title, content, deleteTab }) => {
     if (!isEdit) {
       return <S.Button onClick={() => setIsEdit(true)}>Edit</S.Button>;
     }
-    return null; // Vì button Save/Cancel nằm trong form Edit
+    return null;
   };
 
   return (
@@ -98,6 +99,7 @@ const Tab = ({ id, title, content, deleteTab }) => {
         <S.ActionButton>
           {renderTabAction()}
           <S.Button onClick={() => deleteTab(id)}>Delete</S.Button>
+          <S.Button onClick={() => navigate(`/detail/${id}`)}>Detail</S.Button> {/* nút Detail */}
         </S.ActionButton>
       </S.CardContainer>
     </div>
