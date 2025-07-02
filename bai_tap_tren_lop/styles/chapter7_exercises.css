@@ -1,0 +1,87 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+}
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px 24px;
+  text-align: center;
+  background-color: #ccc;
+}
+.footer {
+  padding: 16px 24px;
+  text-align: center;
+  background-color: #ccc;
+  clear: both;
+}
+.body-container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 52px auto 0;
+  padding: 20px 0;
+}
+.clear {
+  clear: both;
+}
+.menu-wrapper {
+  float: left;
+  width: 200px;
+  padding: 16px;
+  background-color: #ccc;
+}
+.menu-item {
+  width: 100%;
+  padding: 8px;
+  background-color: gray;
+  margin-top: 16px;
+  border-radius: 6px;
+}
+.main-wrapper {
+  float: left;
+  width: calc(100% - (200px + 20%));
+  padding: 0 16px;
+}
+.item-wrapper {
+  background-color: #ccc;
+  margin-bottom: 20px;
+}
+.item-image {
+  background-image: url('https://placehold.co/600x400');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100px;
+  width: 100%;
+}
+.item-content {
+  padding: 16px;
+}
+.item-content > p {
+  margin: 8px 0;
+}
+.ads-wrapper {
+  position: sticky;
+  top: 72px;
+  float: right;
+  width: 20%;
+  height: 300px;
+  padding: 16px;
+  background-color: #ccc;
+}
+.backToTop {
+  position: fixed;
+  padding: 16px;
+  bottom: 64px;
+  right: 16px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: yellow;
+}
