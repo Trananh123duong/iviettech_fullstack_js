@@ -34,14 +34,10 @@ export const bookSlice = createSlice({
       })
 
       localStorage.setItem('listBookStorage', JSON.stringify(state.listBook));
-    },
-    setDetailBook: (state, action) => {
-      const book = state.listBook.find(item => item.id === action.payload.id)
-      state.detailBook = book || {};
     }
   }
 })
 
-export const { addBook, deleteBook, updateBook, setDetailBook } = bookSlice.actions
+export const { addBook, deleteBook, updateBook } = bookSlice.actions
 
 export default bookSlice.reducer

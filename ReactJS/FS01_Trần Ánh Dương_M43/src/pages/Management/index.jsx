@@ -48,6 +48,7 @@ const Management = () => {
 	
   return (
 		<>
+			<h1>Book Management</h1>
 			<Form form={form} layout="vertical" onFinish={onFinish}>
         <Form.Item name="title" label="Title">
           <Input/>
