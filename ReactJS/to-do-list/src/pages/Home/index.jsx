@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
@@ -33,7 +33,7 @@ const Home = () => {
     reset()
   }
 
-  const renderListTab = () => {
+  const renderListTab = useMemo(() => {
     const keywordLower = keyword.trim().toLowerCase();
 
     const filteredList = tabList.filter((item) => {
@@ -55,7 +55,7 @@ const Home = () => {
         deleteTab={deleteTab}
       />
     ));
-  }
+  }, [tabList, keyword]);
 
   const deleteTab = (id) => {
     dispatch(destroyTab(id))
