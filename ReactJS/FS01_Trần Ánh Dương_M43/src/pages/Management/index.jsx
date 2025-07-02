@@ -1,28 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Form, Input, Space, Table } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { addBook, deleteBook, updateBook } from '../../redux/book.slice';
+import { addBook, deleteBook} from '../../redux/book.slice';
+import { useNavigate } from 'react-router-dom';
 
 const Management = () => {
 	const [form] = Form.useForm();
-	
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const { listBook } = useSelector(state => state.book);
-	const [editingId, setEditingId] = useState(null);
 
 	const onFinish = (values) => {
-    if (editingId) {
-      dispatch(updateBook({ id: editingId, ...values }));
-      setEditingId(null);
-    } else {
-      dispatch(addBook(values));
-    }
-    form.resetFields();
-  };
-
-  const handleEdit = (record) => {
-    form.setFieldsValue(record);
-    setEditingId(record.id);
+    dispatch(addBook(values));
   };
 
   const handleDelete = (id) => {
@@ -50,7 +39,7 @@ const Management = () => {
 			key: 'action',
 			render: (_, record) => (
 				<Space>
-          <Button type="link" onClick={() => handleEdit(record)}>Edit</Button>
+          <Button type="link" onClick={() => navigate(`/edit/${record.id}`)}>Edit</Button>
           <Button type="link" onClick={() => handleDelete(record.id)}>Delete</Button>
         </Space>
 			),
@@ -60,17 +49,17 @@ const Management = () => {
   return (
 		<>
 			<Form form={form} layout="vertical" onFinish={onFinish}>
-        <Form.Item name="title" label="Title" rules={[{ required: true }]}>
-          <Input placeholder="Enter title" />
+        <Form.Item name="title" label="Title">
+          <Input/>
         </Form.Item>
-        <Form.Item name="author" label="Author" rules={[{ required: true }]}>
-          <Input placeholder="Enter author" />
+        <Form.Item name="author" label="Author">
+          <Input/>
         </Form.Item>
-        <Form.Item name="year" label="Year" rules={[{ required: true }]}>
-          <Input placeholder="Enter year" />
+        <Form.Item name="year" label="Year">
+          <Input/>
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit">{editingId ? 'Update Book' : 'Add Book'}</Button>
+          <Button type="primary" htmlType="submit">Add Book</Button>
         </Form.Item>
       </Form>
 
