@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ROUTES } from '../../../../constants/routes';
-import { setDetailProduct, updateProduct } from '../../../../redux/product.slice';
+import { setDetailProduct, updateProduct } from '../../../../redux/slices/product.slice';
 import * as S from './styles';
 
 const Update = () => {

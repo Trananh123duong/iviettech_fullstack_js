@@ -1,9 +1,9 @@
-import { Button, Modal, Space, Table } from 'antd';
+import { Button, Modal, Space } from 'antd';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../../../constants/routes';
-import { deleteProduct } from '../../../../redux/product.slice';
+import { deleteProduct } from '../../../../redux/slices/product.slice';
 import * as S from './styles';
 
 const Manager = () => {

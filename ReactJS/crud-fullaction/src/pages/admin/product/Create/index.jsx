@@ -2,7 +2,7 @@ import { Button, Form, Input, InputNumber } from 'antd';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../../../constants/routes';
-import { addProduct } from '../../../../redux/product.slice';
+import { addProduct } from '../../../../redux/slices/product.slice';
 import * as S from './styles';
 
 const Create = () => {

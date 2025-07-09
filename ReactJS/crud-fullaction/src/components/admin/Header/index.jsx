@@ -1,6 +1,6 @@
 import { LuSquareMenu } from "react-icons/lu";
 import { useDispatch } from 'react-redux';
-import { toggleSidebar } from '../../../redux/ui.slice';
+import { toggleSidebar } from '../../../redux/slices/ui.slice';
 import * as S from './styles';
 
 const Header = () => {
