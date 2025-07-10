@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from 'uuid';
+import { fetchProducts } from '../thunks/product.thunk';
 
 export const productSlice = createSlice({
   name: 'product',
@@ -37,6 +38,20 @@ export const productSlice = createSlice({
       const product = state.listProduct.find(item => item.id === action.payload.id)
       state.detailProduct = product || {};
     }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchProducts.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.listProduct = action.payload;
+      })
+      .addCase(fetchProducts.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
   }
 })
 

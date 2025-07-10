@@ -1,9 +1,10 @@
 import { Button, Modal, Space } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../../../constants/routes';
 import { deleteProduct } from '../../../../redux/slices/product.slice';
+import { fetchProducts } from '../../../../redux/thunks/product.thunk';
 import * as S from './styles';
 
 const Manager = () => {
@@ -11,6 +12,10 @@ const Manager = () => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   const showModal = (id) => {
     setDeleteId(id)
