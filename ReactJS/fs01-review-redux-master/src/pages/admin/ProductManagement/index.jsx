@@ -1,10 +1,10 @@
+import { Button, Flex, Popconfirm, Space, Table } from 'antd'
 import { useEffect } from 'react'
-import { Flex, Table, Button, Space, Popconfirm } from 'antd'
-import { useNavigate, generatePath } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { generatePath, useNavigate } from 'react-router-dom'
 
 import { ROUTES } from '../../../constants/routes'
-import { getProducts, deleteProduct } from '../../../redux/thunks/product.thunk'
+import { deleteProduct, getProducts } from '../../../redux/thunks/product.thunk'
 
 function ProductManagementPage() {
   const navigate = useNavigate()

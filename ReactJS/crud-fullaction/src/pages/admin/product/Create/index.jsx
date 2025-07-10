@@ -1,8 +1,10 @@
-import { Button, Form, Input, InputNumber } from 'antd';
-import { useDispatch } from 'react-redux';
+import { Button, Form, Input, InputNumber, Select } from 'antd';
+import { useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../../../constants/routes';
-import { addProduct } from '../../../../redux/slices/product.slice';
+import { getBrands } from '../../../../redux/thunks/brand.thunk';
+import { createProduct } from '../../../../redux/thunks/product.thunk';
 import * as S from './styles';
 
 const Create = () => {
@@ -11,10 +13,27 @@ const Create = () => {
 
   const [form] = Form.useForm();
 
+  const { createProductData } = useSelector((state) => state.product)
+  const { listBrand } = useSelector((state) => state.brand)
+
   const handleAddProduct = (values) => {
-    dispatch(addProduct(values))
-    navigate(ROUTES.ADMIN.PRODUCT.MANAGER)
+    dispatch(
+      createProduct({
+        data: values,
+        callback: () => navigate(ROUTES.ADMIN.PRODUCT.MANAGER)
+      })
+    )
   }
+
+  useEffect(() => {
+    dispatch(getBrands())
+  }, [])
+
+  const renderBrandOptions = useMemo(() => {
+    return listBrand.data.map((item) => {
+      return <Select.Option value={item.id}>{item.name}</Select.Option>
+    })
+  }, [listBrand.data])
 
   const formItemLayout = {
     labelCol: {
@@ -46,6 +65,19 @@ const Create = () => {
         </Form.Item>
 
         <Form.Item
+          label="Brand"
+          name="brandId"
+          rules={[{ required: true, message: 'Please input the brand!' }]}
+        >
+          <Select
+            placeholder="Enter brand"
+            loading={listBrand.status === 'loading'}
+          >
+            {renderBrandOptions}
+          </Select>
+        </Form.Item>
+
+        <Form.Item
           label="Price"
           name="price"
           rules={[{ required: true, message: 'Please enter the price!' }]}
@@ -54,7 +86,12 @@ const Create = () => {
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 6, span: 16 }}>
-          <Button type="primary" htmlType="submit" style={{ marginRight: 8 }}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            style={{ marginRight: 8 }}
+            loading={createProductData.loading === 'loading'}
+          >
             Submit
           </Button>
           <Button type="default" onClick={() => navigate(ROUTES.ADMIN.PRODUCT.MANAGER)}>

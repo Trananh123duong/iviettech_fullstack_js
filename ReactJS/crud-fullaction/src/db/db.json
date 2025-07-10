@@ -29,6 +29,18 @@
       "brandId": 2,
       "price": 30000000,
       "id": 7
+    },
+    {
+      "name": "test",
+      "brandId": 2,
+      "price": 1234,
+      "id": 8
+    },
+    {
+      "name": "user5",
+      "brandId": 2,
+      "price": 1234234,
+      "id": 9
     }
   ],
   "brands": [

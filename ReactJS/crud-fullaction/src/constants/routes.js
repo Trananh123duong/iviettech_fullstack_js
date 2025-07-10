@@ -11,6 +11,11 @@ export const ROUTES = {
       MANAGER: '/admin/product',
       CREATE: '/admin/product/create',
       UPDATE: '/admin/product/:id/update'
+    },
+    BRAND: {
+      MANAGER: '/admin/brand',
+      CREATE: '/admin/brand/create',
+      UPDATE: '/admin/brand/:id/update'
     }
   }
 }

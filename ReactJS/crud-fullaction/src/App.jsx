@@ -2,10 +2,13 @@ import { Route, Routes } from 'react-router-dom'
 import { ROUTES } from './constants/routes'
 import AdminLayout from './layouts/AdminLayout'
 import UserLayout from './layouts/UserLayout'
+import BrandCreate from './pages/admin/brand/Create'
+import BrandManager from './pages/admin/brand/Manager'
+import BrandUpdate from './pages/admin/brand/Update'
 import Dashboard from './pages/admin/Dashboard'
-import Create from './pages/admin/product/Create'
-import Manager from './pages/admin/product/Manager'
-import Update from './pages/admin/product/Update'
+import ProductCreate from './pages/admin/product/Create'
+import ProductManager from './pages/admin/product/Manager'
+import ProductUpdate from './pages/admin/product/Update'
 import Home from './pages/user/Home'
 import List from './pages/user/product/List'
 
@@ -20,9 +23,14 @@ function App() {
 
       <Route element={<AdminLayout />}>
         <Route path={ROUTES.ADMIN.DASHBOARD} element={<Dashboard />} />
-        <Route path={ROUTES.ADMIN.PRODUCT.MANAGER} element={<Manager />} />
-        <Route path={ROUTES.ADMIN.PRODUCT.CREATE} element={<Create />} />
-        <Route path={ROUTES.ADMIN.PRODUCT.UPDATE} element={<Update />} />
+
+        <Route path={ROUTES.ADMIN.PRODUCT.MANAGER} element={<ProductManager />} />
+        <Route path={ROUTES.ADMIN.PRODUCT.CREATE} element={<ProductCreate />} />
+        <Route path={ROUTES.ADMIN.PRODUCT.UPDATE} element={<ProductUpdate />} />
+
+        <Route path={ROUTES.ADMIN.BRAND.MANAGER} element={<BrandManager />} />
+        <Route path={ROUTES.ADMIN.BRAND.CREATE} element={<BrandCreate />} />
+        <Route path={ROUTES.ADMIN.BRAND.UPDATE} element={<BrandUpdate />} />
       </Route>
     </Routes>
   )

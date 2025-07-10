@@ -1,34 +1,49 @@
-import { Button, Form, Input, InputNumber } from 'antd';
-import { useEffect } from 'react';
+import { Button, Form, Input, InputNumber, Select } from 'antd';
+import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ROUTES } from '../../../../constants/routes';
-import { setDetailProduct, updateProduct } from '../../../../redux/slices/product.slice';
+import { getBrands } from '../../../../redux/thunks/brand.thunk';
+import { getProduct, updateProduct } from '../../../../redux/thunks/product.thunk';
 import * as S from './styles';
 
 const Update = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [form] = Form.useForm();
   let { id } = useParams();
 
   const { detailProduct } = useSelector(state => state.product)
-
-  const [form] = Form.useForm();
+  const { listBrand } = useSelector((state) => state.brand)
 
   useEffect(() => {
-    dispatch(setDetailProduct({ id }))
+    dispatch(getBrands())
+    dispatch(getProduct({ id }))
   }, [id])
 
-  useEffect(() => {
-      if (detailProduct?.id) {
-        form.setFieldsValue(detailProduct);
-      }
-  }, [detailProduct]);
-
   const handleUpdateProduct = (values) => {
-    dispatch(updateProduct({ ...values, id }))
-    navigate(ROUTES.ADMIN.PRODUCT.MANAGER)
+    dispatch(
+      updateProduct({
+        id: id,
+        data: values,
+        callback: () => navigate(ROUTES.ADMIN.PRODUCT.MANAGER)
+      })
+    )
   }
+
+  useEffect(() => {
+    form.setFieldsValue({
+      name: detailProduct.data.name,
+      brandId: detailProduct.data.brandId,
+      price: detailProduct.data.price,
+    });
+  }, [detailProduct.data.id]);
+
+  const renderBrandOptions = useMemo(() => {
+    return listBrand.data.map((item) => {
+      return <Select.Option value={item.id}>{item.name}</Select.Option>
+    })
+  }, [listBrand.data])
 
   const formItemLayout = {
     labelCol: {
@@ -48,7 +63,10 @@ const Update = () => {
       <Form
         {...formItemLayout}
         form={form}
-        initialValues={detailProduct}
+        initialValues={{
+          name: detailProduct.name,
+          price: detailProduct.price,
+        }}
         style={{ maxWidth: 600 }}
         onFinish={(values) => handleUpdateProduct(values)}
       >
@@ -58,6 +76,19 @@ const Update = () => {
           rules={[{ required: true, message: 'Please enter the product name!' }]}
         >
           <Input />
+        </Form.Item>
+
+        <Form.Item
+          label="Brand"
+          name="brandId"
+          rules={[{ required: true, message: 'Please input the brand!' }]}
+        >
+          <Select
+            placeholder="Enter brand"
+            loading={listBrand.status === 'loading'}
+          >
+            {renderBrandOptions}
+          </Select>
         </Form.Item>
 
         <Form.Item
