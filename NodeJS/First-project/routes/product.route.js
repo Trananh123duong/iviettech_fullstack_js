@@ -11,9 +11,9 @@ let productList = [
   },
 ]
 
-router.get('/', (req, res) => {
-  res.status(200).send(productList)
-})
+const productController = require('../controllers/product.controller')
+
+router.get('/', productController.getAllProducts)
 
 router.get('/:id', (req, res) => {
   const productId = req.params.id;
