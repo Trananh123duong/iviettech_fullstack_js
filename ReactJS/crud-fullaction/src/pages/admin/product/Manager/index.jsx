@@ -52,7 +52,8 @@ const Manager = () => {
       title: 'Brand',
       dataIndex: 'brand',
       key: 'brand',
-      render: (_, record) => record.brand.name,
+      // render: (_, record) => record.brand.name,
+      render: (_, record) => record.brandId,
     },
     {
       title: 'Price',

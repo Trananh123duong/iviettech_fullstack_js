@@ -4,7 +4,8 @@ import axios from "axios";
 export const getProducts = createAsyncThunk(
   "product/getProducts",
   async () => {
-    const response = await axios.get("http://localhost:3000/products?_expand=brand&_sort=id&_order=desc");
+    // const response = await axios.get("http://localhost:3000/api/products?_expand=brand&_sort=id&_order=desc");
+    const response = await axios.get("http://localhost:3000/api/products");
     return response.data;
   }
 )
@@ -13,7 +14,7 @@ export const getProduct = createAsyncThunk(
   'product/getProduct',
   async (params) => {
     const response = await axios.get(
-      `http://localhost:3000/products/${params.id}`
+      `http://localhost:3000/api/products/${params.id}`
     )
     return response.data
   }
@@ -23,7 +24,7 @@ export const createProduct = createAsyncThunk(
   'product/createProduct',
   async (params) => {
     const response = await axios.post(
-      'http://localhost:3000/products',
+      'http://localhost:3000/api/products',
       params.data
     )
     params.callback()
@@ -35,7 +36,7 @@ export const updateProduct = createAsyncThunk(
   'product/updateProduct',
   async (params) => {
     const response = await axios.patch(
-      `http://localhost:3000/products/${params.id}`,
+      `http://localhost:3000/api/products/${params.id}`,
       params.data
     )
     params.callback()
@@ -47,7 +48,7 @@ export const deleteProduct = createAsyncThunk(
   'product/deleteProduct',
   async (params) => {
     const response = await axios.delete(
-      `http://localhost:3000/products/${params.id}`
+      `http://localhost:3000/api/products/${params.id}`
     )
     params.callback()
     return response.data

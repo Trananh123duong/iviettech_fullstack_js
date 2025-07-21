@@ -2,6 +2,9 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 
+const productRoutes = require('./routes/product.route')
+const brandRoutes = require('./routes/brand.route')
+
 const app = express();
 
 const port = 3000;
@@ -10,31 +13,11 @@ app.use(morgan('dev'))
 app.use(cors())
 app.use(express.json())
 
+app.use('/api/products', productRoutes)
+app.use('/api/brands', brandRoutes)
+
 app.get('/', (req, res) => {
   res.send('Hello world!!!');
-})
-
-app.get('/products', (req, res) => {
-  res.send("Get all products")
-})
-
-app.get('/products/:id', (req, res) => {
-  const productId = req.params.id;
-  res.send(`Get product by id: ${productId}`)
-})
-
-app.post('/products', (req, res) => {
-  res.send(req.body);
-})
-
-app.put('/products/:id', (req, res) => {
-  const productId = req.params.id;
-  res.send(req.body);
-})
-
-app.delete('/products/:id', (req, res) => {
-  const productId = req.params.id;
-  res.send(`Delete product by id: ${productId}`)
 })
 
 app.listen(port, () => {
