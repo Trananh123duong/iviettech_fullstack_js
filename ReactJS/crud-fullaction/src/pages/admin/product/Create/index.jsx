@@ -3,7 +3,7 @@ import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../../../constants/routes';
-import { getBrands } from '../../../../redux/thunks/brand.thunk';
+import { getCategories } from '../../../../redux/thunks/category.thunk';
 import { createProduct } from '../../../../redux/thunks/product.thunk';
 import * as S from './styles';
 
@@ -14,7 +14,7 @@ const Create = () => {
   const [form] = Form.useForm();
 
   const { createProductData } = useSelector((state) => state.product)
-  const { listBrand } = useSelector((state) => state.brand)
+  const { listCategory } = useSelector((state) => state.category)
 
   const handleAddProduct = (values) => {
     dispatch(
@@ -26,14 +26,14 @@ const Create = () => {
   }
 
   useEffect(() => {
-    dispatch(getBrands())
+    dispatch(getCategories())
   }, [])
 
-  const renderBrandOptions = useMemo(() => {
-    return listBrand.data.map((item) => {
+  const renderCategoryOptions = useMemo(() => {
+    return listCategory.data.map((item) => {
       return <Select.Option value={item.id}>{item.name}</Select.Option>
     })
-  }, [listBrand.data])
+  }, [listCategory.data])
 
   const formItemLayout = {
     labelCol: {
@@ -65,15 +65,15 @@ const Create = () => {
         </Form.Item>
 
         <Form.Item
-          label="Brand"
-          name="brandId"
-          rules={[{ required: true, message: 'Please input the brand!' }]}
+          label="Category"
+          name="categoryId"
+          rules={[{ required: true, message: 'Please input the category!' }]}
         >
           <Select
-            placeholder="Enter brand"
-            loading={listBrand.status === 'loading'}
+            placeholder="Enter category"
+            loading={listCategory.status === 'loading'}
           >
-            {renderBrandOptions}
+            {renderCategoryOptions}
           </Select>
         </Form.Item>
 

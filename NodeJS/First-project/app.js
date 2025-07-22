@@ -4,6 +4,7 @@ const cors = require('cors');
 
 const productRoutes = require('./routes/product.route')
 const brandRoutes = require('./routes/brand.route')
+const categoryRoutes = require('./routes/category.route')
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(express.json())
 
 app.use('/api/products', productRoutes)
 app.use('/api/brands', brandRoutes)
+app.use('/api/categories', categoryRoutes)
 
 app.get('/', (req, res) => {
   res.send('Hello world!!!');

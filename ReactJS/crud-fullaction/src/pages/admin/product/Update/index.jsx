@@ -3,7 +3,7 @@ import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ROUTES } from '../../../../constants/routes';
-import { getBrands } from '../../../../redux/thunks/brand.thunk';
+import { getCategories } from '../../../../redux/thunks/category.thunk';
 import { getProduct, updateProduct } from '../../../../redux/thunks/product.thunk';
 import * as S from './styles';
 
@@ -14,10 +14,10 @@ const Update = () => {
   let { id } = useParams();
 
   const { detailProduct } = useSelector(state => state.product)
-  const { listBrand } = useSelector((state) => state.brand)
+  const { listCategory } = useSelector((state) => state.category)
 
   useEffect(() => {
-    dispatch(getBrands())
+    dispatch(getCategories())
     dispatch(getProduct({ id }))
   }, [id])
 
@@ -34,16 +34,16 @@ const Update = () => {
   useEffect(() => {
     form.setFieldsValue({
       name: detailProduct.data.name,
-      brandId: detailProduct.data.brandId,
+      categoryId: detailProduct.data.categoryId,
       price: detailProduct.data.price,
     });
   }, [detailProduct.data.id]);
 
-  const renderBrandOptions = useMemo(() => {
-    return listBrand.data.map((item) => {
+  const renderCategoryOptions = useMemo(() => {
+    return listCategory.data.map((item) => {
       return <Select.Option value={item.id}>{item.name}</Select.Option>
     })
-  }, [listBrand.data])
+  }, [listCategory.data])
 
   const formItemLayout = {
     labelCol: {
@@ -79,15 +79,15 @@ const Update = () => {
         </Form.Item>
 
         <Form.Item
-          label="Brand"
-          name="brandId"
-          rules={[{ required: true, message: 'Please input the brand!' }]}
+          label="Category"
+          name="categoryId"
+          rules={[{ required: true, message: 'Please input the category!' }]}
         >
           <Select
-            placeholder="Enter brand"
-            loading={listBrand.status === 'loading'}
+            placeholder="Enter category"
+            loading={listCategory.status === 'loading'}
           >
-            {renderBrandOptions}
+            {renderCategoryOptions}
           </Select>
         </Form.Item>
 

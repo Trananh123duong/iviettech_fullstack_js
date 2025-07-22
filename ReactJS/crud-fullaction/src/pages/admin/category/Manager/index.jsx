@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { generatePath, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../../../constants/routes';
-import { deleteProduct, getProducts } from '../../../../redux/thunks/product.thunk';
+import { deleteCategory, getCategories } from '../../../../redux/thunks/category.thunk';
 import * as S from './styles';
 
 const Manager = () => {
@@ -13,7 +13,7 @@ const Manager = () => {
   const [deleteId, setDeleteId] = useState(null);
 
   useEffect(() => {
-    dispatch(getProducts());
+    dispatch(getCategories());
   }, [dispatch]);
 
   const showModal = (id) => {
@@ -23,9 +23,9 @@ const Manager = () => {
 
   const handleOk = () => {
     dispatch(
-      deleteProduct({
+      deleteCategory({
         id: deleteId,
-        callback: () => dispatch(getProducts()),
+        callback: () => dispatch(getCategories()),
       })
     )
     setIsModalOpen(false);
@@ -35,7 +35,7 @@ const Manager = () => {
     setIsModalOpen(false);
   };
 
-  const { listProduct } = useSelector((state) => state.product)
+  const { listCategory } = useSelector((state) => state.category)
 
   const columns = [
     {
@@ -49,19 +49,6 @@ const Manager = () => {
       key: 'name',
     },
     {
-      title: 'Category',
-      dataIndex: 'category',
-      key: 'category',
-      // render: (_, record) => record.brand.name,
-      render: (_, record) => record.category_name,
-    },
-    {
-      title: 'Price',
-      dataIndex: 'price',
-      key: 'price',
-      render: (text) => `${text.toLocaleString()} đ`,
-    },
-    {
       title: 'Action',
       key: 'action',
       render: (_, record) => (
@@ -69,7 +56,7 @@ const Manager = () => {
           <Button
             type="primary"
             ghost
-            onClick={() => navigate(generatePath(ROUTES.ADMIN.PRODUCT.UPDATE, { id: record.id }))}
+            onClick={() => navigate(generatePath(ROUTES.ADMIN.CATEGORY.UPDATE, { id: record.id }))}
           >
             Edit
           </Button>
@@ -89,18 +76,18 @@ const Manager = () => {
   return (
     <S.ManagerContainer>
       <div>
-        <b>Product List</b>
+        <b>Category List</b>
         <Button
           type="primary"
           ghost
-          onClick={() => navigate(ROUTES.ADMIN.PRODUCT.CREATE)}
+          onClick={() => navigate(ROUTES.ADMIN.CATEGORY.CREATE)}
         >
           NEW
         </Button>
       </div>
       <S.CustomTable
-        loading={listProduct.status === 'loading'}
-        dataSource={listProduct.data}
+        loading={listCategory.status === 'loading'}
+        dataSource={listCategory.data}
         columns={columns}
         pagination={{ pageSize: 5 }}
         style={{ marginTop: 20 }}
@@ -112,7 +99,7 @@ const Manager = () => {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <p>Delete product id: { deleteId }</p>
+        <p>Delete category id: { deleteId }</p>
       </Modal>
     </S.ManagerContainer>
   )
