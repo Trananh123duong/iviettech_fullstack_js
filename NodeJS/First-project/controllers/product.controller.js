@@ -28,7 +28,14 @@ const detailProduct = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const sql = 'SELECT * FROM products WHERE id = ?';
+    const sql = `
+      SELECT
+        products.*,
+        categories.name AS category_name
+      FROM products
+      JOIN categories ON products.category_id = categories.id
+      WHERE products.id = ?
+    `;
     const [rows] = await db.query(sql, [id]);
 
     if (rows.length === 0) {

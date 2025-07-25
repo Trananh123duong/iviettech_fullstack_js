@@ -49,6 +49,11 @@ const Manager = () => {
       key: 'name',
     },
     {
+      title: 'Count',
+      dataIndex: 'product_count',
+      key: 'product_count'
+    },
+    {
       title: 'Action',
       key: 'action',
       render: (_, record) => (

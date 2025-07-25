@@ -34,7 +34,7 @@ const Update = () => {
   useEffect(() => {
     form.setFieldsValue({
       name: detailProduct.data.name,
-      categoryId: detailProduct.data.categoryId,
+      categoryId: detailProduct.data.category_id,
       price: detailProduct.data.price,
     });
   }, [detailProduct.data.id]);
