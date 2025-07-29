@@ -1,35 +1,19 @@
-const Sequelize = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  return categories.init(sequelize, DataTypes);
-}
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/db');
 
-class categories extends Sequelize.Model {
-  static init(sequelize, DataTypes) {
-  return super.init({
-    id: {
-      autoIncrement: true,
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true
-    },
-    name: {
-      type: DataTypes.STRING(100),
-      allowNull: false
-    }
-  }, {
-    sequelize,
-    tableName: 'categories',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-    ]
-  });
-  }
-}
+const Category = sequelize.define('Category', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  name: {
+    type: DataTypes.STRING(100),
+    allowNull: false,
+  },
+}, {
+  tableName: 'categories',
+  timestamps: false,
+});
+
+module.exports = Category;

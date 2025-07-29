@@ -1,20 +1,27 @@
+const { Sequelize } = require('sequelize');
 
-// file: config/db.js
-const mysql = require('mysql2');
+// Tạo một instance của Sequelize để kết nối CSDL
+const sequelize = new Sequelize(
+  'test_db',
+  'user',
+  'user123',
+  {
+    host: 'localhost',
+    dialect: 'mysql' // Khai báo RDB CSDL đang dùng là MySQL
+  }
+);
 
-// Tạo một connection pool
-const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'user',
-  password: 'user123',
-  database: 'test_db',
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
-});
+// Kiểm tra kết nối (tùy chọn nhưng nên có)
+const checkConnection = async () => {
+  try {
+    await sequelize.authenticate();
+    console.log('Connection via Sequelize has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+};
 
-// Sử dụng promise-based API
-const promisePool = pool.promise();
+checkConnection();
 
-// Xuất ra promisePool để sử dụng ở các file khác
-module.exports = promisePool;
+// Xuất ra instance để sử dụng ở các file khác
+module.exports = sequelize;

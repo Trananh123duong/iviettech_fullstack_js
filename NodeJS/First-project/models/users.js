@@ -1,61 +1,33 @@
-const Sequelize = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  return users.init(sequelize, DataTypes);
-}
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/db');
 
-class users extends Sequelize.Model {
-  static init(sequelize, DataTypes) {
-  return super.init({
-    id: {
-      autoIncrement: true,
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true
-    },
-    username: {
-      type: DataTypes.STRING(50),
-      allowNull: false,
-      unique: "username"
-    },
-    email: {
-      type: DataTypes.STRING(100),
-      allowNull: false,
-      unique: "email"
-    },
-    password: {
-      type: DataTypes.STRING(255),
-      allowNull: false
-    }
-  }, {
-    sequelize,
-    tableName: 'users',
-    timestamps: true,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "username",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "username" },
-        ]
-      },
-      {
-        name: "email",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "email" },
-        ]
-      },
-    ]
-  });
-  }
-}
+const User = sequelize.define('User', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  username: {
+    type: DataTypes.STRING(50),
+    allowNull: false,
+    unique: true,
+  },
+  email: {
+    type: DataTypes.STRING(100),
+    allowNull: false,
+    unique: true,
+  },
+  password: {
+    type: DataTypes.STRING(255),
+    allowNull: false,
+  },
+  created_at: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
+  },
+}, {
+  tableName: 'users',
+  timestamps: false,
+});
+
+module.exports = User;

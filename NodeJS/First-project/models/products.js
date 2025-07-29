@@ -1,54 +1,30 @@
-const Sequelize = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  return products.init(sequelize, DataTypes);
-}
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/db');
 
-class products extends Sequelize.Model {
-  static init(sequelize, DataTypes) {
-  return super.init({
-    id: {
-      autoIncrement: true,
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true
+const Product = sequelize.define('Product', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  name: {
+    type: DataTypes.STRING(255),
+    allowNull: false,
+  },
+  price: {
+    type: DataTypes.DECIMAL(10, 2),
+    allowNull: false,
+  },
+  category_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'categories',
+      key: 'id',
     },
-    name: {
-      type: DataTypes.STRING(255),
-      allowNull: false
-    },
-    price: {
-      type: DataTypes.DECIMAL(10,2),
-      allowNull: false
-    },
-    category_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'categories',
-        key: 'id'
-      }
-    }
-  }, {
-    sequelize,
-    tableName: 'products',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "category_id",
-        using: "BTREE",
-        fields: [
-          { name: "category_id" },
-        ]
-      },
-    ]
-  });
-  }
-}
+  },
+}, {
+  tableName: 'products',
+  timestamps: false,
+});
+
+module.exports = Product;

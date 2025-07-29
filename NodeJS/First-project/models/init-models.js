@@ -1,34 +1,26 @@
-const DataTypes = require("sequelize").DataTypes;
-const _categories = require("./categories");
-const _order_items = require("./order_items");
-const _orders = require("./orders");
-const _products = require("./products");
-const _users = require("./users");
+const User = require('./users');
+const Category = require('./categories');
+const Product = require('./products');
+const Order = require('./orders');
+const OrderItem = require('./order_items');
 
-function initModels(sequelize) {
-  const categories = _categories(sequelize, DataTypes);
-  const order_items = _order_items(sequelize, DataTypes);
-  const orders = _orders(sequelize, DataTypes);
-  const products = _products(sequelize, DataTypes);
-  const users = _users(sequelize, DataTypes);
+// Thiết lập các mối quan hệ
+User.hasMany(Order, { foreignKey: 'user_id' });
+Order.belongsTo(User, { foreignKey: 'user_id' });
 
-  products.belongsTo(categories, { as: "category", foreignKey: "category_id"});
-  categories.hasMany(products, { as: "products", foreignKey: "category_id"});
-  order_items.belongsTo(orders, { as: "order", foreignKey: "order_id"});
-  orders.hasMany(order_items, { as: "order_items", foreignKey: "order_id"});
-  order_items.belongsTo(products, { as: "product", foreignKey: "product_id"});
-  products.hasMany(order_items, { as: "order_items", foreignKey: "product_id"});
-  orders.belongsTo(users, { as: "user", foreignKey: "user_id"});
-  users.hasMany(orders, { as: "orders", foreignKey: "user_id"});
+Category.hasMany(Product, { foreignKey: 'category_id' });
+Product.belongsTo(Category, { foreignKey: 'category_id' });
 
-  return {
-    categories,
-    order_items,
-    orders,
-    products,
-    users,
-  };
-}
-module.exports = initModels;
-module.exports.initModels = initModels;
-module.exports.default = initModels;
+Order.hasMany(OrderItem, { foreignKey: 'order_id' });
+OrderItem.belongsTo(Order, { foreignKey: 'order_id' });
+
+Product.hasMany(OrderItem, { foreignKey: 'product_id' });
+OrderItem.belongsTo(Product, { foreignKey: 'product_id' });
+
+module.exports = {
+  User,
+  Category,
+  Product,
+  Order,
+  OrderItem,
+};

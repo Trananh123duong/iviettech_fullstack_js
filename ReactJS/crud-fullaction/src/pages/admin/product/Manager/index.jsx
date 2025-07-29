@@ -53,7 +53,7 @@ const Manager = () => {
       dataIndex: 'category',
       key: 'category',
       // render: (_, record) => record.brand.name,
-      render: (_, record) => record.category_name,
+      render: (_, record) => record.Category.name,
     },
     {
       title: 'Price',

@@ -1,20 +1,16 @@
 const db = require('../config/db');
+const { Product, Category } = require('../models/init-models');
 
 const getAllProducts = async (req, res) => {
   try {
-    const sql = `
-      SELECT
-        products.*,
-        categories.name AS category_name
-      FROM
-        products
-      JOIN
-        categories ON products.category_id = categories.id
-    `;
+    const products = await Product.findAll({
+      include: [{
+        model: Category,
+        attributes: ['name']
+      }]
+    });
 
-    const [rows] = await db.query(sql);
-
-    res.status(200).json(rows);
+    res.status(200).json(products);
   } catch (err) {
     console.error('Lỗi khi lấy danh sách sản phẩm:', err.message);
     res.status(500).json({
@@ -28,17 +24,14 @@ const detailProduct = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const sql = `
-      SELECT
-        products.*,
-        categories.name AS category_name
-      FROM products
-      JOIN categories ON products.category_id = categories.id
-      WHERE products.id = ?
-    `;
-    const [rows] = await db.query(sql, [id]);
+    const product = await Product.findByPk(id, {
+      include: [{
+        model: Category,
+        attributes: ['name']
+      }]
+    })
 
-    if (rows.length === 0) {
+    if (product.length === 0) {
       return res.status(404).json({
         message: 'Không tìm thấy sản phẩm',
       });
@@ -46,7 +39,7 @@ const detailProduct = async (req, res) => {
 
     res.status(200).json({
       message: 'Lấy sản phẩm thành công',
-      data: rows[0],
+      data: product,
     });
   } catch (error) {
     console.error('Lỗi khi lấy chi tiết sản phẩm:', error.message);
@@ -59,15 +52,11 @@ const detailProduct = async (req, res) => {
 
 const createProduct = async (req, res) => {
   try {
-    const { name, price, categoryId } = req.body;
-
-    const sql =
-      'INSERT INTO products (name, price, category_id) VALUES (?, ?, ?)';
-    const [result] = await db.query(sql, [name, price, categoryId]);
+    const newProduct = await Product.create(req.body)
 
     res.status(201).json({
       message: 'Tạo sản phẩm thành công',
-      productId: result.insertId,
+      productId: newProduct,
     });
   } catch (error) {
     console.error('Lỗi khi tạo sản phẩm:', error.message);
@@ -81,13 +70,12 @@ const createProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, price, categoryId } = req.body;
+    
+    const [affectedRows] = await Product.update(req.body, {
+      where: { id: id }
+    })
 
-    const sql =
-      'UPDATE products SET name = ?, price = ?, category_id = ? WHERE id = ?';
-    const [result] = await db.query(sql, [name, price, categoryId, id]);
-
-    if (result.affectedRows === 0) {
+    if (affectedRows === 0) {
       return res.status(404).json({
         message: 'Không tìm thấy sản phẩm để cập nhật',
       });
@@ -109,10 +97,11 @@ const deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const sql = 'DELETE FROM products WHERE id = ?';
-    const [result] = await db.query(sql, [id]);
+    const destroyedRow = await Product.destroy({
+      where: { id: id }
+    })
 
-    if (result.affectedRows === 0) {
+    if (destroyedRow === 0) {
       return res.status(404).json({
         message: 'Không tìm thấy sản phẩm để xóa',
       });
