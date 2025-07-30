@@ -3,7 +3,9 @@ export const ROUTES = {
     HOME: '/',
     PRODUCT: {
       LIST: '/product'
-    }
+    },
+    LOGIN: '/login',
+    REGISTER: '/register'
   },
   ADMIN: {
     DASHBOARD: '/admin',

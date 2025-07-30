@@ -12,6 +12,8 @@ import Dashboard from './pages/admin/Dashboard'
 import ProductCreate from './pages/admin/product/Create'
 import ProductManager from './pages/admin/product/Manager'
 import ProductUpdate from './pages/admin/product/Update'
+import Login from './pages/user/authen/Login'
+import Register from './pages/user/authen/Register'
 import Home from './pages/user/Home'
 import List from './pages/user/product/List'
 
@@ -22,6 +24,9 @@ function App() {
       <Route element={<UserLayout />}>
         <Route path={ROUTES.USER.HOME} element={<Home />} />
         <Route path={ROUTES.USER.PRODUCT.LIST} element={<List />} />
+
+        <Route path={ROUTES.USER.LOGIN} element={<Login />} />
+        <Route path={ROUTES.USER.REGISTER} element={<Register />} />
       </Route>
 
       <Route element={<AdminLayout />}>

@@ -7,7 +7,8 @@ const getAllProducts = async (req, res) => {
       include: [{
         model: Category,
         attributes: ['name']
-      }]
+      }],
+      order: [['id', 'DESC']]
     });
 
     res.status(200).json(products);
