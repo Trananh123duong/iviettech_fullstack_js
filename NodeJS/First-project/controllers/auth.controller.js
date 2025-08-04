@@ -43,7 +43,7 @@ const login = async (req, res) => {
         .status(400)
         .json({ message: 'Email hoặc mật khẩu không đúng!' })
     }
-    const token = jwt.sign({ id: user.id, email: user.email }, 'TUAN', {
+    const token = jwt.sign({ id: user.id, email: user.email }, 'DUONG', {
       expiresIn: '1h',
     })
 
