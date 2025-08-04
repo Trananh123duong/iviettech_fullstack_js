@@ -5,7 +5,8 @@ export const ROUTES = {
       LIST: '/product'
     },
     LOGIN: '/login',
-    REGISTER: '/register'
+    REGISTER: '/register',
+    PROFILE: '/profile'
   },
   ADMIN: {
     DASHBOARD: '/admin',

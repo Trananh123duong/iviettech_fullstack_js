@@ -1,27 +1,37 @@
 const db = require('../config/db');
 
 // Lấy tất cả danh mục
+// const getAllCategories = async (req, res) => {
+//   try {
+//     const [rows] = await db.query(`
+//       SELECT
+//         c.id,
+//         c.name,
+//         COUNT(p.id) AS product_count
+//       FROM categories AS c
+//       LEFT JOIN products AS p ON c.id = p.category_id
+//       GROUP BY c.id, c.name
+//       ORDER BY c.name ASC
+//     `);
+//     res.status(200).json(rows);
+//   } catch (err) {
+//     console.error('Lỗi khi lấy danh sách danh mục:', err.message);
+//     res.status(500).json({
+//       message: 'Đã xảy ra lỗi khi lấy danh sách danh mục',
+//       error: err.message,
+//     });
+//   }
+// };
+
 const getAllCategories = async (req, res) => {
   try {
-    const [rows] = await db.query(`
-      SELECT
-        c.id,
-        c.name,
-        COUNT(p.id) AS product_count
-      FROM categories AS c
-      LEFT JOIN products AS p ON c.id = p.category_id
-      GROUP BY c.id, c.name
-      ORDER BY c.name ASC
-    `);
-    res.status(200).json(rows);
-  } catch (err) {
-    console.error('Lỗi khi lấy danh sách danh mục:', err.message);
-    res.status(500).json({
-      message: 'Đã xảy ra lỗi khi lấy danh sách danh mục',
-      error: err.message,
-    });
+    const [result] = await db.query('SELECT * FROM categories')
+    res.json(result)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Lỗi server' })
   }
-};
+}
 
 // Lấy chi tiết danh mục theo ID
 const detailCategory = async (req, res) => {

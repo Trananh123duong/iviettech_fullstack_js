@@ -5,6 +5,7 @@ const cors = require('cors');
 const productRoutes = require('./routes/product.route')
 const brandRoutes = require('./routes/brand.route')
 const categoryRoutes = require('./routes/category.route')
+const authRoutes = require('./routes/auth.route')
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(morgan('dev'))
 app.use(cors())
 app.use(express.json())
 
+app.use('/api/auth', authRoutes)
 app.use('/api/products', productRoutes)
 app.use('/api/brands', brandRoutes)
 app.use('/api/categories', categoryRoutes)

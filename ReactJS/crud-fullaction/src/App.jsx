@@ -16,6 +16,7 @@ import Login from './pages/user/authen/Login'
 import Register from './pages/user/authen/Register'
 import Home from './pages/user/Home'
 import List from './pages/user/product/List'
+import Profile from './pages/user/Profile'
 
 function App() {
 
@@ -27,6 +28,8 @@ function App() {
 
         <Route path={ROUTES.USER.LOGIN} element={<Login />} />
         <Route path={ROUTES.USER.REGISTER} element={<Register />} />
+
+        <Route path={ROUTES.USER.PROFILE} element={<Profile />} />
       </Route>
 
       <Route element={<AdminLayout />}>

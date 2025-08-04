@@ -1,5 +1,6 @@
 const db = require('../config/db');
 const { Product, Category } = require('../models/init-models');
+const { Op } = require('sequelize')
 
 const getAllProducts = async (req, res) => {
   try {
@@ -20,6 +21,69 @@ const getAllProducts = async (req, res) => {
     });
   }
 };
+
+const getListProducts = async (req, res) => {
+  try {
+    const {
+      page = 1,
+      limit = 10,
+      sort = 'id',
+      order = 'asc',
+      categoryId,
+      q,
+    } = req.query
+    const offset = (page - 1) * limit
+
+    let whereClause = {}
+    if (categoryId) {
+      const categoryArray = Array.isArray(categoryId)
+        ? categoryId
+        : typeof categoryId === 'string'
+        ? categoryId.split(',').map(Number)
+        : [Number(categoryId)]
+
+      whereClause.category_id = {
+        [Op.in]: categoryArray,
+      }
+    }
+    if (q) {
+      whereClause.name = { [Op.like]: `%${q}%` }
+    }
+
+    const sortOrder = order.toLowerCase() === 'desc' ? 'DESC' : 'ASC'
+    const sortColumn = ['id', 'name', 'price'].includes(sort) ? sort : 'id'
+
+    const result = await Product.findAndCountAll({
+      where: whereClause,
+      include: [
+        {
+          model: Category,
+          as: 'category',
+          attributes: ['id', 'name'],
+        },
+      ],
+      // [['name', 'asc'], ['price', 'desc']] // Example of multiple sorting
+      order: [[sortColumn, sortOrder]],
+      limit: parseInt(limit),
+      offset: parseInt(offset),
+    })
+
+    const totalPages = Math.ceil(result.count / limit)
+
+    res.json({
+      data: result.rows,
+      meta: {
+        total: result.count,
+        page: parseInt(page),
+        limit: parseInt(limit),
+        totalPages: totalPages,
+      },
+    })
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ message: 'Lỗi server' })
+  }
+}
 
 const detailProduct = async (req, res) => {
   try {
@@ -122,6 +186,7 @@ const deleteProduct = async (req, res) => {
 
 module.exports = {
   getAllProducts,
+  getListProducts,
   detailProduct,
   createProduct,
   updateProduct,

@@ -1,11 +1,31 @@
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, notification } from 'antd';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../../../constants/routes';
+import { register } from '../../../../redux/thunks/auth.thunk';
 
 const Register = () => {
   const [form] = Form.useForm();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const onFinish = (values) => {
-    console.log('Thông tin đăng ký:', values);
-    // TODO: Gửi API đăng ký ở đây
+    dispatch(
+      register({
+        data: {
+          username: values.username,
+          email: values.email,
+          password: values.password
+        },
+        callback: () => {
+          notification.success({
+            message: 'Registration successful',
+            description: 'You can now log in with your credentials.',
+          })
+          navigate(ROUTES.USER.LOGIN)
+        }
+      })
+    )
   };
 
   return (

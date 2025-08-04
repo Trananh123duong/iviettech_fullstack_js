@@ -3,6 +3,7 @@ import {
   createProduct,
   deleteProduct,
   getProduct,
+  getProductList,
   getProducts,
   updateProduct
 } from '../thunks/product.thunk';
@@ -11,6 +12,12 @@ export const productSlice = createSlice({
   name: 'product',
   initialState: {
     listProduct: {
+      data: [],
+      meta: {},
+      status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+      error: null,
+    },
+    productList: {
       data: [],
       meta: {},
       status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
@@ -78,6 +85,22 @@ export const productSlice = createSlice({
       .addCase(getProducts.rejected, (state, action) => {
         state.listProduct.status = 'failed';
         state.listProduct.error = action.error.message;
+      })
+      // getProducts
+      .addCase(getProductList.pending, (state) => {
+        state.productList.status = 'loading'
+      })
+      .addCase(getProductList.fulfilled, (state, action) => {
+        const { data, meta, more } = action.payload
+        state.productList.status = 'succeeded'
+        state.productList.data = more
+          ? [...state.productList.data, ...data]
+          : data
+        state.productList.meta = meta
+      })
+      .addCase(getProductList.rejected, (state, action) => {
+        state.productList.status = 'failed'
+        state.productList.error = action.error.message
       })
       // getProduct
       .addCase(getProduct.pending, (state) => {

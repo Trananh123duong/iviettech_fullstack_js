@@ -1,8 +1,28 @@
-import { Link } from 'react-router-dom'
-import { ROUTES } from '../../../constants/routes'
-import * as S from './styles'
+import { Button as AntButton, Dropdown, Menu } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../../constants/routes';
+import { logout } from '../../../redux/slices/auth.slice';
+import * as S from './styles';
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const username = useSelector((state) => state.auth.myProfile.data.username);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate(ROUTES.USER.HOME);
+  };
+
+  const userMenu = (
+    <Menu>
+      <Menu.Item key="logout" onClick={handleLogout}>
+        Đăng xuất
+      </Menu.Item>
+    </Menu>
+  );
+
   return (
     <S.HeaderContainer>
       <S.NavLeft>
@@ -14,15 +34,25 @@ const Header = () => {
       <S.Title>USER HEADER</S.Title>
 
       <S.NavRight>
-        <Link to={ROUTES.USER.LOGIN}>
-          <S.Button>Đăng nhập</S.Button>
-        </Link>
-        <Link to={ROUTES.USER.REGISTER}>
-          <S.Button>Đăng ký</S.Button>
-        </Link>
+        {!username ? (
+          <>
+            <Link to={ROUTES.USER.LOGIN}>
+              <S.Button>Đăng nhập</S.Button>
+            </Link>
+            <Link to={ROUTES.USER.REGISTER}>
+              <S.Button>Đăng ký</S.Button>
+            </Link>
+          </>
+        ) : (
+          <Dropdown overlay={userMenu} placement="bottomRight" arrow>
+            <AntButton type="text" style={{ color: 'white' }}>
+              {username}
+            </AntButton>
+          </Dropdown>
+        )}
       </S.NavRight>
     </S.HeaderContainer>
-  )
+  );
 }
 
 export default Header

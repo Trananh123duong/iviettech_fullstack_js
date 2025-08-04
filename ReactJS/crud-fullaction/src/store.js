@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+import authReducer from './redux/slices/auth.slice'
 import brandReducer from './redux/slices/brand.slice'
 import categoryReducer from './redux/slices/category.slice'
 import productReducer from './redux/slices/product.slice'
@@ -9,6 +10,7 @@ export default configureStore({
     product: productReducer,
     brand: brandReducer,
     category: categoryReducer,
-    ui: uiReducer
+    ui: uiReducer,
+    auth: authReducer
   }
 })
