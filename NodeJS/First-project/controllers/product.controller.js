@@ -58,7 +58,6 @@ const getListProducts = async (req, res) => {
       include: [
         {
           model: Category,
-          as: 'category',
           attributes: ['id', 'name'],
         },
       ],

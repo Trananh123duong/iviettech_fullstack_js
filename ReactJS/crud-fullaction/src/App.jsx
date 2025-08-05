@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 import { ROUTES } from './constants/routes'
 import AdminLayout from './layouts/AdminLayout'
@@ -17,8 +19,15 @@ import Register from './pages/user/authen/Register'
 import Home from './pages/user/Home'
 import List from './pages/user/product/List'
 import Profile from './pages/user/Profile'
+import { getMyProfile } from './redux/thunks/auth.thunk'
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (!localStorage.getItem('accessToken')) return
+    dispatch(getMyProfile())
+  }, [])
 
   return (
     <Routes>
