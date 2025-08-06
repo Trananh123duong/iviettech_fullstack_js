@@ -2,16 +2,17 @@ const express = require('express');
 const router = express.Router()
 
 const productController = require('../controllers/product.controller')
+const { verifyToken, checkAdmin } = require('../middleware/auth')
 
-router.get('/', productController.getAllProducts)
+router.get('/', verifyToken, checkAdmin, productController.getAllProducts)
 router.get('/list', productController.getListProducts)
 
 router.get('/:id', productController.detailProduct)
 
-router.post('/', productController.createProduct)
+router.post('/', verifyToken, checkAdmin, productController.createProduct)
 
-router.patch('/:id', productController.updateProduct)
+router.patch('/:id', verifyToken, checkAdmin, productController.updateProduct)
 
-router.delete('/:id', productController.deleteProduct)
+router.delete('/:id', verifyToken, checkAdmin, productController.deleteProduct)
 
 module.exports = router

@@ -15,6 +15,10 @@ const Header = () => {
     navigate(ROUTES.USER.HOME);
   };
 
+  const handleGoToProfile = () => {
+    navigate(ROUTES.USER.PROFILE);
+  };
+
   const userMenu = (
     <Menu>
       <Menu.Item key="logout" onClick={handleLogout}>
@@ -44,8 +48,12 @@ const Header = () => {
             </Link>
           </>
         ) : (
-          <Dropdown overlay={userMenu} placement="bottomRight" arrow>
-            <AntButton type="text" style={{ color: 'white' }}>
+          <Dropdown overlay={userMenu} trigger={['hover']} placement="bottomRight" arrow>
+            <AntButton
+              type="text"
+              style={{ color: 'white' }}
+              onClick={handleGoToProfile}
+            >
               {username}
             </AntButton>
           </Dropdown>
@@ -53,6 +61,6 @@ const Header = () => {
       </S.NavRight>
     </S.HeaderContainer>
   );
-}
+};
 
-export default Header
+export default Header;

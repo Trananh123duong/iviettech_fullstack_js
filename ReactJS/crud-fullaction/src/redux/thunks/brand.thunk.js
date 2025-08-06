@@ -1,55 +1,45 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from "axios";
+import api from '../../services/api';
 
 export const getBrands = createAsyncThunk(
-  "brand/getBrands",
+  'brand/getBrands',
   async () => {
-    const response = await axios.get("http://localhost:3000/api/brands");
+    const response = await api.get('/brands');
     return response.data;
   }
-)
+);
 
 export const getBrand = createAsyncThunk(
   'brand/getBrand',
   async (params) => {
-    const response = await axios.get(
-      `http://localhost:3000/api/brands/${params.id}`
-    )
-    return response.data
+    const response = await api.get(`/brands/${params.id}`);
+    return response.data;
   }
-)
+);
 
 export const createBrand = createAsyncThunk(
   'brand/createBrand',
   async (params) => {
-    const response = await axios.post(
-      'http://localhost:3000/api/brands',
-      params.data
-    )
-    params.callback()
-    return response.data
+    const response = await api.post('/brands', params.data);
+    params.callback();
+    return response.data;
   }
-)
+);
 
 export const updateBrand = createAsyncThunk(
   'brand/updateBrand',
   async (params) => {
-    const response = await axios.patch(
-      `http://localhost:3000/api/brands/${params.id}`,
-      params.data
-    )
-    params.callback()
-    return response.data
+    const response = await api.patch(`/brands/${params.id}`, params.data);
+    params.callback();
+    return response.data;
   }
-)
+);
 
 export const deleteBrand = createAsyncThunk(
   'brand/deleteBrand',
   async (params) => {
-    const response = await axios.delete(
-      `http://localhost:3000/api/brands/${params.id}`
-    )
-    params.callback()
-    return response.data
+    const response = await api.delete(`/brands/${params.id}`);
+    params.callback();
+    return response.data;
   }
-)
+);
