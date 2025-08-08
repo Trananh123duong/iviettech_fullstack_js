@@ -17,7 +17,7 @@ const Login = () => {
             message: 'Login successful',
             description: 'You are now logged in.',
           });
-          navigate(ROUTES.USER.HOME);
+          navigate(ROUTES.USER.PRODUCT.LIST);
         },
       })
     );

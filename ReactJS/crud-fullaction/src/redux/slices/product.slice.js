@@ -3,7 +3,6 @@ import {
   createProduct,
   deleteProduct,
   getProduct,
-  getProductList,
   getProducts,
   updateProduct
 } from '../thunks/product.thunk';
@@ -17,12 +16,12 @@ export const productSlice = createSlice({
       status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
       error: null,
     },
-    productList: {
-      data: [],
-      meta: {},
-      status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
-      error: null,
-    },
+    // productList: {
+    //   data: [],
+    //   meta: {},
+    //   status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+    //   error: null,
+    // },
     detailProduct: {
       data: {},
       status: 'idle',
@@ -74,33 +73,21 @@ export const productSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      //list product
+      // getProducts
       .addCase(getProducts.pending, (state) => {
-        state.listProduct.status = 'loading';
+        state.listProduct.status = 'loading'
       })
       .addCase(getProducts.fulfilled, (state, action) => {
-        state.listProduct.status = 'succeeded';
-        state.listProduct.data = action.payload;
+        const { data, meta, more } = action.payload
+        state.listProduct.status = 'succeeded'
+        state.listProduct.data = more
+          ? [...state.listProduct.data, ...data]
+          : data
+        state.listProduct.meta = meta
       })
       .addCase(getProducts.rejected, (state, action) => {
-        state.listProduct.status = 'failed';
-        state.listProduct.error = action.error.message;
-      })
-      // getProducts
-      .addCase(getProductList.pending, (state) => {
-        state.productList.status = 'loading'
-      })
-      .addCase(getProductList.fulfilled, (state, action) => {
-        const { data, meta, more } = action.payload
-        state.productList.status = 'succeeded'
-        state.productList.data = more
-          ? [...state.productList.data, ...data]
-          : data
-        state.productList.meta = meta
-      })
-      .addCase(getProductList.rejected, (state, action) => {
-        state.productList.status = 'failed'
-        state.productList.error = action.error.message
+        state.listProduct.status = 'failed'
+        state.listProduct.error = action.error.message
       })
       // getProduct
       .addCase(getProduct.pending, (state) => {

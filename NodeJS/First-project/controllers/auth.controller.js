@@ -2,69 +2,60 @@ const db = require('../config/db');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { User } = require('../models/init-models');
+const asyncHandler = require('express-async-handler')
 
-const register = async (req, res) => {
-  try {
-    const { username, email, password } = req.body
+const { UnauthorizedError, ForbiddenError } = require('../utils/ApiError')
 
-    const salt = await bcrypt.genSalt(10)
-    const hashedPassword = await bcrypt.hash(password, salt)
+const register = asyncHandler(async (req, res) => {
+  const { username, email, password } = req.body
 
-    const newUser = await User.create({
-      username,
-      email,
-      password: hashedPassword
-    })
+  const salt = await bcrypt.genSalt(10)
+  const hashedPassword = await bcrypt.hash(password, salt)
 
-    res.status(201).json(newUser);
-  } catch (err) {
-    console.error('Lỗi khi register:', err.message);
-    res.status(500).json({
-      message: 'Đã xảy ra lỗi khi register',
-      error: err.message,
-    });
+  const newUser = await User.create({
+    username,
+    email,
+    password: hashedPassword
+  })
+
+  res.status(201).json(newUser);
+});
+
+const login = asyncHandler(async (req, res) => {
+  const { email, password } = req.body
+
+  const user = await User.findOne({ where: { email: email } })
+  if (!user) {
+    return res
+      .status(404)
+      .json({ message: 'Email hoặc mật khẩu không đúng!' })
   }
-};
 
-const login = async (req, res) => {
-  try {
-    const { email, password } = req.body
-
-    const user = await User.findOne({ where: { email: email } })
-    if (!user) {
-      return res
-        .status(404)
-        .json({ message: 'Email hoặc mật khẩu không đúng!' })
-    }
-
-    const isMatch = await bcrypt.compare(password, user.password)
-    if (!isMatch) {
-      return res
-        .status(400)
-        .json({ message: 'Email hoặc mật khẩu không đúng!' })
-    }
-
-    const tokenPayload = { id: user.id, email: user.email, role: user.role }
-    const accessToken = jwt.sign(tokenPayload, 'DUONG', { expiresIn: '1h' })
-    const refreshToken = jwt.sign(tokenPayload, 'DUONG', { expiresIn: '30d' })
-
-    await user.update({ refresh_token: refreshToken })
-
-    res.status(200).json({
-      message: 'Login successful',
-      user: {
-        id: user.id,
-        username: user.username,
-        email: user.email,
-        role: user.role,
-      },
-      accessToken: accessToken,
-      refreshToken: refreshToken,
-    })
-  } catch (error) {
-    res.status(500).json({ message: error.message })
+  const isMatch = await bcrypt.compare(password, user.password)
+  if (!isMatch) {
+    return res
+      .status(400)
+      .json({ message: 'Email hoặc mật khẩu không đúng!' })
   }
-}
+
+  const tokenPayload = { id: user.id, email: user.email, role: user.role }
+  const accessToken = jwt.sign(tokenPayload, 'DUONG', { expiresIn: '1h' })
+  const refreshToken = jwt.sign(tokenPayload, 'DUONG', { expiresIn: '30d' })
+
+  await user.update({ refresh_token: refreshToken })
+
+  res.status(200).json({
+    message: 'Login successful',
+    user: {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      role: user.role,
+    },
+    accessToken: accessToken,
+    refreshToken: refreshToken,
+  })
+})
 
 const getMyProfile = async (req, res) => {
   try {

@@ -3,16 +3,8 @@ import api from '../../services/api';
 
 export const getProducts = createAsyncThunk(
   'product/getProducts',
-  async () => {
-    const response = await api.get('/products'); // KHÔNG cần base URL
-    return response.data;
-  }
-);
-
-export const getProductList = createAsyncThunk(
-  'product/getProductList',
   async (params) => {
-    const response = await api.get('/products/list', { params });
+    const response = await api.get('/products', { params });
     return response.data;
   }
 );

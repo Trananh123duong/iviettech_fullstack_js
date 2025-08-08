@@ -34,7 +34,7 @@ const Update = () => {
   useEffect(() => {
     form.setFieldsValue({
       name: detailProduct.data.name,
-      categoryId: detailProduct.data.category_id,
+      category_id: detailProduct.data.category_id,
       price: detailProduct.data.price,
     });
   }, [detailProduct.data.id]);
@@ -80,7 +80,7 @@ const Update = () => {
 
         <Form.Item
           label="Category"
-          name="categoryId"
+          name="category_id"
           rules={[{ required: true, message: 'Please input the category!' }]}
         >
           <Select

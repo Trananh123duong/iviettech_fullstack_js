@@ -1,11 +1,11 @@
 export const ROUTES = {
   USER: {
-    HOME: '/',
+    HOME: '/home',
     PRODUCT: {
       LIST: '/product'
     },
     LOGIN: '/login',
-    REGISTER: '/register',
+    REGISTER: '/',
     PROFILE: '/profile'
   },
   ADMIN: {

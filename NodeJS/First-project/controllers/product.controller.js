@@ -4,46 +4,22 @@ const { Op } = require('sequelize')
 
 const getAllProducts = async (req, res) => {
   try {
-    const products = await Product.findAll({
-      include: [{
-        model: Category,
-        attributes: ['name']
-      }],
-      order: [['id', 'DESC']]
-    });
-
-    res.status(200).json(products);
-  } catch (err) {
-    console.error('Lỗi khi lấy danh sách sản phẩm:', err.message);
-    res.status(500).json({
-      message: 'Đã xảy ra lỗi khi lấy danh sách sản phẩm',
-      error: err.message,
-    });
-  }
-};
-
-const getListProducts = async (req, res) => {
-  try {
     const {
       page = 1,
       limit = 10,
       sort = 'id',
       order = 'asc',
-      categoryId,
       q,
     } = req.query
+    const categoryIdsRaw = req.query['categoryIds[]'];
     const offset = (page - 1) * limit
 
     let whereClause = {}
-    if (categoryId) {
-      const categoryArray = Array.isArray(categoryId)
-        ? categoryId
-        : typeof categoryId === 'string'
-        ? categoryId.split(',').map(Number)
-        : [Number(categoryId)]
-
-      whereClause.category_id = {
-        [Op.in]: categoryArray,
+    if (categoryIdsRaw !== undefined) {
+      const arr = Array.isArray(categoryIdsRaw) ? categoryIdsRaw : [categoryIdsRaw];
+      const categoryIds = arr.map(Number).filter(n => !Number.isNaN(n));
+      if (categoryIds.length) {
+        whereClause.category_id = { [Op.in]: categoryIds };
       }
     }
     if (q) {
@@ -61,7 +37,6 @@ const getListProducts = async (req, res) => {
           attributes: ['id', 'name'],
         },
       ],
-      // [['name', 'asc'], ['price', 'desc']] // Example of multiple sorting
       order: [[sortColumn, sortOrder]],
       limit: parseInt(limit),
       offset: parseInt(offset),
@@ -185,7 +160,6 @@ const deleteProduct = async (req, res) => {
 
 module.exports = {
   getAllProducts,
-  getListProducts,
   detailProduct,
   createProduct,
   updateProduct,

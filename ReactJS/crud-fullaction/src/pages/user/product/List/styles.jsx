@@ -1,17 +1,7 @@
 import styled from 'styled-components'
 
-export const ListProduct = styled.div`
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-
-  & > div {
-    width: calc((100% - 45px) / 4);
-  }
-`
-
-export const CenterButton = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
+export const Container = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
 `

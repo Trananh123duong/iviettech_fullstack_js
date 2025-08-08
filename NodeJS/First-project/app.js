@@ -7,6 +7,8 @@ const brandRoutes = require('./routes/brand.route')
 const categoryRoutes = require('./routes/category.route')
 const authRoutes = require('./routes/auth.route')
 
+const errorHandler = require('./middleware/errorHandler')
+
 const app = express();
 
 const port = 3000;
@@ -19,6 +21,8 @@ app.use('/api/auth', authRoutes)
 app.use('/api/products', productRoutes)
 app.use('/api/brands', brandRoutes)
 app.use('/api/categories', categoryRoutes)
+
+app.use(errorHandler)
 
 app.get('/', (req, res) => {
   res.send('Hello world!!!');

@@ -66,7 +66,7 @@ const Create = () => {
 
         <Form.Item
           label="Category"
-          name="categoryId"
+          name="category_id"
           rules={[{ required: true, message: 'Please input the category!' }]}
         >
           <Select
