@@ -22,27 +22,23 @@ const register = asyncHandler(async (req, res) => {
 });
 
 const login = asyncHandler(async (req, res) => {
-  const { email, password } = req.body
+  const { email, password } = req.body;
 
-  const user = await User.findOne({ where: { email: email } })
+  const user = await User.findOne({ where: { email } });
   if (!user) {
-    return res
-      .status(404)
-      .json({ message: 'Email hoặc mật khẩu không đúng!' })
+    throw new UnauthorizedError('Email hoặc mật khẩu không đúng!');
   }
 
-  const isMatch = await bcrypt.compare(password, user.password)
+  const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
-    return res
-      .status(400)
-      .json({ message: 'Email hoặc mật khẩu không đúng!' })
+    throw new UnauthorizedError('Email hoặc mật khẩu không đúng!');
   }
 
-  const tokenPayload = { id: user.id, email: user.email, role: user.role }
-  const accessToken = jwt.sign(tokenPayload, 'DUONG', { expiresIn: '1h' })
-  const refreshToken = jwt.sign(tokenPayload, 'DUONG', { expiresIn: '30d' })
+  const tokenPayload = { id: user.id, email: user.email, role: user.role };
+  const accessToken = jwt.sign(tokenPayload, 'DUONG', { expiresIn: '1h' });
+  const refreshToken = jwt.sign(tokenPayload, 'DUONG', { expiresIn: '30d' });
 
-  await user.update({ refresh_token: refreshToken })
+  await user.update({ refresh_token: refreshToken });
 
   res.status(200).json({
     message: 'Login successful',
@@ -52,52 +48,45 @@ const login = asyncHandler(async (req, res) => {
       email: user.email,
       role: user.role,
     },
-    accessToken: accessToken,
-    refreshToken: refreshToken,
+    accessToken,
+    refreshToken,
+  });
+});
+
+const getMyProfile = asyncHandler(async (req, res) => {
+  const userId = req.user.id
+  const user = await User.findByPk(userId, {
+    attributes: { exclude: ['password'] }, // Exclude password from response
   })
+  res.status(200).json(user)
 })
 
-const getMyProfile = async (req, res) => {
-  try {
-    const userId = req.user.id
-    const user = await User.findByPk(userId, {
-      attributes: { exclude: ['password'] }, // Exclude password from response
-    })
-    res.status(200).json(user)
-  } catch (error) {
-    res.status(500).json({ message: error.message })
-  }
-}
-
-const refreshAccessToken = async (req, res) => {
-  const { token } = req.body
+const refreshAccessToken = asyncHandler(async (req, res) => {
+  const { token } = req.body;
   if (!token) {
-    return res.status(401).json({ message: 'No refresh token provided' })
+    throw new UnauthorizedError('No refresh token provided');
   }
 
-  try {
-    const user = await users.findOne({ where: { refresh_token: token } })
-    if (!user) {
-      return res.status(403).json({ message: 'Invalid refresh token' })
+  const user = await User.findOne({ where: { refresh_token: token } });
+  if (!user) {
+    throw new ForbiddenError('Invalid refresh token');
+  }
+
+  jwt.verify(token, 'DUONG', (err, decoded) => {
+    if (err || decoded.id !== user.id) {
+      throw new ForbiddenError('Invalid refresh token');
     }
 
-    jwt.verify(token, 'DUONG', (err, decoded) => {
-      if (err || decoded.id !== user.id) {
-        return res.status(403).json({ message: 'Invalid refresh token' })
-      }
+    const newAccessToken = jwt.sign(
+      { id: user.id, email: user.email, role: user.role },
+      'DUONG',
+      { expiresIn: '1h' }
+    );
 
-      const newAccessToken = jwt.sign(
-        { id: user.id, email: user.email, role: user.role },
-        'DUONG',
-        { expiresIn: '1h' }
-      )
+    res.status(200).json({ accessToken: newAccessToken });
+  });
+});
 
-      res.status(200).json({ accessToken: newAccessToken })
-    })
-  } catch (error) {
-    res.status(500).json({ message: error.message })
-  }
-}
 
 module.exports = {
   register,

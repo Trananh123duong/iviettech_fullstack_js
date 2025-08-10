@@ -1,32 +1,39 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
   background-color: #1E1E2F;
   height: 60px;
-  text-align: center;
   display: flex;
   align-items: center;
-  justify-content: center;
-  position: relative;
+  padding: 0 20px;
+`;
+
+export const Left = styled.div`
+  display: flex;
+  align-items: center;
 
   & svg {
-    position: absolute;
-    left: 20px;
-    top: 10px;
     color: white;
-    font-size: 40px;
+    font-size: 32px;
     cursor: pointer;
     border-radius: 4px;
-    padding: 5px;
+    padding: 4px;
   }
   & svg:hover {
     background-color: #4B4B73;
   }
+`;
 
-  & p {
-    color: white;
-    font-weight: bold;
-    font-size: 30px;
-    margin: 0;
-  }
-`
+export const Center = styled.p`
+  flex: 1;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  margin: 0;
+`;
+
+export const Right = styled.div`
+  display: flex;
+  align-items: center;
+`;
