@@ -14,12 +14,13 @@ import Dashboard from './pages/admin/Dashboard'
 import ProductCreate from './pages/admin/product/Create'
 import ProductManager from './pages/admin/product/Manager'
 import ProductUpdate from './pages/admin/product/Update'
-import Login from './pages/user/authen/Login'
-import Register from './pages/user/authen/Register'
+import Login from './pages/authen/Login'
+import Register from './pages/authen/Register'
 import Home from './pages/user/Home'
 import List from './pages/user/product/List'
 import Profile from './pages/user/Profile'
 import { getMyProfile } from './redux/thunks/auth.thunk'
+import Detail from './pages/user/product/Detail'
 
 function App() {
   const dispatch = useDispatch()
@@ -31,12 +32,14 @@ function App() {
 
   return (
     <Routes>
+      <Route path={ROUTES.USER.LOGIN} element={<Login />} />
+      <Route path={ROUTES.USER.REGISTER} element={<Register />} />
+      
       <Route element={<UserLayout />}>
         <Route path={ROUTES.USER.HOME} element={<Home />} />
-        <Route path={ROUTES.USER.PRODUCT.LIST} element={<List />} />
 
-        <Route path={ROUTES.USER.LOGIN} element={<Login />} />
-        <Route path={ROUTES.USER.REGISTER} element={<Register />} />
+        <Route path={ROUTES.USER.PRODUCT.LIST} element={<List />} />
+        <Route path={ROUTES.USER.PRODUCT.DETAIL} element={<Detail />} />
 
         <Route path={ROUTES.USER.PROFILE} element={<Profile />} />
       </Route>

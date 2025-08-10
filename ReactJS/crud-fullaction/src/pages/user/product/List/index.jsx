@@ -1,10 +1,12 @@
 import { Button, Card, Checkbox, Col, Flex, Input, Row, Select } from 'antd'
 import { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
 
 import { PRODUCT_LIMIT } from '../../../../constants/paging'
 import { getCategories } from '../../../../redux/thunks/category.thunk'
 import { getProducts } from '../../../../redux/thunks/product.thunk'
+import { ROUTES } from '../../../../constants/routes';
 
 import * as S from './styles'
 
@@ -21,6 +23,7 @@ const List = () => {
   })
 
   const dispatch = useDispatch()
+  const navigate = useNavigate();
   const { listProduct, loading } = useSelector((state) => state.product)
   const { listCategory } = useSelector((state) => state.category)
 
@@ -75,8 +78,13 @@ const List = () => {
       <Col span={6} key={product.id}>
         <Card
           hoverable
+          onClick={() =>
+            navigate(
+              ROUTES.USER.PRODUCT.DETAIL.replace(':id', String(product.id))
+            )
+          }
           cover={<img alt={product.name} src={'https://placehold.co/600x400'} />}
-          style={{ width: '100%' }}
+          style={{ width: '100%', cursor: 'pointer' }}
         >
           <Card.Meta title={product.name} description={`${product.price} ₫`} />
         </Card>

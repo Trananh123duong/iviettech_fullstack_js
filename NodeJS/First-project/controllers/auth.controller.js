@@ -7,7 +7,7 @@ const asyncHandler = require('express-async-handler')
 const { UnauthorizedError, ForbiddenError } = require('../utils/ApiError')
 
 const register = asyncHandler(async (req, res) => {
-  const { username, email, password } = req.body
+  const { username, email, password, gender, birth_date } = req.body;
 
   const salt = await bcrypt.genSalt(10)
   const hashedPassword = await bcrypt.hash(password, salt)
@@ -15,7 +15,9 @@ const register = asyncHandler(async (req, res) => {
   const newUser = await User.create({
     username,
     email,
-    password: hashedPassword
+    password: hashedPassword,
+    gender: gender ?? null,
+    birth_date: birth_date ?? null,  
   })
 
   res.status(201).json(newUser);

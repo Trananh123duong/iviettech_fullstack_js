@@ -7,10 +7,12 @@ export const PageRow = styled(Row)`
 
 export const ProfileCard = styled(Card)`
   border-radius: 12px;
+  .ant-card-body { padding: 24px; }
+`;
 
-  .ant-card-body {
-    padding: 24px;
-  }
+export const FormCard = styled(Card)`
+  border-radius: 12px;
+  .ant-card-body { padding: 24px; }
 `;
 
 export const HeaderBox = styled.div`
@@ -19,9 +21,7 @@ export const HeaderBox = styled.div`
 `;
 
 export const Username = styled(Typography.Title)`
-  && {
-    margin: 16px 0 0;
-  }
+  && { margin: 16px 0 0; }
 `;
 
 export const InfoDescriptions = styled(Descriptions)`

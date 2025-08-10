@@ -30,6 +30,14 @@ const User = sequelize.define('User', {
     allowNull: false,
     defaultValue: 'user',
   },
+  gender: {
+    type: DataTypes.ENUM('male', 'female', 'other'),
+    allowNull: true,
+  },
+  birth_date: {
+    type: DataTypes.DATEONLY,
+    allowNull: true,
+  },
   created_at: {
     type: DataTypes.DATE,
     allowNull: false,

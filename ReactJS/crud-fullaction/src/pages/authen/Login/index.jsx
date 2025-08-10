@@ -1,8 +1,8 @@
 import { Button, Form, Input, notification } from 'antd';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../../../../constants/routes';
-import { login } from '../../../../redux/thunks/auth.thunk';
+import { ROUTES } from '../../../constants/routes';
+import { login } from '../../../redux/thunks/auth.thunk';
 
 const Login = () => {
   const navigate = useNavigate();
