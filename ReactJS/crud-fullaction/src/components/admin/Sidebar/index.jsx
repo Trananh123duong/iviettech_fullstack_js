@@ -10,6 +10,7 @@ const Sidebar = ({ isSidebarOpen }) => {
         <li><Link to={ROUTES.ADMIN.PRODUCT.MANAGER}>Product</Link></li>
         <li><Link to={ROUTES.ADMIN.BRAND.MANAGER}>Brand</Link></li>
         <li><Link to={ROUTES.ADMIN.CATEGORY.MANAGER}>Category</Link></li>
+        <li><Link to={ROUTES.ADMIN.USER.MANAGER}>User</Link></li>
       </ul>
     </S.SidebarContainer>
   )

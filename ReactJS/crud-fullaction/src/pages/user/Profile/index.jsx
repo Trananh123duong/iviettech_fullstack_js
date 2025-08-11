@@ -1,37 +1,99 @@
 import { UserOutlined } from '@ant-design/icons';
-import { Avatar, Card, Col, Descriptions, Row, Form, Input, Button, Typography } from 'antd';
-import { useSelector } from 'react-redux';
+import {
+  Avatar,
+  Button,
+  Card, Col,
+  DatePicker,
+  Descriptions,
+  Form, Input,
+  message,
+  Radio,
+  Row,
+  Typography
+} from 'antd';
+import dayjs from 'dayjs';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUser } from '../../../redux/thunks/user.thunk';
 
 const { Title } = Typography;
+
+const GENDER_OPTIONS = [
+  { label: 'Nam', value: 'male' },
+  { label: 'Nữ', value: 'female' },
+  { label: 'Khác', value: 'other' },
+];
+
+const dateFormat = 'DD/MM/YYYY';
 
 const Profile = () => {
   const user = useSelector((state) => state.auth.myProfile.data);
   const [form] = Form.useForm();
 
+  const dispatch = useDispatch();
+
+  const updating = useSelector((state) => state.user.updateUserData.status === 'loading');
+
   const onFinish = (values) => {
-    // TODO: dispatch cập nhật ở đây
-    // console.log(values);
+    const payload = {
+      username: values.username,
+      email: values.email,
+      gender: values.gender ?? null,
+      birth_date: values.birth_date ? values.birth_date.format('YYYY-MM-DD') : null,
+    };
+
+    if (values.oldPassword || values.newPassword || values.confirmPassword) {
+      if (!values.oldPassword || !values.newPassword || !values.confirmPassword) {
+        return message.error('Vui lòng nhập đủ 3 trường mật khẩu khi đổi mật khẩu.');
+      }
+      payload.oldPassword = values.oldPassword;
+      payload.newPassword = values.newPassword;
+    }
+
+    dispatch(
+      updateUser({
+        id: user.id,
+        data: payload,
+        callback: () => {
+          alert('Cập nhật thành công');
+        },
+      })
+    ).catch((err) => {
+      alert(err?.message || 'Cập nhật thất bại');
+    });
   };
 
   return (
     <Row gutter={[24, 24]} justify="center" style={{ marginTop: 40 }}>
-      {/* Bên trái: hiển thị thông tin như hiện tại */}
+      {/* Left: current info */}
       <Col xs={22} md={10} lg={10}>
         <Card bordered hoverable>
           <div style={{ textAlign: 'center', marginBottom: 24 }}>
             <Avatar size={64} icon={<UserOutlined />} />
             <Title level={3} style={{ marginTop: 16 }}>
-              {user.username || 'Chưa có tên'}
+              {user?.username || 'Chưa có tên'}
             </Title>
           </div>
+
           <Descriptions column={1} bordered size="middle">
-            <Descriptions.Item label="Username">{user.username || 'N/A'}</Descriptions.Item>
-            <Descriptions.Item label="Email">{user.email || 'N/A'}</Descriptions.Item>
+            <Descriptions.Item label="Username">{user?.username || ''}</Descriptions.Item>
+            <Descriptions.Item label="Email">{user?.email || ''}</Descriptions.Item>
+            <Descriptions.Item label="Quyền">{user?.role || 'user'}</Descriptions.Item>
+            <Descriptions.Item label="Giới tính">
+              {user?.gender
+                ? ({ male: 'Nam', female: 'Nữ', other: 'Khác' }[user.gender] || 'Khác')
+                : ''}
+            </Descriptions.Item>
+            <Descriptions.Item label="Ngày sinh">
+              {user?.birth_date ? dayjs(user.birth_date).format(dateFormat) : ''}
+            </Descriptions.Item>
+            <Descriptions.Item label="Tạo lúc">
+              {user?.created_at ? dayjs(user.created_at).format('DD/MM/YYYY HH:mm') : ''}
+            </Descriptions.Item>
           </Descriptions>
         </Card>
       </Col>
 
-      {/* Bên phải: form cập nhật cơ bản */}
+      {/* Right: update form */}
       <Col xs={22} md={14} lg={12}>
         <Card bordered hoverable>
           <Title level={4} style={{ marginTop: 0 }}>Cập nhật thông tin</Title>
@@ -39,7 +101,12 @@ const Profile = () => {
           <Form
             form={form}
             layout="vertical"
-            initialValues={{ username: user?.username || '', email: user?.email || '' }}
+            initialValues={{
+              username: user?.username || '',
+              email: user?.email || '',
+              gender: user?.gender ?? undefined,
+              birth_date: user?.birth_date ? dayjs(user.birth_date) : null,
+            }}
             onFinish={onFinish}
           >
             <Form.Item
@@ -61,6 +128,28 @@ const Profile = () => {
               <Input />
             </Form.Item>
 
+            <Form.Item label="Giới tính" name="gender">
+              <Radio.Group options={GENDER_OPTIONS} optionType="button" />
+            </Form.Item>
+
+            <Form.Item
+              label="Ngày sinh"
+              name="birth_date"
+              rules={[
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value) return Promise.resolve();
+                    if (value.isAfter(dayjs(), 'day')) {
+                      return Promise.reject(new Error('Ngày sinh không được ở tương lai'));
+                    }
+                    return Promise.resolve();
+                  },
+                }),
+              ]}
+            >
+              <DatePicker format={dateFormat} style={{ width: '100%' }} />
+            </Form.Item>
+
             <Title level={5} style={{ marginTop: 8 }}>Đổi mật khẩu (tuỳ chọn)</Title>
 
             <Form.Item label="Mật khẩu hiện tại" name="oldPassword">
@@ -80,7 +169,9 @@ const Profile = () => {
                   validator(_, value) {
                     const newPw = getFieldValue('newPassword');
                     if (!newPw && !value) return Promise.resolve(); // không đổi mật khẩu
-                    if (newPw && value !== newPw) return Promise.reject(new Error('Mật khẩu nhập lại không khớp'));
+                    if (newPw && value !== newPw) {
+                      return Promise.reject(new Error('Mật khẩu nhập lại không khớp'));
+                    }
                     return Promise.resolve();
                   },
                 }),
@@ -90,7 +181,7 @@ const Profile = () => {
             </Form.Item>
 
             <Form.Item>
-              <Button type="primary" htmlType="submit" block>
+              <Button type="primary" htmlType="submit" block loading={updating}>
                 Lưu thay đổi
               </Button>
             </Form.Item>

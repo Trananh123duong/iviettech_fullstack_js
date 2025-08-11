@@ -14,13 +14,14 @@ import Dashboard from './pages/admin/Dashboard'
 import ProductCreate from './pages/admin/product/Create'
 import ProductManager from './pages/admin/product/Manager'
 import ProductUpdate from './pages/admin/product/Update'
+import Manager from './pages/admin/user/Manager'
 import Login from './pages/authen/Login'
 import Register from './pages/authen/Register'
 import Home from './pages/user/Home'
+import Detail from './pages/user/product/Detail'
 import List from './pages/user/product/List'
 import Profile from './pages/user/Profile'
 import { getMyProfile } from './redux/thunks/auth.thunk'
-import Detail from './pages/user/product/Detail'
 
 function App() {
   const dispatch = useDispatch()
@@ -46,6 +47,8 @@ function App() {
 
       <Route element={<AdminLayout />}>
         <Route path={ROUTES.ADMIN.DASHBOARD} element={<Dashboard />} />
+
+        <Route path={ROUTES.ADMIN.USER.MANAGER} element={<Manager />} />
 
         <Route path={ROUTES.ADMIN.PRODUCT.MANAGER} element={<ProductManager />} />
         <Route path={ROUTES.ADMIN.PRODUCT.CREATE} element={<ProductCreate />} />

@@ -25,6 +25,9 @@ export const ROUTES = {
       MANAGER: '/admin/category',
       CREATE: '/admin/category/create',
       UPDATE: '/admin/category/:id/update'
+    },
+    USER: {
+      MANAGER: '/admin/user'
     }
   }
 }

@@ -3,6 +3,7 @@ const Category = require('./categories');
 const Product = require('./products');
 const Order = require('./orders');
 const OrderItem = require('./order_items');
+const CartItem = require('./cart_items');
 
 // Thiết lập các mối quan hệ
 User.hasMany(Order, { foreignKey: 'user_id' });
@@ -17,10 +18,14 @@ OrderItem.belongsTo(Order, { foreignKey: 'order_id' });
 Product.hasMany(OrderItem, { foreignKey: 'product_id' });
 OrderItem.belongsTo(Product, { foreignKey: 'product_id' });
 
+User.belongsToMany(Product, { through: CartItem, foreignKey: 'user_id', otherKey: 'product_id' });
+Product.belongsToMany(User, { through: CartItem, foreignKey: 'product_id', otherKey: 'user_id' });
+
 module.exports = {
   User,
   Category,
   Product,
   Order,
   OrderItem,
+  CartItem
 };

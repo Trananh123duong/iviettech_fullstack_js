@@ -17,17 +17,15 @@ const Manager = () => {
   const [deleteId, setDeleteId] = useState(null);
   const [searchText, setSearchText] = useState('');
 
-  // pagination + sorter state
   const [pagination, setPagination] = useState({
     current: 1,
     pageSize: ADMIN_PRODUCT_LIMIT,
   });
   const [sorterState, setSorterState] = useState({
-    field: 'id',      // id | name | price
-    order: 'desc',     // asc | desc (map từ antd)
+    field: 'id',
+    order: 'desc',
   });
 
-  // gọi API
   const fetchData = (
     page = pagination.current,
     limit = pagination.pageSize,

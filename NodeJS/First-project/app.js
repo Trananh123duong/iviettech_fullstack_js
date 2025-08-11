@@ -6,6 +6,7 @@ const productRoutes = require('./routes/product.route')
 const brandRoutes = require('./routes/brand.route')
 const categoryRoutes = require('./routes/category.route')
 const authRoutes = require('./routes/auth.route')
+const userRoutes = require('./routes/user.route')
 
 const errorHandler = require('./middleware/errorHandler')
 
@@ -21,6 +22,7 @@ app.use('/api/auth', authRoutes)
 app.use('/api/products', productRoutes)
 app.use('/api/brands', brandRoutes)
 app.use('/api/categories', categoryRoutes)
+app.use('/api/users', userRoutes)
 
 app.use(errorHandler)
 

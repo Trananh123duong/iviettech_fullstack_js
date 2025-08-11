@@ -1,19 +1,25 @@
-import React from 'react';
+// Detail.jsx
+import { ArrowLeftOutlined, TagOutlined } from '@ant-design/icons';
+import { Alert, Button, Card, Col, Descriptions, Image, Row, Tag, Typography } from 'antd';
 import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Button, Card, Col, Descriptions, Image, Row, Tag, Typography, Alert } from 'antd';
-import { ArrowLeftOutlined, EditOutlined, TagOutlined } from '@ant-design/icons';
 import { ROUTES } from '../../../../constants/routes';
 import { getProduct } from '../../../../redux/thunks/product.thunk';
-import * as S from './styles';
+import { addToCart } from '../../../../redux/thunks/user.thunk';
 
+import * as S from './styles';
 const { Title } = Typography;
 
 const Detail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
+
+  const user = useSelector((state) => state.auth.myProfile.data);
+
+  const addStatus = useSelector((state) => state.user.addToCartData.status);
+  const isAdding = addStatus === 'loading';
 
   const { detailProduct } = useSelector((state) => state.product);
   const product = detailProduct?.data || {};
@@ -37,6 +43,26 @@ const Detail = () => {
     }
   }, [product]);
 
+  const handleAddToCart = () => {
+    if (!user?.id) {
+      alert('Vui lòng đăng nhập trước khi thêm vào giỏ hàng');
+      return navigate(ROUTES.USER.LOGIN || '/login');
+    }
+    if (!id) return;
+
+    dispatch(
+      addToCart({
+        userId: user.id,
+        productId: Number(id),
+        callback: () => {
+          alert('Đã thêm vào giỏ hàng');
+        },
+      })
+    ).catch((err) => {
+      alert(err?.message || 'Thêm vào giỏ hàng thất bại');
+    });
+  };
+
   const headerActions = (
     <S.HeaderRightWrap>
       <Button icon={<ArrowLeftOutlined />} onClick={() => navigate(ROUTES.USER.PRODUCT.LIST)}>
@@ -54,9 +80,7 @@ const Detail = () => {
         {headerActions}
       </S.PageHeader>
 
-      {errorMsg && (
-        <Alert type="error" message={errorMsg} showIcon style={{ marginBottom: 16 }} />
-      )}
+      {errorMsg && <Alert type="error" message={errorMsg} showIcon style={{ marginBottom: 16 }} />}
 
       <Card bordered>
         <Row gutter={[24, 24]}>
@@ -91,7 +115,13 @@ const Detail = () => {
               <Descriptions.Item label="Giá">{priceText}</Descriptions.Item>
             </Descriptions>
 
-            <Button type="primary" block style={{ marginTop: 16 }}>
+            <Button
+              type="primary"
+              block
+              style={{ marginTop: 16 }}
+              onClick={handleAddToCart}
+              loading={isAdding}
+            >
               Thêm vào giỏ hàng
             </Button>
           </Col>
