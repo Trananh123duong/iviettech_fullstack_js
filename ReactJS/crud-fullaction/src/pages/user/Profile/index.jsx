@@ -6,7 +6,6 @@ import {
   DatePicker,
   Descriptions,
   Form, Input,
-  message,
   Radio,
   Row,
   Typography
@@ -43,7 +42,7 @@ const Profile = () => {
 
     if (values.oldPassword || values.newPassword || values.confirmPassword) {
       if (!values.oldPassword || !values.newPassword || !values.confirmPassword) {
-        return message.error('Vui lòng nhập đủ 3 trường mật khẩu khi đổi mật khẩu.');
+        return alert('Vui lòng nhập đủ 3 trường mật khẩu khi đổi mật khẩu.');
       }
       payload.oldPassword = values.oldPassword;
       payload.newPassword = values.newPassword;

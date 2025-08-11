@@ -1,4 +1,4 @@
-import { Button, Flex, Input, Modal, Space, message } from 'antd';
+import { Button, Flex, Input, Modal, Space } from 'antd';
 import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { generatePath, useNavigate } from 'react-router-dom';
@@ -71,7 +71,6 @@ const Manager = () => {
 
           setPagination((prev) => ({ ...prev, current: nextPage }));
           fetchData(nextPage, pageSize, sorterState.field, sorterState.order);
-          message.success('Deleted successfully');
         },
       })
     );
