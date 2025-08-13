@@ -1,7 +1,7 @@
-import { Avatar, Dropdown, Menu, Space } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import { Avatar, Dropdown, Menu, Space } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { generatePath, Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../../constants/routes';
 import { logout } from '../../../redux/slices/auth.slice';
 import * as S from './styles';
@@ -9,18 +9,31 @@ import * as S from './styles';
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const username = useSelector((state) => state.auth.myProfile.data?.username);
+
+  const user = useSelector((state) => state.auth.myProfile.data);
+  const username = user?.username;
+  const userId = user?.id;
 
   const handleLogout = () => {
     dispatch(logout());
     navigate(ROUTES.USER.HOME);
   };
+
   const handleGoToProfile = () => navigate(ROUTES.USER.PROFILE);
+
+  const handleGoToCart = () => {
+    if (!userId) return navigate(ROUTES.USER.LOGIN);
+    const path = generatePath(ROUTES.USER.CART, { userId });
+    navigate(path);
+  };
 
   const profileMenu = (
     <Menu>
       <Menu.Item key="profile" onClick={handleGoToProfile}>
         Hồ sơ
+      </Menu.Item>
+      <Menu.Item key="cart" onClick={handleGoToCart}>
+        Giỏ hàng
       </Menu.Item>
       <Menu.Item key="logout" onClick={handleLogout}>
         Đăng xuất
@@ -48,8 +61,6 @@ const Header = () => {
     </Dropdown>
   );
 
-  const rightContent = username ? profileTrigger : authButtons;
-
   return (
     <S.HeaderContainer>
       <S.NavLeft>
@@ -60,7 +71,7 @@ const Header = () => {
 
       <S.Title>USER HEADER</S.Title>
 
-      <S.NavRight>{rightContent}</S.NavRight>
+      <S.NavRight>{username ? profileTrigger : authButtons}</S.NavRight>
     </S.HeaderContainer>
   );
 };

@@ -7,7 +7,8 @@ export const ROUTES = {
     },
     LOGIN: '/login',
     REGISTER: '/',
-    PROFILE: '/profile'
+    PROFILE: '/profile',
+    CART: '/:userId/cart'
   },
   ADMIN: {
     DASHBOARD: '/admin',

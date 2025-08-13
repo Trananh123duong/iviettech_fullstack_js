@@ -17,6 +17,7 @@ import ProductUpdate from './pages/admin/product/Update'
 import Manager from './pages/admin/user/Manager'
 import Login from './pages/authen/Login'
 import Register from './pages/authen/Register'
+import CartManager from './pages/user/CartManager'
 import Home from './pages/user/Home'
 import Detail from './pages/user/product/Detail'
 import List from './pages/user/product/List'
@@ -43,6 +44,8 @@ function App() {
         <Route path={ROUTES.USER.PRODUCT.DETAIL} element={<Detail />} />
 
         <Route path={ROUTES.USER.PROFILE} element={<Profile />} />
+        
+        <Route path={ROUTES.USER.CART} element={<CartManager />} />
       </Route>
 
       <Route element={<AdminLayout />}>

@@ -142,9 +142,36 @@ const addToCart = asyncHandler(async (req, res) => {
   });
 });
 
+const listCartItems = asyncHandler(async (req, res) => {
+  const { userId } = req.params;
+
+  const user = await User.findByPk(userId, {
+    include: [
+      {
+        model: Product,
+        attributes: ['id', 'name', 'price'],
+        through: {
+          attributes: ['quantity', 'createdAt', 'updatedAt'],
+        },
+      },
+    ],
+  });
+
+  if (!user) {
+    throw new NotFoundError('User không tồn tại');
+  }
+
+  res.status(200).json({
+    message: 'Danh sách sản phẩm trong giỏ hàng',
+    items: user.Products,
+  });
+});
+
+
 module.exports = {
   listUsers,
   updateUser,
   updateUserRole,
-  addToCart
+  addToCart,
+  listCartItems
 };

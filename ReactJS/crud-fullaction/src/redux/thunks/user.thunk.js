@@ -38,3 +38,13 @@ export const addToCart = createAsyncThunk(
     return response.data;
   }
 );
+
+export const getCartItems = createAsyncThunk(
+  'user/getCartItems',
+  async (params = {}) => {
+    const { userId, query, callback } = params;
+    const response = await api.get(`/users/${userId}/cart`, { params: query });
+    if (callback) callback();
+    return response.data;
+  }
+);

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addToCart, getUsers, updateUser, updateUserRole } from '../thunks/user.thunk';
+import { addToCart, getCartItems, getUsers, updateUser, updateUserRole } from '../thunks/user.thunk';
 
 export const userSlice = createSlice({
   name: 'user',
@@ -22,6 +22,11 @@ export const userSlice = createSlice({
       status: 'idle',
       error: null,
       item: null,
+    },
+    cartList: {
+      status: 'idle',
+      error: null,
+      items: [],
     },
   },
   reducers: {
@@ -93,6 +98,20 @@ export const userSlice = createSlice({
       .addCase(addToCart.rejected, (state, action) => {
         state.addToCartData.status = 'failed';
         state.addToCartData.error = action.error.message;
+      })
+
+       // 🆕 getCartItems
+      .addCase(getCartItems.pending, (state) => {
+        state.cartList.status = 'loading';
+        state.cartList.error = null;
+      })
+      .addCase(getCartItems.fulfilled, (state, action) => {
+        state.cartList.status = 'succeeded';
+        state.cartList.items = action.payload.items || [];
+      })
+      .addCase(getCartItems.rejected, (state, action) => {
+        state.cartList.status = 'failed';
+        state.cartList.error = action.error.message;
       });
   },
 });
