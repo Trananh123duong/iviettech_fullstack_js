@@ -22,6 +22,28 @@ const listUsers = asyncHandler(async (req, res) => {
   });
 });
 
+const uploadAvatar = asyncHandler(async (req, res) => {
+  // req.file được tạo ra bởi middleware Multer
+  if (!req.file) {
+    throw new BadRequestError('Vui lòng chọn một file để upload.');
+  }
+
+  const userId = req.user.id;
+  // req.file.path chứa đường dẫn tương đối của file đã lưu (ví dụ: "uploads/avatar-1678886400000.jpg")
+  const avatarPath = req.file.path;
+
+  // Cập nhật đường dẫn avatar cho người dùng trong CSDL
+  await User.update({ avatar: avatarPath }, { where: { id: userId } });
+
+  // Xây dựng URL đầy đủ để trả về cho client
+  const fullAvatarUrl = `${req.protocol}://${req.get('host')}/${avatarPath}`;
+
+  res.status(200).json({
+    message: 'Upload avatar thành công',
+    avatarUrl: fullAvatarUrl,
+  });
+});
+
 const updateUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const user = await User.findByPk(id);
@@ -173,5 +195,6 @@ module.exports = {
   updateUser,
   updateUserRole,
   addToCart,
-  listCartItems
+  listCartItems,
+  uploadAvatar
 };
