@@ -8,11 +8,14 @@ import {
   Form, Input,
   Radio,
   Row,
-  Typography
+  Typography,
+  Upload
 } from 'antd';
 import dayjs from 'dayjs';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUser } from '../../../redux/thunks/user.thunk';
+import { updateUser, uploadAvatar } from '../../../redux/thunks/user.thunk';
+import { END_POINT } from '../../../services/api';
 
 const { Title } = Typography;
 
@@ -27,10 +30,25 @@ const dateFormat = 'DD/MM/YYYY';
 const Profile = () => {
   const user = useSelector((state) => state.auth.myProfile.data);
   const [form] = Form.useForm();
-
   const dispatch = useDispatch();
 
-  const updating = useSelector((state) => state.user.updateUserData.status === 'loading');
+  const [avatarUrl, setAvatarUrl] = useState(null);
+
+  const updating = useSelector(
+    (state) => state.user.updateUserData.status === 'loading'
+  );
+  const uploading = useSelector(
+    (state) => state.user.uploadAvatarData?.status === 'loading'
+  );
+
+  useEffect(() => {
+    if (!user?.avatar) {
+      setAvatarUrl(null);
+    } else {
+      const url = `${END_POINT.replace(/\/+$/,'')}/${user.avatar.replace(/^\/+/, '')}`;
+      setAvatarUrl(url);
+    }
+  }, [user?.avatar, END_POINT]);
 
   const onFinish = (values) => {
     const payload = {
@@ -61,13 +79,65 @@ const Profile = () => {
     });
   };
 
+  // Validate file (đuôi + size), tạo FormData và dispatch thunk
+  const handleBeforeUpload = (file) => {
+    const isImg = /image\/(jpeg|jpg|png)/.test(file.type);
+    if (!isImg) {
+      alert('Chỉ chấp nhận JPEG/JPG/PNG');
+      return Upload.LIST_IGNORE;
+    }
+    const isLt5M = file.size / 1024 / 1024 < 5;
+    if (!isLt5M) {
+      alert('Kích thước tối đa 5MB');
+      return Upload.LIST_IGNORE;
+    }
+
+    const formData = new FormData();
+    formData.append('avatar', file); // field name khớp với upload.single('avatar')
+
+    dispatch(
+      uploadAvatar({
+        formData,
+        callback: (res) => {
+          const url = res.avatarUrl.startsWith('http')
+            ? res.avatarUrl
+            : `${END_POINT}/${res.avatarUrl}`;
+          setAvatarUrl(url);
+          alert('Upload avatar thành công');
+        },
+      })
+    ).catch((err) => {
+      alert(err?.message || 'Upload thất bại');
+    });
+
+    // Ngăn antd auto upload vì mình đã tự xử lý
+    return Upload.LIST_IGNORE;
+  };
+
   return (
     <Row gutter={[24, 24]} justify="center" style={{ marginTop: 40 }}>
       {/* Left: current info */}
       <Col xs={22} md={10} lg={10}>
         <Card bordered hoverable>
           <div style={{ textAlign: 'center', marginBottom: 24 }}>
-            <Avatar size={64} icon={<UserOutlined />} />
+            <Avatar
+              size={96}
+              src={avatarUrl}
+              icon={!avatarUrl ? <UserOutlined /> : undefined}
+              style={{ border: '1px solid #f0f0f0' }}
+            />
+            <div style={{ marginTop: 12 }}>
+              <Upload
+                accept="image/png,image/jpeg"
+                showUploadList={false}
+                beforeUpload={handleBeforeUpload}
+              >
+                <Button loading={uploading} size="small">
+                  {uploading ? 'Đang tải...' : 'Đổi ảnh đại diện'}
+                </Button>
+              </Upload>
+            </div>
+
             <Title level={3} style={{ marginTop: 16 }}>
               {user?.username || 'Chưa có tên'}
             </Title>
@@ -135,7 +205,7 @@ const Profile = () => {
               label="Ngày sinh"
               name="birth_date"
               rules={[
-                ({ getFieldValue }) => ({
+                () => ({
                   validator(_, value) {
                     if (!value) return Promise.resolve();
                     if (value.isAfter(dayjs(), 'day')) {

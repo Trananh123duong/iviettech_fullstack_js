@@ -1,5 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addToCart, getCartItems, getUsers, updateUser, updateUserRole } from '../thunks/user.thunk';
+import {
+  addToCart,
+  getCartItems,
+  getUsers,
+  updateUser,
+  updateUserRole,
+  uploadAvatar
+} from '../thunks/user.thunk';
 
 export const userSlice = createSlice({
   name: 'user',
@@ -28,11 +35,17 @@ export const userSlice = createSlice({
       error: null,
       items: [],
     },
+    uploadAvatarData: {
+      status: 'idle',
+      error: null,
+      data: null
+    },
   },
   reducers: {
     resetUserStatus: (state) => {
       state.updateUserData = { status: 'idle', error: null };
       state.updateUserRoleData = { status: 'idle', error: null };
+      state.uploadAvatarData = { status: 'idle', error: null, data: null };
     },
   },
   extraReducers: (builder) => {
@@ -112,7 +125,21 @@ export const userSlice = createSlice({
       .addCase(getCartItems.rejected, (state, action) => {
         state.cartList.status = 'failed';
         state.cartList.error = action.error.message;
-      });
+      })
+      //upload avatar
+      .addCase(uploadAvatar.pending, (state) => {
+        state.uploadAvatarData.status = 'loading';
+        state.uploadAvatarData.error = null;
+        state.uploadAvatarData.data = null;
+      })
+      .addCase(uploadAvatar.fulfilled, (state, action) => {
+        state.uploadAvatarData.status = 'succeeded';
+        state.uploadAvatarData.data = action.payload; // để component tự lấy avatarUrl/message
+      })
+      .addCase(uploadAvatar.rejected, (state, action) => {
+        state.uploadAvatarData.status = 'failed';
+        state.uploadAvatarData.error = action.error.message;
+      })
   },
 });
 

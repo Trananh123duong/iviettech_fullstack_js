@@ -48,3 +48,15 @@ export const getCartItems = createAsyncThunk(
     return response.data;
   }
 );
+
+export const uploadAvatar = createAsyncThunk(
+  'user/uploadAvatar',
+  async ({ formData, callback }) => {
+    // formData đã được component chuẩn bị (append('avatar', file))
+    const res = await api.post('/users/upload-avatar', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    if (callback) callback(res.data);
+    return res.data;
+  }
+);

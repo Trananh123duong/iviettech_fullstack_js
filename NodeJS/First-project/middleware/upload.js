@@ -1,37 +1,37 @@
-// file: middlewares/upload.middleware.js
-const multer = require('multer');
-const path = require('path'); // Module có sẵn của NodeJS
+const multer = require('multer')
+const path = require('path')
 
-// Cấu hình nơi lưu trữ và tên file
+const { BadRequestError } = require('../utils/ApiError')
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    // Tạo một thư mục 'uploads' ở thư mục gốc nếu chưa có
-    cb(null, 'uploads/');
+    cb(null, 'uploads/')
   },
   filename: (req, file, cb) => {
-    // Tạo một tên file duy nhất để tránh bị trùng lặp
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
-  }
-});
+    const suffix = Date.now() + '-' + Math.round(Math.random() * 1e9)
+    cb(null, file.fieldname + '-' + suffix + path.extname(file.originalname))
+  },
+})
 
-// Cấu hình Multer hoàn chỉnh
 const upload = multer({
   storage: storage,
   limits: {
-    fileSize: 5 * 1024 * 1024 // Giới hạn kích thước file là 5MB
+    fileSize: 5 * 1024 * 1024, // 5MB
   },
   fileFilter: (req, file, cb) => {
-    // Chỉ cho phép upload các loại ảnh phổ biến
-    const filetypes = /jpeg|jpg|png/;
-    const mimetype = filetypes.test(file.mimetype);
-    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    const allowedTypes = /jpeg|jpg|png/
+    const mimetype = allowedTypes.test(file.mimetype)
+    const extname = allowedTypes.test(
+      path.extname(file.originalname).toLowerCase()
+    )
 
     if (mimetype && extname) {
-      return cb(null, true);
+      return cb(null, true)
     }
-    cb(new Error('Lỗi: Chỉ cho phép upload file ảnh!'));
-  }
-});
+    cb(new BadRequestError('Chỉ chấp nhận file hình ảnh (jpeg, jpg, png)'))
+  },
+})
 
-module.exports = upload;
+module.exports = {
+  upload,
+}

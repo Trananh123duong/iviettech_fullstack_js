@@ -1,5 +1,5 @@
 import { Button, Form, Input, InputNumber, Select } from 'antd';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ROUTES } from '../../../../constants/routes';
@@ -13,6 +13,8 @@ const Update = () => {
   const [form] = Form.useForm();
   let { id } = useParams();
 
+  const [productImage, setProductImage] = useState(null)
+
   const { detailProduct } = useSelector(state => state.product)
   const { listCategory } = useSelector((state) => state.category)
 
@@ -22,10 +24,20 @@ const Update = () => {
   }, [id])
 
   const handleUpdateProduct = (values) => {
+    const formData = new FormData()
+
+    formData.append('name', values.name)
+    formData.append('categoryId', values.categoryId)
+    formData.append('price', values.price)
+    console.log('🚀 ~ handleSubmit ~ productImage:', productImage)
+    if (productImage) {
+      formData.append('image', productImage)
+    }
+
     dispatch(
       updateProduct({
         id: id,
-        data: values,
+        data: formData,
         callback: () => navigate(ROUTES.ADMIN.PRODUCT.MANAGER)
       })
     )
@@ -97,6 +109,13 @@ const Update = () => {
           rules={[{ required: true, message: 'Please enter the price!' }]}
         >
           <InputNumber style={{ width: '100%' }} />
+        </Form.Item>
+
+        <Form.Item label="Image">
+          <input
+            type="file"
+            onChange={(e) => setProductImage(e.target.files[0])}
+          />
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 6, span: 16 }}>

@@ -3,7 +3,7 @@ const router = express.Router()
 
 const userController = require('../controllers/user.controller')
 const { verifyToken, checkAdmin } = require('../middleware/auth')
-const upload = require('../middleware/upload')
+const { upload } = require('../middleware/upload');
 
 router.get('/', verifyToken, checkAdmin, userController.listUsers)
 router.put('/:id', verifyToken, userController.updateUser)

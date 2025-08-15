@@ -76,7 +76,19 @@ const detailProduct = asyncHandler(async (req, res) => {
 });
 
 const createProduct = asyncHandler(async (req, res) => {
-  const newProduct = await Product.create(req.body);
+  const { name, price, category_id } = req.body
+
+  let imagePath = null
+  if (req.file) {
+    imagePath = req.file.path
+  }
+
+  const newProduct = await Product.create({
+    name,
+    price,
+    category_id,
+    image: imagePath
+  });
 
   res.status(201).json({
     message: 'Tạo sản phẩm thành công',
@@ -86,8 +98,19 @@ const createProduct = asyncHandler(async (req, res) => {
 
 const updateProduct = asyncHandler(async (req, res) => {
   const { id } = req.params;
+  const { name, price, category_id } = req.body
 
-  const [affectedRows] = await Product.update(req.body, {
+  let imagePath = null
+  if (req.file) {
+    imagePath = req.file.path
+  }
+
+  const [affectedRows] = await Product.update({
+    name,
+    price,
+    category_id,
+    image: imagePath
+  }, {
     where: { id: id },
   });
 

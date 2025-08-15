@@ -5,6 +5,7 @@ import { generatePath, useNavigate } from 'react-router-dom';
 import { ADMIN_PRODUCT_LIMIT } from '../../../../constants/paging';
 import { ROUTES } from '../../../../constants/routes';
 import { deleteProduct, getProducts } from '../../../../redux/thunks/product.thunk';
+import { END_POINT } from '../../../../services/api';
 import * as S from './styles';
 
 const Manager = () => {
@@ -122,6 +123,19 @@ const Manager = () => {
       dataIndex: 'id',
       key: 'id',
       sorter: true,
+    },
+    {
+      title: 'Image',
+      dataIndex: 'image',
+      key: 'image',
+      render: (image) =>
+        image && (
+          <img
+            src={`${END_POINT}/${image}`}
+            alt="Product"
+            style={{ width: 50, height: 50, objectFit: 'cover' }}
+          />
+        ),
     },
     {
       title: 'Name',
