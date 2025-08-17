@@ -8,7 +8,8 @@ export const ROUTES = {
     LOGIN: '/login',
     REGISTER: '/',
     PROFILE: '/profile',
-    CART: '/:userId/cart'
+    CART: '/:userId/cart',
+    CHAT: '/chat'
   },
   ADMIN: {
     DASHBOARD: '/admin',
@@ -29,6 +30,7 @@ export const ROUTES = {
     },
     USER: {
       MANAGER: '/admin/user'
-    }
+    },
+    CHAT: '/admin/chat'
   }
 }

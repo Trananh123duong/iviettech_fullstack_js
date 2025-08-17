@@ -22,6 +22,8 @@ import Home from './pages/user/Home'
 import Detail from './pages/user/product/Detail'
 import List from './pages/user/product/List'
 import Profile from './pages/user/Profile'
+import ChatWidget from './pages/user/ChatWidget'
+import AdminChatDashboard from './pages/admin/AdminChatDashboard'
 import { getMyProfile } from './redux/thunks/auth.thunk'
 
 function App() {
@@ -46,6 +48,8 @@ function App() {
         <Route path={ROUTES.USER.PROFILE} element={<Profile />} />
         
         <Route path={ROUTES.USER.CART} element={<CartManager />} />
+
+        <Route path={ROUTES.USER.CHAT} element={<ChatWidget />} />
       </Route>
 
       <Route element={<AdminLayout />}>
@@ -64,6 +68,8 @@ function App() {
         <Route path={ROUTES.ADMIN.CATEGORY.MANAGER} element={<CategoryManager />} />
         <Route path={ROUTES.ADMIN.CATEGORY.CREATE} element={<CategoryCreate />} />
         <Route path={ROUTES.ADMIN.CATEGORY.UPDATE} element={<CategoryUpdate />} />
+
+        <Route path={ROUTES.ADMIN.CHAT} element={<AdminChatDashboard />} />
       </Route>
     </Routes>
   )
