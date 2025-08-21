@@ -37,8 +37,8 @@ const login = asyncHandler(async (req, res) => {
   }
 
   const tokenPayload = { id: user.id, email: user.email, role: user.role };
-  const accessToken = jwt.sign(tokenPayload, 'DUONG', { expiresIn: '1h' });
-  const refreshToken = jwt.sign(tokenPayload, 'DUONG', { expiresIn: '30d' });
+  const accessToken = jwt.sign(tokenPayload, process.env.JWT_KEY, { expiresIn: '1h' });
+  const refreshToken = jwt.sign(tokenPayload, process.env.JWT_KEY, { expiresIn: '30d' });
 
   await user.update({ refresh_token: refreshToken });
 
@@ -74,14 +74,14 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     throw new ForbiddenError('Invalid refresh token');
   }
 
-  jwt.verify(token, 'DUONG', (err, decoded) => {
+  jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
     if (err || decoded.id !== user.id) {
       throw new ForbiddenError('Invalid refresh token');
     }
 
     const newAccessToken = jwt.sign(
       { id: user.id, email: user.email, role: user.role },
-      'DUONG',
+      process.env.JWT_KEY,
       { expiresIn: '1h' }
     );
 

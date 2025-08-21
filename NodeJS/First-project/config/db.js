@@ -1,12 +1,13 @@
 const { Sequelize } = require('sequelize');
 
+
 // Tạo một instance của Sequelize để kết nối CSDL
 const sequelize = new Sequelize(
-  'test_db',
-  'user',
-  'user123',
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
   {
-    host: 'localhost',
+    host: process.env.DB_HOST,
     dialect: 'mysql' // Khai báo RDB CSDL đang dùng là MySQL
   }
 );

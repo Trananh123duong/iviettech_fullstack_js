@@ -9,7 +9,7 @@ const verifyToken = (req, res, next) => {
 
   try {
     // { id, email }
-    const decoded = jwt.verify(token, 'DUONG')
+    const decoded = jwt.verify(token, process.env.JWT_KEY)
     req.user = decoded
     next()
   } catch (error) {
