@@ -4,7 +4,7 @@ services:
   mysql:
     image: mysql:8.0
     platform: linux/arm64/v8
-    container_name: mysql
+    container_name: mysql-review-test
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root123
@@ -24,7 +24,7 @@ services:
   phpmyadmin:
     image: phpmyadmin:5.2.1   # tag này có multi-arch tốt
     platform: linux/arm64/v8
-    container_name: phpmyadmin-server
+    container_name: phpmyadmin-review-test
     restart: always
     ports:
       - "8080:80"

@@ -39,7 +39,7 @@ const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body
 
   const user = await User.findOne({ where: { email: email } })
-   if (!user) {
+  if (!user) {
     throw new UnauthorizedError('Email hoặc mật khẩu không đúng!')
   }
 

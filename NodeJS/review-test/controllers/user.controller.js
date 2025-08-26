@@ -22,9 +22,25 @@ const getUserById = asyncHandler(async (req, res) => {
     throw new NotFoundError('Không tìm thấy user')
   }
 
-  res.json(result)
+  res.status(200).json(result)
+})
+
+const getUserTasks = asyncHandler(async (req, res) => {
+  const { id } = req.params
+
+  const user = await User.findByPk(id, { attributes: ['id'] })
+  if (!user) {
+    throw new NotFoundError('Không tìm thấy user')
+  }
+
+  const tasks = await Task.findAll({
+    where: { userId: id },
+  })
+
+  res.status(200).json(tasks)
 })
 
 module.exports = {
   getUserById,
+  getUserTasks
 }
