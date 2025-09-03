@@ -1,0 +1,113 @@
+CÁC KỸ NĂNG PHẢI ĐƯỢC SỬ DỤNG TRONG PROJECT:
+
+🔹 Giai đoạn 1: Cơ bản (dễ)
+1. CRUD RestFul API
+ - Tạo API cho users, stories, categories, chapters.
+ - Có pagination, search, sort, filter.
+2. Upload ảnh: 
+Upload thumbnail cho truyện bằng multer.
+3. Response chuẩn UI
+Tạo response format (success, error, message).
+🔹 Giai đoạn 2: Bảo mật & Quản lý
+1. Validation dữ liệu
+Dùng express-validator hoặc Joi để check input.
+2. Error handling & Logging
+Middleware bắt lỗi chung, log request bằng morgan, error bằng winston.
+3. JWT Authentication
+ - Đăng ký / đăng nhập.
+ - Lưu password hash (bcrypt).
+ - Access token + Refresh token.
+4. Phân quyền (Authorization)
+ - Quyền admin, user.
+Ví dụ: admin được CRUD tất cả, user chỉ đọc và follow truyện.
+🔹 Giai đoạn 3: Nâng cao hơn
+1. Thông báo realtime (Socket.IO)
+- Gửi thông báo khi có chapter mới.
+Ví dụ: user theo dõi truyện thì được push realtime.
+2. Swagger / Postman Docs
+Document API để test nhanh.
+🔹 Giai đoạn 4: DevOps & Triển khai
+1. Github + README
+- Viết README rõ ràng: cách chạy, API list, chức năng.
+- Commit message chuẩn.
+2. Docker
+Dockerfile + docker-compose (web, db, phpmyadmin).
+3. CI/CD
+Deploy tự động lên Heroku/Render/Railway hoặc VPS.
+🔹 Bonus (rất khó nhưng siêu điểm cộng)
+1. Testing
+ - Unit test với Jest / Mocha.
+ - Integration test API.
+2. Monitoring / Security nâng cao
+ - Dùng Helmet, Rate limit.
+ - Log & giám sát bằng Prometheus/Grafana (nếu muốn).
+👉 Như vậy:
+Tuần 1: CRUD + Upload + Response.
+Tuần 2: Validation + Error handling + JWT + Role.
+Tuần 3: Socket.IO + Swagger.
+Tuần 4: Docker + Github + CI/CD.
+Tuần 5 (bonus): Testing & Security nâng cao.
+
+
+
+CÁC CHỨC NĂNG CỤ THỂ (TƯƠNG TỰ NHƯ NETTRUYEN)
+👥 CHỨC NĂNG CHO USER (người đọc)
+1. Đăng ký / Đăng nhập / Quản lý tài khoản
+ - Đăng nhập bằng email/username + password.
+ - Lưu avatar, đổi mật khẩu, update profile.
+ - Hệ thống phân quyền (user / admin).
+2. Xem danh sách truyện
+ - Trang chủ hiển thị truyện mới cập nhật. ✅
+ - Lọc theo thể loại (category).
+ - Tìm kiếm theo tên tác phẩm hoặc tác giả.
+ - Sắp xếp theo:
+    + Top all
+    + Top tháng
+    + Top tuần
+    + Top ngày
+    + Top follow
+    + Số chapter
+    + Truyện full
+    + Truyện mới
+ - Lọc truyện theo dõi
+ - Lịch sử đọc truyện
+3. Chi tiết truyện
+ - Thông tin: tên, tác giả, mô tả, thumbnail, thể loại.
+ - Danh sách chapter.
+ - Nút theo dõi truyện.
+4. Đọc truyện
+ - Xem list ảnh của chapter
+ - Chuyển chapter trước / tiếp theo (tích hợp luôn nút mũi tên trên bàn phím chứ không cần phải đưa chuột tới ấn).
+5. Tương tác
+ - Comment truyện hoặc chapter.
+ - Like / Follow truyện.
+ - View count (tăng lượt xem khi đọc). ✅
+6. Realtime Notification (bonus)
+ - Nhận thông báo khi truyện mình follow có chapter mới.
+ - Có thể làm bằng Socket.IO.
+🛠️ CHỨC NĂNG CHO ADMIN (quản lý nội dung)
+1. Quản lý truyện
+ - CRUD truyện (thêm, sửa, xóa, upload ảnh bìa).
+ - Gắn nhiều category cho một truyện.
+2. Quản lý chapter
+ - CRUD chapter (tên, số, ngày đăng).
+ - Upload nhiều ảnh cho 1 chapter.
+3. Quản lý category
+ - CRUD thể loại (Action, Romance, Horror...).
+4. Quản lý user
+ - Block / Unblock user.
+ - Xem danh sách user.
+5. Dashboard (bonus)
+ - Thống kê số lượng truyện, số view, số follow.
+ - Top truyện nhiều view / nhiều follow nhất.
+🚀 CÁC CHỨC NĂNG KỸ THUẬT BỔ SUNG
+1. Upload ảnh: Thumbnail + ảnh chapter (multer hoặc cloud storage).
+2. JWT Auth + Refresh token: cho login.
+3. Pagination API: quan trọng khi có nhiều truyện.
+4. Response format chuẩn: để frontend dễ dùng.
+5. Swagger Docs: để show API.
+6. Docker + CI/CD: để triển khai.
+👉 TÓM LẠI:
+- User: Đăng nhập, đọc truyện, follow, comment, nhận thông báo.
+- Admin: CRUD truyện, chapter, category, user.
+- Kỹ thuật: Auth, Upload, Pagination, Socket.IO, Docker, CI/CD.
