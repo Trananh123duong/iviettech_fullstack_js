@@ -1,0 +1,327 @@
+.app__header {
+    --header-navbar-color: rgba(63,53,103,0.9);
+    background-color: var(--header-navbar-color);
+    height: var(--navbar-height);
+    z-index: 100;
+}
+
+
+.header__navbar-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--navbar-height);
+}
+
+.header__navbar-item {
+    color: white;
+    font-size: 1.5rem;
+}
+
+
+.header__navbar-link {
+    text-decoration: none;
+    color: white;
+
+}
+
+/* Thanh tìm kiếm */
+.header__navbar-search-box {
+    --navbar-search-height:32px;
+    background-color: white;
+    height: var(--navbar-search-height);
+    display: flex;
+    align-items: center;
+    width: 460px;
+}
+
+.header__navbar-search {
+    outline: none;
+    border: none;
+    flex: 1;
+    margin-left: 10px;
+}
+
+.header__navbar-search-icon {
+    color: black;
+    background-color: cornflowerblue;
+    font-size: 1.6rem;
+    line-height: var(--navbar-search-height);
+    padding: 0 12px;
+}
+
+/* Thông báo */
+.notification{
+    position: relative;
+}
+
+.header__navbar-notification{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.header__navbar-icon-comment {
+    padding-right: 4px;
+    font-size: 2rem;
+}
+
+.header__navbar-notification-link {
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.notification__appear {
+    z-index: 10000000;
+    width: 350px;
+    background-color: white;
+    color: black;
+    position: absolute;
+    top: 175%;
+    right: 0;
+    cursor: pointer;
+    display: none;
+}
+
+.notification__appear-header {
+    display: block;
+    width: 100% ;
+    color: var(--color-text-title);
+    font-size: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.notification__appear-header:hover {
+    color: violet;
+    text-decoration: underline;
+}
+
+.notification__appear-content {
+    overflow-y: scroll;
+    display: block;
+    text-align: center;
+    padding: 10px 5px;
+}
+
+.notification-input-check:checked ~ .notification__appear {
+    display: block;
+}
+
+
+/* User */
+.header__navbar-user {
+    display: flex;
+}
+
+.header__navbar-user-item{
+    display: flex;
+    align-items: center;
+}
+
+.header__navbar-user-login {
+    position: relative;
+    margin-right: 10px;
+}
+
+.header__navbar-user-login::before{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -5px;
+    content: "";
+    height: 100%;
+    border-right: 2px solid #ccc;
+}
+
+.header__navbar-user-icon{
+    font-size: 2rem;
+    margin-right: 4px;
+}
+
+/* Icon bar on Mobile  */
+
+.header__navbar-icon-bar {
+    font-size: 3.6rem;
+    background-color: cadetblue;
+    padding: 5px 10px;
+    border-radius: 4px;
+    display: none;
+}
+
+
+.header__navbar-on-mobile {
+    background-color: black;
+    position: fixed;
+    top: 50px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: none;
+}
+
+.header__navbar-on-mobile-link {
+    color: white;
+}
+
+.header__navbar-on-mobile-item {
+    margin: 0 10px;
+}
+
+.header__navbar-on-mobile-link {
+    display: flex;
+    font-size: 2rem;
+    align-items: baseline;
+    padding: 20px 0;
+}
+
+.header__navbar-on-mobile-checked:checked ~ .header__navbar-on-mobile {
+    display: block;
+}
+
+.header__navbar-on-mobile-checked:checked ~ .header__navbar-on-mobile-exit {
+    display: block;
+}
+
+/* NAVBAR MAIN */
+.app__header-main {
+    --navbar-main-color: rgb(228,228,228);
+    background-color: var(--navbar-main-color);
+}
+
+.header__navbar-main {
+    margin: 0 10px;
+}
+
+.header__navbar-main-list {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.header__navbar-main-item {
+    font-size: 1.6rem;
+    line-height: 1.6rem;
+    border-left: 1px solid #ccc;
+    display: block;
+    height: 100%;
+    position: relative;
+}
+
+.header__navbar-main-link:hover {
+    color: violet;
+    background-color: var(--navbar-main-color);
+    filter: brightness(90%);
+}
+
+.header__navbar-main-item-category:hover .header__navbar-main-link {
+    background-color: white;
+    color: violet;
+}
+
+.header__navbar-main-link.header__navbar-main-link--active:hover {
+    background-color: white;
+    filter: none;
+}
+
+.header__navbar-main-item-category:hover .header__navbar-main-category-list {
+    display: block;
+}
+
+.header__navbar-main-item:last-child {
+    border-right: 1px solid #ccc;
+}
+
+.header__navbar-main-link {
+    color: black;
+    padding: 10px 20px;
+    display: block;
+    /* position: relative; */
+}
+/* header__navbar-main-category */
+
+
+
+.header__navbar-main-category-list {
+    min-width: 600px;
+    z-index: 1000;
+    background-color: white;
+    position: absolute;
+    top: 100%;
+    border: 2px solid #ccc;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: none;
+}
+
+.header__navbar-main-category-list::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -1px;
+    right: 0;
+    width: 100%;
+    height: 24px;
+    background-color: transparent;
+}
+
+
+.category__item {
+    font-size: 1.8rem;
+    padding: 10px 20px;
+}
+
+.category__item-link:hover {
+    color: violet;
+}
+
+.category__item:first-child {
+    margin-top: 10px;
+}
+
+.category__item:last-child {
+    margin-bottom: 10px;
+}
+
+/* Rank */
+.header__navbar-main-rank-list {
+    display: none;
+    min-width: 340px;
+    z-index: 1000;
+    background-color: white;
+    position: absolute;
+    top: 100%;
+    border: 2px solid #ccc;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.rank__item {
+    font-size: 1.8rem;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+}
+
+.rank__item-link {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.rank__item-link:hover {
+    color: violet;
+}
+
+.rank__item-link i {
+    margin-right: 5px;
+}
+
+.header__navbar-main-item-rank:hover .header__navbar-main-link {
+    background-color: white;
+    color: violet;
+}
+
+.header__navbar-main-item-rank:hover .header__navbar-main-rank-list {
+    display: block;
+}

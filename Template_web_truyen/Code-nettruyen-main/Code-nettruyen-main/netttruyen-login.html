@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nettruyen - Trang chủ</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="header-navbar.css">
+    <link rel="stylesheet" href="container.css">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="app__footer.css">
+    <link rel="stylesheet" href="grid.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <div class="app">
+         
+        <!-- Header navbar -->
+        <header class="app__header">
+            <div class="grid wide">
+                <nav class="header__navbar">
+                    <ul class="header__navbar-list">
+                        <li class="header__navbar-item">
+                            <a href="netruyen-home.html" class="header__navbar-link">
+                                <img src="http://st.imageinstant.net/data/logos/logo-nettruyen.png" alt="logo_nettruyen" class="logo-nettruyen">
+                            </a>
+                        </li>
+
+                        <li class="header__navbar-item">
+                            <div class="header__navbar-search-box hide-on-mobile">
+                                <input type="text" class="header__navbar-search" placeholder="Tìm truyện ...">
+                                <i class="header__navbar-search-icon fas fa-search    "></i>
+                            </div>
+                        </li>
+
+                        <li class="header__navbar-item notification hide-on-mobile">
+
+                            
+                            
+                            <label for="notification-checked" class="header__navbar-notification no-select">
+                                <i class="header__navbar-icon-comment fas fa-comment    "></i>
+                                <span class="hide-on-tablet" >Thông báo</span>
+                            </label>
+                            
+                            <input type="checkbox" hidden class="notification-input-check" id="notification-checked">
+
+                            <div class="notification__appear">
+                                <a href="" class="notification__appear-header">
+                                    Thông báo
+                                </a> 
+                                <div class="notification__appear-content">
+                                    <span class="notification__appear-content-notLogin">
+                                        Vui lòng đăng nhập để sử dụng chức năng này
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="header__navbar-item hide-on-mobile">
+                            <div class="header__navbar-user">
+                                <a href="netttruyen-login.html" class="header__navbar-link">
+                                    <div class="header__navbar-user-login header__navbar-user-item">
+                                        <i class="header__navbar-user-icon fas fa-sign-in-alt"></i>
+                                        <span>Đăng nhập</span>
+                                    </div>
+                                </a>
+                                <a href="nettruyen-register.html" class="header__navbar-link">
+                                    <div class="header__navbar-user-register header__navbar-user-item">
+                                        <i class="header__navbar-user-icon fas fa-user    "></i>
+                                        <span>Đăng ký</span>
+                                    </div>
+                                </a>
+
+                            </div>
+                            <div href="" class="account">
+                                <div href="" class="header__navbar-user-logged">
+                                    <img src="https://scontent.fdad2-1.fna.fbcdn.net/v/t1.6435-9/233690920_1316391715486082_8985361292844610386_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=eZKJ2bMnwQsAX-8NSs5&_nc_ht=scontent.fdad2-1.fna&oh=62612d22e736a8ae9a577333467b9167&oe=6182620C" alt="" class="login-avatar">
+                                    <span class="login-name">
+                                        Hào
+                                    </span>
+                                </div>
+                                <div class="account-menu">
+                                    <a href="" class="account-view-profile">
+                                        Xem hồ sơ
+                                    </a>
+                                    <a href="" class="account-view-following-comic">
+                                        truyện theo dõi
+                                    </a>
+                                    <a href="" class="account-view-history">
+                                        lịch sử
+                                    </a>
+                                    <a href="" class="account-log-out">
+                                        Đăng xuất
+                                    </a>
+                                </div>
+                            </div>
+                            
+                        </li>
+
+                        <li class="header__navbar-item">
+
+                            <!-- On mobile -->
+                            <label for="header__navbar-on-mobile-input" class="header__navbar-on-mobile-bar">
+                                <i class="header__navbar-icon-bar fas fa-bars"></i>
+                            </label>
+
+                            <input type="checkbox" hidden class="header__navbar-on-mobile-checked" id="header__navbar-on-mobile-input">
+
+                            <nav class="header__navbar-on-mobile">
+                                <ul class="header__navbar-on-mobile-list">
+                                    <li class="header__navbar-on-mobile-item">
+                                        <div class="header__navbar-search-box">
+                                            <input type="text" class="header__navbar-search" placeholder="Tìm truyện ...">
+                                            <i class="header__navbar-search-icon icon fas fa-search    "></i>
+                                        </div>
+                                    </li>
+                                    <li class="header__navbar-on-mobile-item">
+                                        <a href="" class="header__navbar-on-mobile-link">
+                                            <i class="header__navbar-icon-comment icon fas fa-comment    "></i>
+                                            <span >Thông báo</span>
+                                        </a>
+                                    </li>
+                                    <li class="header__navbar-on-mobile-item">
+                                        <a href="netttruyen-login.html" class="header__navbar-on-mobile-link">
+                                            <i class="header__navbar-user-icon icon fas fa-sign-in-alt"></i>
+                                            <span>Đăng nhập</span>
+                                        </a>
+                                    </li>
+                                    <li class="header__navbar-on-mobile-item">
+                                        <a href="nettruyen-register.html" class="header__navbar-on-mobile-link">
+                                            <i class="header__navbar-user-icon icon fas fa-user    "></i>
+                                            <span>Đăng ký</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- App header main -->
+        <header class="app__header-main hide-on-mobile">
+            <div class="grid wide">
+                <nav class="header__navbar-main">
+                    <ul class="header__navbar-main-list">
+                        <li class="header__navbar-main-item">
+                            <a href="netruyen-home.html" class="header__navbar-main-link icon-home-bg">
+                                <i class="icon-home fas fa-home"></i>
+                            </a>
+                        </li>
+                        <li class="header__navbar-main-item">
+                            <a href="" class="header__navbar-main-link">
+                                HOT
+                            </a>
+                        </li>
+                        <li class="header__navbar-main-item">
+                            <a href="" class="header__navbar-main-link">
+                                THEO DÕI
+                            </a>
+                        </li>
+                        <li class="header__navbar-main-item">
+                            <a href="" class="header__navbar-main-link">
+                                LỊCH SỬ
+                            </a>
+                        </li>
+                        <li class="header__navbar-main-item ">
+                            <div class="header__navbar-main-item-category">
+                                <a href="" class="header__navbar-main-link header__navbar-main-link--active">
+                                    <div class="header__navbar-main-category">
+                                        THỂ LOẠI
+                                        <i class="fas fa-caret-down"></i>
+                                    </div>
+                                </a>
+                                <ul class="header__navbar-main-category-list">
+                                    <div class="row">
+                                        <div class="col l-3 m-3">
+                                            <ul class="category__list">
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        <strong>Tất cả</strong>
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Action
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Adult
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Adventure
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Anime
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Chuyển sinh
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col l-3 m-3">
+                                            <ul class="category__list">
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        <strong>Tất cả</strong>
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Action
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Adult
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Adventure
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Anime
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Chuyển sinh
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col l-3 m-3">
+                                            <ul class="category__list">
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        <strong>Tất cả</strong>
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Action
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Adult
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Adventure
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Anime
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Chuyển sinh
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col l-3 m-3">
+                                            <ul class="category__list">
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        <strong>Tất cả</strong>
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Action
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Adult
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Adventure
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Anime
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Chuyển sinh
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="header__navbar-main-item ">
+                            <div class="header__navbar-main-item-rank">
+                                <a href="" class="header__navbar-main-link header__navbar-main-link--active">
+                                    <div class="header__navbar-main-category">
+                                        XẾP HẠNG
+                                        <i class="fas fa-caret-down"></i>
+                                    </div>
+                                </a>
+
+                                <ul class="header__navbar-main-rank-list">
+                                    <div class="row">
+                                        <div class="col l-6  m-6">
+                                            <ul class="rank__list">
+                                                <li class="rank__item">
+                                                    <a href="" class="rank__item-link">
+                                                        <i class="fas fa-eye"></i>
+                                                        Top all
+                                                    </a>
+                                                </li>
+                                                <li class="rank__item">
+                                                    <a href="" class="rank__item-link">
+                                                        <i class="fas fa-eye"></i>
+                                                        Top tháng
+                                                    </a>
+                                                </li>
+                                                <li class="rank__item">
+                                                    <a href="" class="rank__item-link">
+                                                        <i class="fas fa-eye"></i>
+                                                        Top tuần
+                                                    </a>
+                                                </li>
+                                                <li class="rank__item">
+                                                    <a href="" class="rank__item-link">
+                                                        <i class="fas fa-eye"></i>
+                                                        Top ngày
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col l-6 m-6">
+                                            <ul class="rank__list">
+                                                <li class="rank__item">
+                                                    <a href="" class="rank__item-link">
+                                                        <i class="fas fa-signal"></i>
+                                                        <strong>Truyện full</strong>
+                                                    </a>
+                                                </li>
+                                                <li class="rank__item">
+                                                    <a href="" class="rank__item-link">
+                                                        <i class="fas fa-thumbs-up"></i>
+                                                        Yêu thích
+                                                    </a>
+                                                </li>
+                                                <li class="rank__item">
+                                                    <a href="" class="rank__item-link">
+                                                        <i class="fas fa-spinner"></i>
+                                                        Mới cập nhật
+                                                    </a>
+                                                </li>
+                                                <li class="rank__item">
+                                                    <a href="" class="rank__item-link">
+                                                        <i class="fas fa-upload"></i>
+                                                        Truyện mới
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    
+                                    </div>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="header__navbar-main-item hide-on-tablet">
+                            <a href="" class="header__navbar-main-link">
+                                TÌM TRUYỆN
+                            </a>
+                        </li>
+                        <li class="header__navbar-main-item hide-on-tablet">
+                            <a href="" class="header__navbar-main-link">
+                                CON GÁI
+                            </a>
+                        </li>
+                        <li class="header__navbar-main-item hide-on-tablet">
+                            <a href="" class="header__navbar-main-link">
+                                CON TRAI
+                            </a>
+                        </li>
+                        <li class="header__navbar-main-item hide-on-tablet">
+                            <a href="" class="header__navbar-main-link">
+                                GROUP
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <div class="app__container">
+            <div class="grid wide app__container-cl">
+                <div class="row no-gutters">
+                    <div class="col l-12 m-12 c-12">
+                        <div class="link-item-web">
+                            <a href="netruyen-home.html" class="link-item-web-back">
+                                Trang chủ
+                            </a>
+                            <i class="fas fa-angle-double-right"></i>
+                            <a href="netttruyen-login.html" class="link-item-web-back">
+                                Đăng nhập
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col l-4 l-o-4 m-8 m-o-2 c-12">
+                        <div class="login">
+                            <div class="login__header">
+                                ĐĂNG NHẬP
+                            </div>
+                            <div class="login__wrapper">
+                                <div class="login__wrapper-item">
+                                    <label for="input-email" class="login__wrapper-item-header">
+                                        Email
+                                    </label>
+                                    <input type="text" class="login__wrapper-item-input" id="input-email" placeholder="Email">
+                                </div>
+                                <div class="login__wrapper-item">
+                                    <label for="input-password" class="login__wrapper-item-header">
+                                       Mật khẩu
+                                    </label>
+                                    <input type="text" class="login__wrapper-item-input" id="input-password" placeholder="Mật khẩu">
+                                </div>
+                                
+                            </div>
+
+                            <div class="login__action">
+                                <div class="login__action-help">
+                                    <a href="" class="login__action-forget-pass">
+                                        Quên mật khẩu
+                                    </a>
+                                    <a href="nettruyen-register.html" class="login__action-new-register">
+                                        Đăng ký mới
+                                    </a>
+                                </div>
+                                <button onclick="loginAccount()" class="btn btn-login">
+                                    Đăng nhập
+                                </button>
+                            </div>
+                            <div class="fail-login">
+                                Đăng nhập thất bại. Vui lòng thử lại.
+                            </div>
+                            <button class="btn btn-facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                Đặng nhập bằng facebook
+                            </button>
+                            <button class="btn btn-google">
+                                <i class="fab fa-google"></i>
+                                Đăng nhập bằng google
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="app__footer">
+            <div class="grid wide">
+                <div class="row no-gutters">
+                    <div class="col l-4 m-12 c-12">
+                        <div class="footer__social">
+                            <a href="netruyen-home.html" class="footer__social-link">
+                                <img src="http://st.imageinstant.net/data/logos/logo-nettruyen.png" alt="" class="footer__social-logo">
+                            </a>
+                            <div class="footer__social-copyright">
+                                Copyright © 2015 NetTruyen
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col l-8 m-12 c-12">
+                        <div class="footer__category">
+                            <div class="footer__category-header">
+                                Thể loại
+                            </div>
+                            <div class="footer__category-list">
+                                <a href="" class="footer__category-item-link">
+                                    Chuyển sinh
+                                </a>
+                                <a href="" class="footer__category-item-link">
+                                    Chuyển sinh
+                                </a>
+                                <a href="" class="footer__category-item-link">
+                                    Chuyển sinh
+                                </a>
+                                <a href="" class="footer__category-item-link">
+                                    Chuyển sinh
+                                </a>
+                                <a href="" class="footer__category-item-link">
+                                    Chuyển sinh
+                                </a>
+                                <a href="" class="footer__category-item-link">
+                                    Chuyển sinh
+                                </a>
+                                <a href="" class="footer__category-item-link">
+                                    Chuyển sinh
+                                </a>
+                                <a href="" class="footer__category-item-link">
+                                    Chuyển sinh
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js.js"></script>
+</body>
+</html>

@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nettruyen - Trang chủ</title>
+    <link rel="icon" type="img/png" href="//st.nettruyenpro.com/data/logos/favicon.png?v=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="header-navbar.css">
+    <link rel="stylesheet" href="container.css">
+    <link rel="stylesheet" href="app__footer.css">
+    <link rel="stylesheet" href="grid.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <div class="app">
+         
+        <!-- Header navbar -->
+        <header class="app__header">
+            <div class="grid wide">
+                <nav class="header__navbar">
+                    <ul class="header__navbar-list">
+                        <li class="header__navbar-item">
+                            <a href="netruyen-home.html" class="header__navbar-link">
+                                <img src="http://st.imageinstant.net/data/logos/logo-nettruyen.png" alt="logo_nettruyen" class="logo-nettruyen">
+                            </a>
+                        </li>
+
+                        <li class="header__navbar-item">
+                            <div class="header__navbar-search-box hide-on-mobile">
+                                <input type="text" class="header__navbar-search" placeholder="Tìm truyện ...">
+                                <i class="header__navbar-search-icon fas fa-search    "></i>
+                            </div>
+                        </li>
+
+                        <li class="header__navbar-item notification hide-on-mobile">
+
+                            
+                            
+                            <label for="notification-checked" class="header__navbar-notification no-select">
+                                <i class="header__navbar-icon-comment fas fa-comment    "></i>
+                                <span class="hide-on-tablet" >Thông báo</span>
+                            </label>
+
+                            <input type="checkbox" hidden class="notification-input-check" id="notification-checked">
+
+                            <div class="notification__appear">
+                                <a href="" class="notification__appear-header">
+                                    Thông báo
+                                </a> 
+                                <div class="notification__appear-content">
+                                    <span class="notification__appear-content-notLogin">
+                                        Vui lòng đăng nhập để sử dụng chức năng này
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="header__navbar-item hide-on-mobile">
+                            <div class="header__navbar-user">
+                                <a href="netttruyen-login.html" class="header__navbar-link">
+                                    <div class="header__navbar-user-login header__navbar-user-item">
+                                        <i class="header__navbar-user-icon fas fa-sign-in-alt"></i>
+                                        <span>Đăng nhập</span>
+                                    </div>
+                                </a>
+                                <a href="nettruyen-register.html" class="header__navbar-link">
+                                    <div class="header__navbar-user-register header__navbar-user-item">
+                                        <i class="header__navbar-user-icon fas fa-user    "></i>
+                                        <span>Đăng ký</span>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </li>
+
+                        <li class="header__navbar-item">
+
+                            <!-- On mobile -->
+                            <label for="header__navbar-on-mobile-input" class="header__navbar-on-mobile-bar">
+                                <i class="header__navbar-icon-bar fas fa-bars"></i>
+                            </label>
+
+                            <input type="checkbox" hidden class="header__navbar-on-mobile-checked" id="header__navbar-on-mobile-input">
+
+                            <nav class="header__navbar-on-mobile">
+                                <ul class="header__navbar-on-mobile-list">
+                                    <li class="header__navbar-on-mobile-item">
+                                        <div class="header__navbar-search-box">
+                                            <input type="text" class="header__navbar-search" placeholder="Tìm truyện ...">
+                                            <i class="header__navbar-search-icon icon fas fa-search    "></i>
+                                        </div>
+                                    </li>
+                                    <li class="header__navbar-on-mobile-item">
+                                        <a href="" class="header__navbar-on-mobile-link">
+                                            <i class="header__navbar-icon-comment icon fas fa-comment    "></i>
+                                            <span >Thông báo</span>
+                                        </a>
+                                    </li>
+                                    <li class="header__navbar-on-mobile-item">
+                                        <a href="netttruyen-login.html" class="header__navbar-on-mobile-link">
+                                            <i class="header__navbar-user-icon icon fas fa-sign-in-alt"></i>
+                                            <span>Đăng nhập</span>
+                                        </a>
+                                    </li>
+                                    <li class="header__navbar-on-mobile-item">
+                                        <a href="nettruyen-register.html" class="header__navbar-on-mobile-link">
+                                            <i class="header__navbar-user-icon icon fas fa-user    "></i>
+                                            <span>Đăng ký</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- App header main -->
+        <header class="app__header-main hide-on-mobile">
+            <div class="grid wide">
+                <nav class="header__navbar-main">
+                    <ul class="header__navbar-main-list">
+                        <li class="header__navbar-main-item">
+                            <a href="netruyen-home.html" class="header__navbar-main-link icon-home-bg">
+                                <i class="icon-home fas fa-home"></i>
+                            </a>
+                        </li>
+                        <li class="header__navbar-main-item">
+                            <a href="" class="header__navbar-main-link">
+                                HOT
+                            </a>
+                        </li>
+                        <li class="header__navbar-main-item">
+                            <a href="" class="header__navbar-main-link">
+                                THEO DÕI
+                            </a>
+                        </li>
+                        <li class="header__navbar-main-item">
+                            <a href="" class="header__navbar-main-link">
+                                LỊCH SỬ
+                            </a>
+                        </li>
+                        <li class="header__navbar-main-item ">
+                            <div class="header__navbar-main-item-category">
+                                <a href="" class="header__navbar-main-link header__navbar-main-link--active">
+                                    <div class="header__navbar-main-category">
+                                        THỂ LOẠI
+                                        <i class="fas fa-caret-down"></i>
+                                    </div>
+                                </a>
+                                <ul class="header__navbar-main-category-list">
+                                    <div class="row">
+                                        <div class="col l-3 m-3">
+                                            <ul class="category__list">
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        <strong>Tất cả</strong>
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Action
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Adult
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Adventure
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Anime
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Chuyển sinh
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col l-3 m-3">
+                                            <ul class="category__list">
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        <strong>Tất cả</strong>
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Action
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Adult
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Adventure
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Anime
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Chuyển sinh
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col l-3 m-3">
+                                            <ul class="category__list">
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        <strong>Tất cả</strong>
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Action
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Adult
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Adventure
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Anime
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Chuyển sinh
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col l-3 m-3">
+                                            <ul class="category__list">
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        <strong>Tất cả</strong>
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Action
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Adult
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Adventure
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Anime
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Chuyển sinh
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                                <li class="category__item">
+                                                    <a href="" class="category__item-link">
+                                                        Comic
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="header__navbar-main-item ">
+                            <div class="header__navbar-main-item-rank">
+                                <a href="" class="header__navbar-main-link header__navbar-main-link--active">
+                                    <div class="header__navbar-main-category">
+                                        XẾP HẠNG
+                                        <i class="fas fa-caret-down"></i>
+                                    </div>
+                                </a>
+
+                                <ul class="header__navbar-main-rank-list">
+                                    <div class="row">
+                                        <div class="col l-6  m-6">
+                                            <ul class="rank__list">
+                                                <li class="rank__item">
+                                                    <a href="" class="rank__item-link">
+                                                        <i class="fas fa-eye"></i>
+                                                        Top all
+                                                    </a>
+                                                </li>
+                                                <li class="rank__item">
+                                                    <a href="" class="rank__item-link">
+                                                        <i class="fas fa-eye"></i>
+                                                        Top tháng
+                                                    </a>
+                                                </li>
+                                                <li class="rank__item">
+                                                    <a href="" class="rank__item-link">
+                                                        <i class="fas fa-eye"></i>
+                                                        Top tuần
+                                                    </a>
+                                                </li>
+                                                <li class="rank__item">
+                                                    <a href="" class="rank__item-link">
+                                                        <i class="fas fa-eye"></i>
+                                                        Top ngày
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col l-6 m-6">
+                                            <ul class="rank__list">
+                                                <li class="rank__item">
+                                                    <a href="" class="rank__item-link">
+                                                        <i class="fas fa-signal"></i>
+                                                        <strong>Truyện full</strong>
+                                                    </a>
+                                                </li>
+                                                <li class="rank__item">
+                                                    <a href="" class="rank__item-link">
+                                                        <i class="fas fa-thumbs-up"></i>
+                                                        Yêu thích
+                                                    </a>
+                                                </li>
+                                                <li class="rank__item">
+                                                    <a href="" class="rank__item-link">
+                                                        <i class="fas fa-spinner"></i>
+                                                        Mới cập nhật
+                                                    </a>
+                                                </li>
+                                                <li class="rank__item">
+                                                    <a href="" class="rank__item-link">
+                                                        <i class="fas fa-upload"></i>
+                                                        Truyện mới
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    
+                                    </div>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="header__navbar-main-item hide-on-tablet">
+                            <a href="" class="header__navbar-main-link">
+                                TÌM TRUYỆN
+                            </a>
+                        </li>
+                        <li class="header__navbar-main-item hide-on-tablet">
+                            <a href="" class="header__navbar-main-link">
+                                CON GÁI
+                            </a>
+                        </li>
+                        <li class="header__navbar-main-item hide-on-tablet">
+                            <a href="" class="header__navbar-main-link">
+                                CON TRAI
+                            </a>
+                        </li>
+                        <li class="header__navbar-main-item hide-on-tablet">
+                            <a href="" class="header__navbar-main-link">
+                                GROUP
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <div class="app__container">
+            <div class="grid wide app__container-cl">
+                <div class="row">
+
+                    <!-- Truyen de cu -->
+                    <div class="comic__recommand hide-on-mobile-tablet">
+                        <div class="col l-12 c-12 m-12">
+                            <header class="comic__header no-select">
+                                <span class="comic__header-title">
+                                    TRUYỆN ĐỀ CỬ
+                                </span>
+                                <i class="comic__header-icon fas fa-chevron-right"></i>
+                            </header>
+                        </div>
+                        <div class="col l-12">
+                            <div class="row no-gutters">
+                                <div class="col l-2-4">
+                                    <div class="comic__recommand-body">
+                                        <a href="" class="comic__recommand-body-link">
+                                            <div class="comic__recommand-body-img" style="background-image: url(http://st.imageinstant.net/data/comics/254/bon-te-tu-chinh-la-tien-dao.jpg);"></div>
+                                        </a>
+                                        <div class="comic__recommand-body-item">
+                                            <a href="" class="comic__recommand-body-item-title-link">
+                                                Chứ Thiên Ký
+                                            </a>
+                                            <div class="comic__recommand-body-item-chapter-time">
+                                                <a href="" class="comic__recommand-body-item-chapter-link">
+                                                    Chapter 12
+                                                </a>
+                                                <span class="comic__recommand-body-item-time">
+                                                    <i class="fas fa-clock    "></i>
+                                                    12 giờ trước
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col l-2-4">
+                                    <div class="comic__recommand-body">
+                                        <a href="" class="comic__recommand-body-link">
+                                            <div class="comic__recommand-body-img" style="background-image: url(http://st.imageinstant.net/data/comics/254/bon-te-tu-chinh-la-tien-dao.jpg);"></div>
+                                        </a>
+                                        <div class="comic__recommand-body-item">
+                                            <a href="" class="comic__recommand-body-item-title-link">
+                                                Chứ Thiên Ký
+                                            </a>
+                                            <div class="comic__recommand-body-item-chapter-time">
+                                                <a href="" class="comic__recommand-body-item-chapter-link">
+                                                    Chapter 12
+                                                </a>
+                                                <span class="comic__recommand-body-item-time">
+                                                    <i class="fas fa-clock    "></i>
+                                                    12 giờ trước
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col l-2-4">
+                                    <div class="comic__recommand-body">
+                                        <a href="" class="comic__recommand-body-link">
+                                            <div class="comic__recommand-body-img" style="background-image: url(http://st.imageinstant.net/data/comics/254/bon-te-tu-chinh-la-tien-dao.jpg);"></div>
+                                        </a>
+                                        <div class="comic__recommand-body-item">
+                                            <a href="" class="comic__recommand-body-item-title-link">
+                                                Chứ Thiên Ký
+                                            </a>
+                                            <div class="comic__recommand-body-item-chapter-time">
+                                                <a href="" class="comic__recommand-body-item-chapter-link">
+                                                    Chapter 12
+                                                </a>
+                                                <span class="comic__recommand-body-item-time">
+                                                    <i class="fas fa-clock    "></i>
+                                                    12 giờ trước
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col l-2-4">
+                                    <div class="comic__recommand-body">
+                                        <a href="" class="comic__recommand-body-link">
+                                            <div class="comic__recommand-body-img" style="background-image: url(http://st.imageinstant.net/data/comics/254/bon-te-tu-chinh-la-tien-dao.jpg);"></div>
+                                        </a>
+                                        <div class="comic__recommand-body-item">
+                                            <a href="" class="comic__recommand-body-item-title-link">
+                                                Chứ Thiên Ký
+                                            </a>
+                                            <div class="comic__recommand-body-item-chapter-time">
+                                                <a href="" class="comic__recommand-body-item-chapter-link">
+                                                    Chapter 12
+                                                </a>
+                                                <span class="comic__recommand-body-item-time">
+                                                    <i class="fas fa-clock    "></i>
+                                                    12 giờ trước
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col l-2-4">
+                                    <div class="comic__recommand-body">
+                                        <a href="" class="comic__recommand-body-link">
+                                            <div class="comic__recommand-body-img" style="background-image: url(http://st.imageinstant.net/data/comics/254/bon-te-tu-chinh-la-tien-dao.jpg);"></div>
+                                        </a>
+                                        <div class="comic__recommand-body-item">
+                                            <a href="" class="comic__recommand-body-item-title-link">
+                                                Chứ Thiên Ký
+                                            </a>
+                                            <div class="comic__recommand-body-item-chapter-time">
+                                                <a href="" class="comic__recommand-body-item-chapter-link">
+                                                    Chapter 12
+                                                </a>
+                                                <span class="comic__recommand-body-item-time">
+                                                    <i class="fas fa-clock    "></i>
+                                                    12 giờ trước
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Truyen moi cap nhat -->
+                    <div class="col l-8 m-12 c-12">
+                        <header class="comic__header no-select">
+                            <span class="comic__header-title">
+                                TRUYỆN MỚI CẬP NHẬT
+                            </span>
+                            <i class="comic__header-icon fas fa-chevron-right"></i>
+                        </header>
+                        <div class="comic__new-updated">
+                            <div class="row">
+                                <div class="col l-3 m-3 c-6">
+                                    <div class="comic__new-updated-body">
+                                        <a href="" class="comic__new-updated-body-link">
+                                            <div class="comic__new-updated-body-img" style="background-image: url(http://st.imageinstant.net/data/comics/22/than-hao-chi-thien-hang-he-thong.jpeg);"></div>
+                                        </a>
+                                        <div class="comic__new-updated-body-item">
+                                            <a href="" class="comic__new-updated-body-item-title-link">
+                                                chu thien ky dasjdhb sjdhasjkd asjdhaksj sajdhakjd 
+                                            </a>
+                                            <div class="comic__new-updated-body-item-chapter-time">
+                                                <a href="" class="comic__new-updated-body-item-chapter-link">
+                                                    Chapter 1212
+                                                </a>
+                                                <span class="comic__new-updated-body-item-time">
+                                                    
+                                                    12 giờ trước
+                                                </span>
+                                            </div>
+                                            <div class="comic__new-updated-body-item-chapter-time">
+                                                <a href="" class="comic__new-updated-body-item-chapter-link">
+                                                    Chapter 12
+                                                </a>
+                                                <span class="comic__new-updated-body-item-time">
+                                                    
+                                                    12 giờ trước
+                                                </span>
+                                            </div>
+                                            <div class="comic__new-updated-body-item-chapter-time">
+                                                <a href="" class="comic__new-updated-body-item-chapter-link">
+                                                    Chapter 12
+                                                </a>
+                                                <span class="comic__new-updated-body-item-time">
+                                                    
+                                                    12 giờ trước
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col l-3 m-3 c-6">
+                                    <div class="comic__new-updated-body">
+                                        <a href="" class="comic__new-updated-body-link">
+                                            <div class="comic__new-updated-body-img" style="background-image: url(http://st.imageinstant.net/data/comics/22/than-hao-chi-thien-hang-he-thong.jpeg);"></div>
+                                        </a>
+                                        <div class="comic__new-updated-body-item">
+                                            <a href="" class="comic__new-updated-body-item-title-link">
+                                                chu thien ky
+                                            </a>
+                                            <div class="comic__new-updated-body-item-chapter-time">
+                                                <a href="" class="comic__new-updated-body-item-chapter-link">
+                                                    Chapter 12
+                                                </a>
+                                                <span class="comic__new-updated-body-item-time">
+                                                    
+                                                    12 giờ trước
+                                                </span>
+                                            </div>
+                                            <div class="comic__new-updated-body-item-chapter-time">
+                                                <a href="" class="comic__new-updated-body-item-chapter-link">
+                                                    Chapter 12
+                                                </a>
+                                                <span class="comic__new-updated-body-item-time">
+                                                    
+                                                    12 giờ trước
+                                                </span>
+                                            </div>
+                                            <div class="comic__new-updated-body-item-chapter-time">
+                                                <a href="" class="comic__new-updated-body-item-chapter-link">
+                                                    Chapter 12
+                                                </a>
+                                                <span class="comic__new-updated-body-item-time">
+                                                    
+                                                    12 giờ trước
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col l-3 m-3 c-6">
+                                    <div class="comic__new-updated-body">
+                                        <a href="" class="comic__new-updated-body-link">
+                                            <div class="comic__new-updated-body-img" style="background-image: url(http://st.imageinstant.net/data/comics/22/than-hao-chi-thien-hang-he-thong.jpeg);"></div>
+                                        </a>
+                                        <div class="comic__new-updated-body-item">
+                                            <a href="" class="comic__new-updated-body-item-title-link">
+                                                chu thien ky
+                                            </a>
+                                            <div class="comic__new-updated-body-item-chapter-time">
+                                                <a href="" class="comic__new-updated-body-item-chapter-link">
+                                                    Chapter 12
+                                                </a>
+                                                <span class="comic__new-updated-body-item-time">
+                                                    
+                                                    12 giờ trước
+                                                </span>
+                                            </div>
+                                            <div class="comic__new-updated-body-item-chapter-time">
+                                                <a href="" class="comic__new-updated-body-item-chapter-link">
+                                                    Chapter 12
+                                                </a>
+                                                <span class="comic__new-updated-body-item-time">
+                                                    
+                                                    12 giờ trước
+                                                </span>
+                                            </div>
+                                            <div class="comic__new-updated-body-item-chapter-time">
+                                                <a href="" class="comic__new-updated-body-item-chapter-link">
+                                                    Chapter 12
+                                                </a>
+                                                <span class="comic__new-updated-body-item-time">
+                                                    
+                                                    12 giờ trước
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col l-3 m-3 c-6">
+                                    <div class="comic__new-updated-body">
+                                        <a href="chuoi-phim-tai-lieu-ve-chung-cuong-ban-gai-cu-cua-toi.html" class="comic__new-updated-body-link">
+                                            <div class="comic__new-updated-body-img" style="background-image: url(http://st.imageinstant.net/data/comics/30/chuoi-phim-tai-lieu-ve-chung-cuong-ban-g-4235.jpg);"></div>
+                                        </a>
+                                        <div class="comic__new-updated-body-item">
+                                            <a href="chuoi-phim-tai-lieu-ve-chung-cuong-ban-gai-cu-cua-toi.html" class="comic__new-updated-body-item-title-link">
+                                                Chuỗi phim tài liệu về chứng cuồng bạn gái cũ của tôi.
+                                            </a>
+                                            <div class="comic__new-updated-body-item-chapter-time">
+                                                <a href="" class="comic__new-updated-body-item-chapter-link">
+                                                    Chapter 34
+                                                </a>
+                                                <span class="comic__new-updated-body-item-time">
+                                                    
+                                                    8 phút trước
+                                                </span>
+                                            </div>
+                                            <div class="comic__new-updated-body-item-chapter-time">
+                                                <a href="" class="comic__new-updated-body-item-chapter-link">
+                                                    Chapter 33
+                                                </a>
+                                                <span class="comic__new-updated-body-item-time">
+                                                    
+                                                    17 ngày trước
+                                                </span>
+                                            </div>
+                                            <div class="comic__new-updated-body-item-chapter-time">
+                                                <a href="" class="comic__new-updated-body-item-chapter-link">
+                                                    Chapter 32
+                                                </a>
+                                                <span class="comic__new-updated-body-item-time">
+                                                    
+                                                    13:07 01/05
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <!-- Pagination -->
+                        <div class="pagination">
+                            <ul class="pagination-list">
+                                <li class="pagination-item">
+                                    <a href="" class="pagination-link pagination-link--active">
+                                        1
+                                    </a>
+                                </li>
+                                <li class="pagination-item">
+                                    <a href="" class="pagination-link">
+                                        2
+                                    </a>
+                                </li>
+                                <li class="pagination-item">
+                                    <a href="" class="pagination-link">
+                                        3
+                                    </a>
+                                </li>
+                                <li class="pagination-item">
+                                    <a href="" class="pagination-link">
+                                        4
+                                    </a>
+                                </li>
+                                <li class="pagination-item">
+                                    <a href="" class="pagination-link">
+                                        5
+                                    </a>
+                                </li>
+                                <li class="pagination-item">
+                                    <a href="" class="pagination-link">
+                                        6
+                                    </a>
+                                </li>
+                                <li class="pagination-item">
+                                    <a href="" class="pagination-link">
+                                        7
+                                    </a>
+                                </li>
+                                <li class="pagination-item">
+                                    <a href="" class="pagination-link">
+                                        8
+                                    </a>
+                                </li>
+                                <li class="pagination-item">
+                                    <a href="" class="pagination-link">
+                                        9
+                                    </a>
+                                </li>
+                                <li class="pagination-item">
+                                    <a href="" class="pagination-link">
+                                        10
+                                    </a>
+                                </li>
+                                <li class="pagination-item">
+                                    <a href="" class="pagination-link">
+                                        <i class="pagination-icon fas fa-caret-right"></i>
+                                    </a>
+                                </li>
+                                <li class="pagination-item">
+                                    <a href="" class="pagination-link">
+                                        <i class="pagination-icon fas fa-forward"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    
+                     
+                    <div class="col l-4 m-12 c-12">
+
+                        <!-- Top truyeen tranh hay -->
+                        <div class="comic__top comic__history">
+                            <div class="comic__top-month-week-year">
+                                <a href="" class="comic__top-month comic__top--active">
+                                    Top Tháng
+                                </a>
+                                <a href="" class="comic__top-week">
+                                    Top Tuần
+                                </a>
+                                <a href="" class="comic__top-year">
+                                    Top Năm
+                                </a>
+                            </div>
+
+                            <ul class="comic__top-list">
+                                <li class="comic__top-item">
+                                    <span class="comic__top-rank rank-1">
+                                        01
+                                    </span>
+                                    <a href="" class="comic__top-link">
+                                        <img src="http://st.imageinstant.net/data/comics/32/vo-luyen-dinh-phong.jpg" alt="" class="comic__top-img">
+                                    </a>
+                                    <div class="comic__top-comic">
+                                        <a href="" class="comic__top-comic-title">
+                                            Võ Luyện Đỉnh Phong
+                                        </a>
+                                        <div class="comic__top-comic-chapter-viewed">
+                                            <a href="" class="comic__top-comic-chapter">
+                                                Chapter 766
+                                            </a>
+                                            <span class="comic__top-comic-viewed">
+                                                <i class="fas fa-eye"></i>
+                                                <span>10.076.016</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="comic__top-item">
+                                    <span class="comic__top-rank rank-2">
+                                        02
+                                    </span>
+                                    <a href="" class="comic__top-link">
+                                        <img src="http://st.imageinstant.net/data/comics/32/vo-luyen-dinh-phong.jpg" alt="" class="comic__top-img">
+                                    </a>
+                                    <div class="comic__top-comic">
+                                        <a href="" class="comic__top-comic-title">
+                                            Võ Luyện Đỉnh Phong
+                                        </a>
+                                        <div class="comic__top-comic-chapter-viewed">
+                                            <a href="" class="comic__top-comic-chapter">
+                                                Chapter 766
+                                            </a>
+                                            <span class="comic__top-comic-viewed">
+                                                <i class="fas fa-eye"></i>
+                                                <span>10.076.016</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="comic__top-item">
+                                    <span class="comic__top-rank rank-3">
+                                        03
+                                    </span>
+                                    <a href="" class="comic__top-link">
+                                        <img src="http://st.imageinstant.net/data/comics/32/vo-luyen-dinh-phong.jpg" alt="" class="comic__top-img">
+                                    </a>
+                                    <div class="comic__top-comic">
+                                        <a href="" class="comic__top-comic-title">
+                                            Võ Luyện Đỉnh Phong
+                                        </a>
+                                        <div class="comic__top-comic-chapter-viewed">
+                                            <a href="" class="comic__top-comic-chapter">
+                                                Chapter 766
+                                            </a>
+                                            <span class="comic__top-comic-viewed">
+                                                <i class="fas fa-eye"></i>
+                                                <span>10.076.016</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="comic__top-item">
+                                    <span class="comic__top-rank">
+                                        04
+                                    </span>
+                                    <a href="" class="comic__top-link">
+                                        <img src="http://st.imageinstant.net/data/comics/32/vo-luyen-dinh-phong.jpg" alt="" class="comic__top-img">
+                                    </a>
+                                    <div class="comic__top-comic">
+                                        <a href="" class="comic__top-comic-title">
+                                            Võ Luyện Đỉnh Phong
+                                        </a>
+                                        <div class="comic__top-comic-chapter-viewed">
+                                            <a href="" class="comic__top-comic-chapter">
+                                                Chapter 766
+                                            </a>
+                                            <span class="comic__top-comic-viewed">
+                                                <i class="fas fa-eye"></i>
+                                                <span>10.076.016</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- truyen dang theo doi -->
+                        <div class="comic__history comic__following">
+                            <div class="comic__history-header">
+                                <span class="comic__history-header-text">
+                                    Truyện đang theo dõi
+                                </span>
+                                <a href="" class="comic__history-header-link">
+                                    Xem tất cả
+                                </a>
+                            </div>
+
+                            <div class="comic__history-list">
+                                <div class="comic__history-item">
+                                    <img src="http://st.imageinstant.net/data/comics/170/honomieru-shounen.jpg" alt="" class="comic__history-img">
+                                    <div class="comic__history-infor">
+                                        <a href="" class="comic__history-infor-title">
+                                            Thể thao cực hạn
+                                        </a>
+                                        <div class="comic__history-infor-chaper-delete">
+                                            <a href="" class="comic__history-infor-chapter comic__following-chapter">
+                                                Chapter 27
+                                            </a>
+                                            <span class="comic__history-infor-time">
+                                                1 ngày trước
+                                            </span>
+                                        </div>
+
+                                        <a href="" class="comic__history-infor-continue-reading">
+                                            Đọc tiếp chapter 1
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="comic__history-item">
+                                    <img src="http://st.imageinstant.net/data/comics/170/honomieru-shounen.jpg" alt="" class="comic__history-img">
+                                    <div class="comic__history-infor">
+                                        <a href="" class="comic__history-infor-title">
+                                            Thể thao cực hạn
+                                        </a>
+                                        <div class="comic__history-infor-chaper-delete">
+                                            <a href="" class="comic__history-infor-chapter comic__following-chapter">
+                                                Chapter 27
+                                            </a>
+                                            <span class="comic__history-infor-time">
+                                                1 ngày trước
+                                            </span>
+                                        </div>
+
+                                        <a href="" class="comic__history-infor-continue-reading comic__history-infor-continue-reading--active">
+                                            Đọc tiếp chapter 1
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="comic__history-item">
+                                    <img src="http://st.imageinstant.net/data/comics/170/honomieru-shounen.jpg" alt="" class="comic__history-img">
+                                    <div class="comic__history-infor">
+                                        <a href="" class="comic__history-infor-title">
+                                            Thể thao cực hạn
+                                        </a>
+                                        <div class="comic__history-infor-chaper-delete">
+                                            <a href="" class="comic__history-infor-chapter comic__following-chapter">
+                                                Chapter 27
+                                            </a>
+                                            <span class="comic__history-infor-time">
+                                                1 ngày trước
+                                            </span>
+                                        </div>
+
+                                        <a href="" class="comic__history-infor-continue-reading">
+                                            Đọc tiếp chapter 1
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Lịch sử -->
+                        <div class="comic__history">
+                            <div class="comic__history-header">
+                                <span class="comic__history-header-text">
+                                    Lịch sử đọc truyện
+                                </span>
+                                <a href="" class="comic__history-header-link">
+                                    Xem tất cả
+                                </a>
+                            </div>
+
+                            <div class="comic__history-list">
+                                <div class="comic__history-item">
+                                    <img src="http://st.imageinstant.net/data/comics/170/honomieru-shounen.jpg" alt="" class="comic__history-img">
+                                    <div class="comic__history-infor">
+                                        <a href="" class="comic__history-infor-title">
+                                            Thể thao cực hạn
+                                        </a>
+                                        <div class="comic__history-infor-chaper-delete">
+                                            <a href="" class="comic__history-infor-chapter">
+                                                Đọc tiếp chapter 30
+                                            </a>
+                                            <a href="" class="comic__history-infor-delete">
+                                                <i class="fas fa-times-circle"></i>
+                                                Xóa
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="comic__history-item">
+                                    <img src="http://st.imageinstant.net/data/comics/170/honomieru-shounen.jpg" alt="" class="comic__history-img">
+                                    <div class="comic__history-infor">
+                                        <a href="" class="comic__history-infor-title">
+                                            Thể thao cực hạn
+                                        </a>
+                                        <div class="comic__history-infor-chaper-delete">
+                                            <a href="" class="comic__history-infor-chapter">
+                                                Đọc tiếp chapter 30
+                                            </a>
+                                            <a href="" class="comic__history-infor-delete">
+                                                <i class="fas fa-times-circle"></i>
+                                                Xóa
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="comic__history-item">
+                                    <img src="http://st.imageinstant.net/data/comics/170/honomieru-shounen.jpg" alt="" class="comic__history-img">
+                                    <div class="comic__history-infor">
+                                        <a href="" class="comic__history-infor-title">
+                                            Thể thao cực hạn
+                                        </a>
+                                        <div class="comic__history-infor-chaper-delete">
+                                            <a href="" class="comic__history-infor-chapter">
+                                                Đọc tiếp chapter 30
+                                            </a>
+                                            <a href="" class="comic__history-infor-delete">
+                                                <i class="fas fa-times-circle"></i>
+                                                Xóa
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                   
+                    
+
+                </div>
+            </div>
+            <!-- Key word -->
+            <div class="grid wide">
+                <div class="row">
+
+                    <div class="col l-8 m-12 c-12">
+                        <div class="key-word">
+                            <a href="" class="key-word-link">
+                                Truyen tranh
+                            </a>
+                            <a href="" class="key-word-link">
+                                Truyen tranh
+                            </a>
+                            <a href="" class="key-word-link">
+                                Truyen tranh
+                            </a>
+                            <a href="" class="key-word-link">
+                                Truyen tranh
+                            </a>
+                            <a href="" class="key-word-link">
+                                Truyen tranh
+                            </a>
+                            <a href="" class="key-word-link">
+                                Truyen tranh
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="app__footer">
+            <div class="grid wide">
+                <div class="row no-gutters">
+                    <div class="col l-4 m-12 c-12">
+                        <div class="footer__social">
+                            <a href="netruyen-home.html" class="footer__social-link">
+                                <img src="http://st.imageinstant.net/data/logos/logo-nettruyen.png" alt="" class="footer__social-logo">
+                            </a>
+                            <div class="footer__social-copyright">
+                                Copyright © 2015 NetTruyen
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col l-8 m-12 c-12">
+                        <div class="footer__category">
+                            <div class="footer__category-header">
+                                Thể loại
+                            </div>
+                            <div class="footer__category-list">
+                                <a href="" class="footer__category-item-link">
+                                    Chuyển sinh
+                                </a>
+                                <a href="" class="footer__category-item-link">
+                                    Chuyển sinh
+                                </a>
+                                <a href="" class="footer__category-item-link">
+                                    Chuyển sinh
+                                </a>
+                                <a href="" class="footer__category-item-link">
+                                    Chuyển sinh
+                                </a>
+                                <a href="" class="footer__category-item-link">
+                                    Chuyển sinh
+                                </a>
+                                <a href="" class="footer__category-item-link">
+                                    Chuyển sinh
+                                </a>
+                                <a href="" class="footer__category-item-link">
+                                    Chuyển sinh
+                                </a>
+                                <a href="" class="footer__category-item-link">
+                                    Chuyển sinh
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

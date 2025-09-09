@@ -1,0 +1,125 @@
+
+
+.page__comic-header {
+    width: 100%;
+    display: block;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.page__comic-header-title {
+    font-size: 2rem;
+    line-height: 2rem;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.page__comic-header-time-update {
+    font-size: 1.4rem;
+    color: var(--color-text-chim);
+    font-weight: 200;
+}
+
+.page__comic-body {
+    width: 100%;
+    display:block;
+}
+
+.page__comic-body-img {
+    margin-top: 20px;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.body-list-info {
+    margin-left: 10px;
+}
+
+/* other name */
+.view,
+.category,
+.status,
+.author,
+.othername {
+    font-size: 1.8rem;
+    line-height: 2.5rem;
+    color: var(--color-text-chim);
+    margin: 20px 0;
+}
+
+.category__content-link,
+.author__content {
+    color: blue;
+}
+
+.category__content-link:hover,
+.author__content:hover {
+    color: violet;
+    text-decoration: underline;
+}
+
+.ratinh-star-icon {
+    font-size: 2rem;
+    color: #ccc;
+    margin: 0 5px;
+}
+
+.rating-star--active {
+    color: yellow;
+    filter: brightness(80%);
+}
+
+.body-following {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 1.8rem;
+    line-height: 2.5rem;
+}
+.body-following-action {
+
+    color: white;
+    background-color: yellowgreen;
+    margin: 10px 0;
+    padding:10px 10px ;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.followed {
+    background-color: #ccc;
+    color: black;
+}
+
+.body-following-action:hover {
+    filter: brightness(80%);
+}
+
+.body-following-content {
+    margin: 0 10px;
+}
+
+.body-following-content-count {
+    font-weight: 600;
+}
+
+.body-userAct {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    line-height: 2.5rem;
+    margin-left: 10px;
+}
+
+.body-userAct-read {
+    color: white;
+    background-color: rgb(240,173,78);
+    margin: 10px 10px 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.body-userAct-read:hover {
+    background-color: orange;
+}

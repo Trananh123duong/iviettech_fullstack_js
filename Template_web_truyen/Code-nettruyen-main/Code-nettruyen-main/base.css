@@ -1,0 +1,96 @@
+:root{
+
+    --color-text-title:rgb(119,149,188) ;
+    --color-text-chim:rgb(103, 105, 105);
+
+    --navbar-height:50px;
+    --navbar-main-height: 38px;
+    --app-container-color:rgb(235,235,235);
+}
+
+* {
+    box-sizing: inherit;
+}
+
+html{
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Times New Roman', Times, serif;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+p {
+    margin: 0;
+}
+
+strong {
+    color: blue;
+}
+
+/* Icon */
+
+.icon {
+    padding-right: 6px;
+}
+
+.padding-l-r {
+    padding: 0 20px;
+}
+
+
+/* Animation */
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes growth{
+    from{
+        transform: scale(var(--growth-from));
+    }
+    to{
+        transform: scale(var(--growth-to));
+    }
+}
+
+.icon-home {
+    color: rgb(174,74,217);
+}
+
+.icon-home-bg {
+    background-color: white;
+}
+
+.test {
+    height: 10000000px;
+}
+
+.padding-bottom-long {
+    padding-bottom: 180px;
+}
+
+.no-select {
+    -webkit-user-select: none;  
+    -moz-user-select: none;     
+    -ms-user-select: none;      
+    user-select: none; 
+}

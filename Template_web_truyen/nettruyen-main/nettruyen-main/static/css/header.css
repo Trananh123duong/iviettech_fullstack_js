@@ -1,0 +1,136 @@
+.header{
+    background: var(--primary-color);
+    width: 100vw;
+    height: 50px;
+}
+
+.header__navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+}
+
+.header__navbar-option{
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+
+.header__navbar-option-search{
+    margin-inline: 100px;
+}
+
+.header__navbar-option-message {
+    margin-left: 40px;
+}
+
+.header__navbar-option-search{
+    display: flex;
+    align-items: center;
+}
+
+.header__navbar-option-search{
+    width: 450px;
+    height: 40px;
+}
+
+.header__navbar-option-search-form {
+    flex: 1;
+    height: 100%;
+    border-radius: 15px 0 0 15px;
+    padding: 0 20px;
+    border: none;
+}
+
+.header__navbar-option-search-btn {
+    background: var(--white-color);
+    height: 100%;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border-radius: 0 20px 20px 0;
+}
+
+.header__navbar-option-search-btn:hover{
+    cursor: pointer;
+}
+
+.header__navbar-option-message-help-item,
+.header__navbar-option-message-item{
+    color: var(--white-color);
+    font-size: 1.4rem;
+    text-decoration: none;
+}
+
+.header__navbar-option-message-item{
+    position: relative;
+}
+
+.header__navbar-option-message-num{
+    position: absolute;
+    background: var(--red-color);
+    top: 0;
+    left: 10px;
+    font-size: 0.7rem;
+    border-radius: 50px;
+    padding: 0 5px;
+}
+
+.header__navbar-option-home-img{
+    height: 40px;
+    border-radius: 50%;
+}
+
+.header__navbar-account{
+    color: var(--white-color);
+    font-weight: 400;
+    position: relative;
+}
+
+.header__navbar-account:hover .header__account{
+    display: block;
+}
+
+.header__account{
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    top: 25px;
+    right: 0;
+    border-radius: 4px;
+    background: var(--white-color);
+    border: 1px solid rgba(0, 0, 0, .15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+.header__account::after{
+    content: "";
+    position: absolute;
+    top: -5px;
+    right: 0;
+    height: 10px;
+    width: 100%;
+}
+
+.header__account-login,
+.header__account-register{
+    text-decoration: none;
+    display: flex;
+    color: var(--black-color);
+    align-items: center;
+    padding-block: 5px;
+    width: 100%;
+    padding: 10px 30px;
+}
+
+.header__account-login:hover,
+.header__account-register:hover{
+    background: var(--hover-row);
+    color: var(--primary-char);
+}
+
+.header__account-note{
+    margin-left: 5px;
+}

@@ -1,0 +1,234 @@
+
+
+/* link-item-web */
+.link-item-web {
+    margin: 15px 20px ;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.link-item-web i {
+    color: var(--color-text-chim);
+    filter: brightness(150%);
+}
+
+.link-item-web-back {
+    color: blue;
+    padding: 0 10px;
+}
+
+.link-item-web-back:hover {
+    color: violet;
+    text-decoration: underline;
+}
+
+/* Login */
+.login {
+    margin-top: 20px;
+}
+
+.login__header {
+    font-size: 3rem;
+    line-height: 3rem;
+    font-weight: 800;
+}
+
+.login__header::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 3px;
+    background-color: violet;
+    margin-top: 5px;
+}
+
+
+.login__wrapper-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.login__wrapper-item-header {
+    font-size: 2rem;
+    margin: 20px 0 10px 0;
+}
+
+.login__wrapper-item-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    height: 34px;
+    padding: 15px 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login__wrapper-item-input:focus {
+    border: 1px solid blue;
+}
+
+/* Login action */
+.login__action {
+    width: 100%;
+}
+
+.login__action-help {
+    width: 100%;
+    display: block;
+    text-align: right;
+    padding: 15px 5px;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    
+}
+
+.login__action-forget-pass {
+    color: blue;
+    margin-right: 10px;
+}
+
+
+.login__action-new-register:hover,
+.login__action-forget-pass:hover {
+    color: violet;
+    text-decoration: underline;
+}
+
+.login__action-new-register {
+    color: blue;
+    
+}
+
+.btn {
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 16px;
+    border-radius: 4px;
+    margin: 4px 0;
+}
+
+.btn-login {
+    background-color: rgb(253,216,53);
+}
+
+.btn-facebook {
+    background-color: rgb(59,89,152);
+    color: white;
+}
+
+.btn-facebook i {
+    color: white;
+    margin-right: 20px;
+}
+
+.btn-google {
+    background-color: rgb(221,75,57);
+    margin-bottom: 50px;
+    color: white;
+}
+
+.btn-google i {
+    color: white;
+    margin-right: 20px;
+}
+
+.btn:hover {
+    filter: brightness(110%);
+}
+
+/* Register */
+.login__notification {
+    font-size: 1.6rem;
+    margin: 30px 0;
+}
+
+/* fail login */
+.fail-login {
+    color: red;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 0 , 0, 0.5);
+    display: block;
+    width: 100%;
+    padding: 20px 10px;
+    margin: 10px 0;
+    background-color: rgba(255, 0 , 0, 0.1);
+    display: none;
+}
+
+.header__navbar-user-logged {
+    display: flex;
+    align-items: center;
+    display: none;
+    color: white;
+}
+
+.login-avatar {
+    --size-avatar: 25px;
+    height: var(--size-avatar);
+    width: var(--size-avatar);
+    border-radius: 50%;
+}
+
+.login-name {
+    margin-left: 5px;
+    font-size: 1.6rem;
+}
+/* Account menu */
+.account {
+    position: relative;
+}
+
+.account:hover .account-menu{
+    display: flex;
+}
+
+.account-menu {
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    min-width: 200px;
+    background-color: rgb(249,249,249);
+    color: black;
+    z-index: 1;
+    font-size: 1.6rem;
+    line-height: 1.6rem;
+    border: 2px solid #ccc;
+    box-shadow: 2px 2px 15px rgba(0,0,0,0.4);
+    font-weight: 500;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    display: none;
+}
+
+.account-menu::before {
+
+}
+
+.account-view-profile,
+.account-view-following-comic,
+.account-view-history,
+.account-log-out {
+    padding: 8px;
+    border-bottom: 1px solid black;
+}
+
+.account-log-out {
+    border: none;
+}
+
+.account-view-profile:hover ,
+.account-view-following-comic:hover ,
+.account-view-history:hover ,
+.account-log-out:hover {
+    color: violet;
+    background-color: rgb(228,228,228);
+}

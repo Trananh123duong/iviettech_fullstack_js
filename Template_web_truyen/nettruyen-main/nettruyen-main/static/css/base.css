@@ -1,0 +1,36 @@
+:root{
+    --primary-color: #3f3567;
+    --white-color: #fff;
+    --black-color: #000;
+    --red-color: #fe3332;
+    --hover-row: #f7f7f7;
+    --primary-char: #ae4ad9;
+}
+
+*{
+    box-sizing: inherit;
+}
+
+html{
+    line-height: 1.6rem;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0px;
+}
+
+.grid{
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.grid__full-width{
+    width: 100%;
+}
+
+.grid__row{
+    display: flex;
+    flex-wrap: wrap;
+}

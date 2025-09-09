@@ -1,0 +1,52 @@
+/* app footer */
+.app__footer {
+    background-color: rgb(34,34,34);
+}
+
+.footer__social {
+    width: 100%;
+    color: white;
+    padding: 30px 0 ;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.footer__social-logo {
+    width: 50%;
+}
+
+.footer__social-copyright {
+    font-size: 1.2rem;
+
+}
+
+.footer__category {
+    color: white;
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer__category-header {
+    font-size: 2rem;
+    margin-bottom: 20px;
+
+}
+
+.footer__category-item-link {
+    color: white;
+    font-size: 1.6rem;
+    line-height: 1.6rem;
+    display: inline-flex;
+    align-items: center;
+    padding:0 4px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    margin: 4px 2px;
+}
+
+.footer__category-item-link:hover {
+    color: rgb(0, 255, 242);
+}
